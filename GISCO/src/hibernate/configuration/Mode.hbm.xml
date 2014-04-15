@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Mode"
+		table="mode"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_MODE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibMode"
+			column="LIB_MODE"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+	
+
+		<set name="Caisconcours" inverse="true" lazy="true">
+			<key column="CODE_MODE"/>
+			<one-to-many class="Caisconcours"/>
+		</set>
+
+		<set name="Versements" inverse="true" lazy="true">
+			<key column="CODE_MODE"/>
+			<one-to-many class="Versement"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Matiere"
+		table="matiere"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_MATIERE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibMatiere"
+			column="LIB_MATIERE"
+			type="string"
+			not-null="false"
+			length="60"
+		/>
+		<property
+			name="AbrevMatiere"
+			column="ABREV_MATIERE"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="CoefMatiere"
+			column="COEF_MATIERE"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="CodeSection"
+			column="CODE_SECTION"
+			class="Section"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="Notes" inverse="true" lazy="true">
+			<key column="CODE_MATIERE"/>
+			<one-to-many class="Notes"/>
+		</set>
+	
+		<set
+			name="Semestres"
+			table="correspondre"
+			cascade="all"
+			lazy="true"
+		>
+			<key column="CODE_MATIERE"/>
+			<many-to-many column="CODE_SEMESTRE" class="Semestre"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<p:panel header="Enregistrement au Concours" styleClass="tableMarge">
+<h:form id="form">
+<p:growl autoUpdate="true"></p:growl>
+
+<fieldset>
+<legend>Année concours</legend>
+<h:panelGrid id="panelGridan" columns="2" cellspacing="8">
+<h:outputText value="Année Concours &nbsp;&nbsp;"/>
+<p:inputText value="#{manageInscriptionConcours.monObjetAnneeConcours.libAnneeConcours}" readonly="true"></p:inputText>
+</h:panelGrid>
+</fieldset>
+
+<fieldset>
+<legend>Candidat</legend>
+<h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
+<h:outputText value="Nom"></h:outputText>
+<p:inputText value="#{manageInscriptionConcours.monCandidat.nomCandidat}" required="true" requiredMessage="Renseigner le Nom du Candidat" styleClass="uCase"></p:inputText>
+
+
+<h:outputText value="Prénoms"></h:outputText>
+<p:inputText styleClass="inputStyle2" value="#{manageInscriptionConcours.monCandidat.prenomsCandidat}"></p:inputText>
+
+
+<h:outputText value="Date de naissance" styleClass="outputStyle"></h:outputText>
+<p:inputMask mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}">
+<f:convertDateTime  pattern="dd/MM/yyy"/>
+</p:inputMask>
+
+
+<h:outputText value="Age"></h:outputText>
+<p:inputText id="inputAge" value="#{manageInscriptionConcours.age}"></p:inputText>
+
+
+<h:outputText value="Lieu de naissance"></h:outputText>
+<p:inputText value="#{manageInscriptionConcours.monCandidat.lieuNaissance}"></p:inputText>
+
+
+<h:outputText value="Sexe"></h:outputText>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedSexe}" converter="#{comboSexe}">
+	<f:selectItem itemLabel="Selectionnez un Sexe" itemValue=""/>
+	<f:selectItems value="#{comboSexe.listeSexe}" var="tata" itemLabel="#{tata.libsexe}" itemValue="#{tata}"/>
+</p:selectOneMenu>
+
+<h:outputText value="Nationalité"></h:outputText>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedNationalite}" converter="#{comboNationalite}">
+	<f:selectItem itemLabel="Sélectionnez une Nationalité" itemValue=""/>
+	<f:selectItems value="#{comboNationalite.listeNationalite}" var="tata" itemLabel="#{tata.libnationalite}" itemValue="#{tata}"/>
+</p:selectOneMenu>
+
+<h:outputText value="Niveau"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedNiveau}" converter="#{comboNiveau}">
+	<f:selectItem itemLabel="Selectionez un Niveau" itemValue=""/>
+	<f:selectItems value="#{comboNiveau.listNiveaux}" var="tata" itemLabel="#{tata.abrevNiveau}" itemValue="#{tata}"/>
+</p:selectOneMenu>
+
+<h:outputText value="Diplome"></h:outputText>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedDiplome}" converter="#{comboDiplome}">
+	<f:selectItem itemLabel="Selectionnez un Diplôme" itemValue=""></f:selectItem>
+	<f:selectItems value="#{comboDiplome.listeDiplome}" var="tata" itemLabel="#{tata.abrevDiplome}" itemValue="#{tata}"></f:selectItems>
+</p:selectOneMenu>
+
+<h:outputText value="Date Diplome"></h:outputText>
+
+
+
+</h:panelGrid>
+</fieldset>
+
+<br></br>
+
+<fieldset>
+<legend>Concours</legend>
+
+<h:panelGrid id="gridConcour" columns="2" cellspacing="8">
+<h:outputText value="Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedPays}" converter="#{comboPays}">
+	<f:selectItem itemLabel="Sélectionnez un Pays" itemValue=""/>
+	<f:selectItems value="#{comboPays.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
+	<p:ajax event="change" listener="#{manageInscriptionConcours.chargerListeConcours}" update="dt2"></p:ajax>
+</p:selectOneMenu>
+
+</h:panelGrid>
+
+</fieldset>
+
+
+
+<!-- DataTable 2 -->
+
+<p:dataTable id="dt2" var="conc" value="#{manageInscriptionConcours.listeconcours}"
+                 selection="#{manageInscriptionConcours.selectedsConcours}" rowKey="#{conc.id}">  
+  
+        <f:facet name="header">  
+
+        </f:facet>  
+  
+        <p:column selectionMode="multiple" style="width:2%" />  
+  
+        <p:column headerText="Libellé concours" style="width:25%">  
+            #{conc.libConcours}  
+        </p:column>  
+  
+        <p:column headerText="Libéllé diplome" style="width:25%">  
+            #{conc.obtentionDiplome}  
+        </p:column>  
+  
+        <p:column headerText="Abréviation Diplôme" style="width:24%">  
+            #{conc.abrevObtentionDiplome}  
+        </p:column>  
+ 
+    </p:dataTable> 
+    
+    
+
+
+<h:panelGrid columns="2">
+<p:commandButton value="Enregistrer" actionListener="#{manageInscriptionConcours.incrirCandidat}"></p:commandButton>
+<p:commandButton value="Annuler" actionListener="#{manageInscriptionConcours.testMethode}" process="panelGrid1"></p:commandButton>
+</h:panelGrid>
+
+
+<p:commandButton value="test" actionListener="#{manageInscriptionConcours.test}"></p:commandButton>
+
+</h:form>
+</p:panel>
+</ui:define>
+
+
+</ui:composition>
+
+
+</html>

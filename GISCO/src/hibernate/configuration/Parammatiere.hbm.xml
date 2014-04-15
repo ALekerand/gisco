@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Parammatiere"
+		table="parammatiere"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_PARAMMATIERE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibParammatire"
+			column="LIB_PARAMMATIRE"
+			type="string"
+			not-null="false"
+			length="60"
+		/>
+		<property
+			name="AbrevParammatiere"
+			column="ABREV_PARAMMATIERE"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="CoefParammatiere"
+			column="COEF_PARAMMATIERE"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="CodeSection"
+			column="CODE_SECTION"
+			class="Section"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeType"
+			column="CODE_TYPE"
+			class="TypeMatiere"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

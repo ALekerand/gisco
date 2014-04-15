@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+<p:growl id="grow"  sticky="false" showDetail="true" autoUpdate="true"></p:growl>
+<p:panel header="Paramétrage des concours" styleClass="tableMarge">
+<fieldset>
+<legend>Concours</legend>
+
+<h:panelGrid id="panelGrid2" columns="2" cellspacing="8">
+
+<h:outputText value="Abréviation Ecole"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageConcours.selectedEcole}" converter="#{comboEcole}">
+	<f:selectItem itemLabel="Sélectionnez une Ecole &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
+	<f:selectItems value="#{comboEcole.listeEcole}" var="tata" itemLabel="#{tata.abrevEcole}" itemValue="#{tata}"/>
+	<p:ajax event="change" listener="#{manageConcours.afficherLibEcole}" update="inputEcole,inputLibconcours,dataTableConcours" ></p:ajax>
+</p:selectOneMenu>
+
+<h:outputText value="Ecole"></h:outputText>
+<p:inputText id="inputEcole" styleClass="inputStyle2" value="#{manageConcours.monConcours.libEcoleConcours}"></p:inputText>
+
+<h:outputText value="Libellé concours"></h:outputText>
+<p:inputText id="inputLibconcours" styleClass="inputStyle2" value="#{manageConcours.monConcours.libConcours}" required="true" requiredMessage="Entrer le libellé concours"></p:inputText>
+
+<h:outputText value="Pour l'obtention Diplôme"/>
+<p:inputText styleClass="inputStyle2" value="#{manageConcours.monConcours.obtentionDiplome}"></p:inputText>
+
+<h:outputText value="Abréviation Diplôme"></h:outputText>
+<p:inputText styleClass="inputStyle1" value="#{manageConcours.monConcours.abrevObtentionDiplome}"></p:inputText>
+</h:panelGrid>
+</fieldset>
+
+<p:separator></p:separator>
+<h:panelGrid id="panelGrid1" columns="2">
+<p:commandButton value="Enregistrer" actionListener="#{manageConcours.enregistrerConcours}" update="panelGrid2,grow"></p:commandButton>
+<p:commandButton value="&nbsp;&nbsp;Annuler &nbsp;&nbsp;" actionListener="#{manageConcours.annulerSaisie}" update="panelGrid2"></p:commandButton>
+</h:panelGrid>
+</p:panel>
+
+<p:dataTable id="dataTableConcours" styleClass="tableMarge" var="ta" value="#{manageConcours.listeConcours}">
+
+<f:facet name="header">Liste des concours par pays</f:facet>
+
+<p:column headerText="Code Concours" style="width:30%">#{ta.id}</p:column>
+<p:column headerText="Ecole" style="width:35%">#{ta.abrevEcoleConcours}</p:column>
+<p:column headerText="Diplôme" style="width:35%">#{ta.abrevObtentionDiplome}</p:column>
+
+<f:facet name="footer">
+<p:commandButton value="Supprimer"></p:commandButton>
+</f:facet>
+
+</p:dataTable>
+
+</h:form>
+
+</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+<p:growl id="grow"  sticky="false" showDetail="true" autoUpdate="true"></p:growl>
+<p:panel header="Paramétrage des Anneé Scolaire" styleClass="tableMarge">
+<fieldset>
+<legend>Année scolaire</legend>
+
+<p:panelGrid id="panelGrid1" columns="6" cellspacing="8">
+<h:outputText value="Année Début &nbsp;&nbsp;&nbsp;"/>
+<p:inputText id="debut" value="#{manageAnneeScolaire.monAnneeScolaire.anneesDebut}" style="width:50px" maxlength="4">
+<p:ajax event="blur" listener="#{manageAnneeScolaire.afficherLibAnneeScolaire}" update="inputlibanneescolaire, fin"></p:ajax>
+</p:inputText>
+
+<h:outputText value="Année fin &nbsp;&nbsp;&nbsp;"/>
+<p:inputText id="fin" value="#{manageAnneeScolaire.monAnneeScolaire.anneesFin}" style="width:50px" maxlength="4"></p:inputText>
+
+<h:outputText value="Année Académique"/>
+<p:inputText id="inputlibanneescolaire" value="#{manageAnneeScolaire.monAnneeScolaire.libAnneeScolaire}"></p:inputText>
+
+</p:panelGrid>
+
+</fieldset>
+
+<fieldset>
+<legend>Examen</legend>
+<p:panelGrid id="panelGrid2" columns="4" cellspacing="8">
+
+<h:outputText value="Session examen"/>
+<p:inputText value="#{manageAnneeScolaire.monAnneeScolaire.sessionExamen}"></p:inputText>
+
+<h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;Date commission du Jury &nbsp;&nbsp;&nbsp;"/>
+<p:inputMask mask="99/99/9999" value="#{manageAnneeScolaire.monAnneeScolaire.dateCommission}">
+<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+</p:inputMask>
+
+</p:panelGrid>
+
+</fieldset>
+
+<br></br>
+<fieldset>
+<h:panelGrid columns="2">
+<p:commandButton value="Enregistrer" action="#{manageAnneeScolaire.enregistrerAnneeScolaire}" update="form"></p:commandButton>
+<p:commandButton value="Annuler" actionListener="#{manageAnneeScolaire.annulerSaisie}" update="panelGrid1, panelGrid2"></p:commandButton>
+</h:panelGrid>
+</fieldset>
+</p:panel>
+
+</h:form>
+
+</ui:define>
+
+</ui:composition>
+
+</html>

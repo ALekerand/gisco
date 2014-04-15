@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/template.xhtml">
+	<ui:define name="content">
+		<p:tabView id="tabView">
+		</p:tabView>
+		<h:form id="frm" onsubmit="return initialize();">
+			<fieldset id="welcome">
+				<br></br> <br></br> <br></br> <br></br>
+
+
+				<p style="text-align: center; font-size: 30px;">Bienvenu sur le
+					site de Sherpa.</p>
+
+				<p style="text-align: center; font-size: 30px;">Sherpa c’est un
+					ERP de gestion des risques d'assurance.</p>
+
+				<p style="text-align: center; font-size: 30px;">J3A Software
+					Integrateur de Solutions Orientées JAVA,</p>
+
+				<p style="text-align: center; font-size: 30px;">le meilleur
+					choix pour votre system d'information.</p>
+				<p style="text-align: center; font-size: 30px;">
+
+			<h:panelGrid columns="6" cellspacing="10" style="margin: 0 auto;">
+				<h:link  class="PrdAuto" outcome="/pages/Auto/indexPrdAuto"/>
+				<h:link class="PrdTP" outcome="/pages/Transport/indexProdTP"/>
+				<h:link class="IndivAccid" outcome="/pages/IndivAccident/indexIndivAcc"/>
+				<h:link class="MRH" outcome="/pages/MRH/indexMRH"/>
+				<h:link class="Admin" outcome="/pages/admin/accueilAdmin"/>
+				<h:link class="Caisse" outcome="/pages/caissier/encaissement"/>			
+			</h:panelGrid>
+					
+				</p>
+
+				<br></br> <br></br> <br></br> <br></br>
+
+			</fieldset>
+		</h:form>
+		<br></br>
+		<br></br>
+
+
+	</ui:define>
+</ui:composition>
+</html>

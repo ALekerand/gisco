@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Absence"
+		table="absence"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_ABSENCE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="DateSaisie"
+			column="DATE_SAISIE"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="DateAbsence"
+			column="DATE_ABSENCE"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="HeureDebut"
+			column="HEURE_DEBUT"
+			type="time"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="HeureFin"
+			column="HEURE_FIN"
+			type="time"
+			not-null="false"
+			length="8"
+		/>
+		<many-to-one
+			name="CodeSemestre"
+			column="CODE_SEMESTRE"
+			class="Semestre"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Numetudiant"
+			column="NUMETUDIANT"
+			class="Etudiants"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeNature"
+			column="CODE_NATURE"
+			class="Nature"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeAnnees"
+			column="CODE_ANNEES"
+			class="Annees"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeMotif"
+			column="CODE_MOTIF"
+			class="Motif"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

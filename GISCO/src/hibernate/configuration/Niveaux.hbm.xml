@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Niveaux"
+		table="niveaux"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODENIVEAU"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibNiveau"
+			column="LIB_NIVEAU"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="AbrevNiveau"
+			column="ABREV_NIVEAU"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+	
+
+		<set name="Candidats" inverse="true" lazy="true">
+			<key column="CODENIVEAU"/>
+			<one-to-many class="Candidat"/>
+		</set>
+
+		<set name="Etudiants" inverse="true" lazy="true">
+			<key column="CODENIVEAU"/>
+			<one-to-many class="Etudiants"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

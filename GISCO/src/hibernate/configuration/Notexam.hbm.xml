@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Notexam"
+		table="notexam"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_NOTEXAM"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NoteExam"
+			column="NOTE_EXAM"
+			type="big_decimal"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="AnneeExam"
+			column="ANNEE_EXAM"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="DateNoteExam"
+			column="DATE_NOTE_EXAM"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="Numetudiant"
+			column="NUMETUDIANT"
+			class="Etudiants"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeMatiereExam"
+			column="CODE_MATIERE_EXAM"
+			class="MatiereExam"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Noteconcours"
+		table="noteconcours"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_NOTE_CONCOURS"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NoteConcours"
+			column="NOTE_CONCOURS"
+			type="big_decimal"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="DateNoteConcours"
+			column="DATE_NOTE_CONCOURS"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="NumCandidat"
+			column="NUM_CANDIDAT"
+			class="Candidat"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeMatiereConcours"
+			column="CODE_MATIERE_CONCOURS"
+			class="Matiereconcours"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Typematiereconcours"
+		table="typematiereconcours"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_TYPE_MATIERE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="TypeMatiereConcours"
+			column="TYPE_MATIERE_CONCOURS"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+	
+
+		<set name="Matiereconcours" inverse="true" lazy="true">
+			<key column="CODE_TYPE_MATIERE"/>
+			<one-to-many class="Matiereconcours"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

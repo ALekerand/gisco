@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Detailcampus"
+		table="detailcampus"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_DETAIL_CAMPUS"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibDetailCampus"
+			column="LIB_DETAIL_CAMPUS"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="AbrevCampus"
+			column="ABREV_CAMPUS"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="CodeCampus"
+			column="CODE_CAMPUS"
+			class="Campus"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

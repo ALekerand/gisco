@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Scolarites"
+		table="scolarites"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_SCOLARITE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="FraisInscription"
+			column="FRAIS_INSCRIPTION"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisAssurance"
+			column="FRAIS_ASSURANCE"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisTenueComplet"
+			column="FRAIS_TENUE_COMPLET"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisCampus"
+			column="FRAIS_CAMPUS"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisTenueSport"
+			column="FRAIS_TENUE_SPORT"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="MtEcolage"
+			column="MT_ECOLAGE"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisAnnexe"
+			column="FRAIS_ANNEXE"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisRestauration"
+			column="FRAIS_RESTAURATION"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="FraisExamen"
+			column="FRAIS_EXAMEN"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<many-to-one
+			name="Numetudiant"
+			column="NUMETUDIANT"
+			class="Etudiants"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeAnnees"
+			column="CODE_ANNEES"
+			class="Annees"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

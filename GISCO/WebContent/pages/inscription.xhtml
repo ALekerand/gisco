@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+<ui:composition template="/templates/template.xhtml">
+
+<ui:define name="content">
+
+<p:panel header="Inscription d'un nouvel élève" styleClass="tableMarge">
+
+<h:form id="form">
+
+<p:growl autoUpdate="true"></p:growl>
+
+<fieldset>
+<legend>Année académique</legend>
+<p:panelGrid id="panaelGrid1" columns="2" cellspacing="8">
+<h:outputText value="Année Académique"/>
+<p:inputText value="#{manageInscription.monObjetAnnees.libAnneeScolaire}" readonly="true"></p:inputText>
+</p:panelGrid>
+</fieldset>
+
+<fieldset>
+<legend>Elève</legend>
+<p:panelGrid id="panelGrid2" columns="4" cellspacing="8">
+<h:outputText value="Nom"/>
+<p:inputText value="#{manageInscription.monEtudiant.nom}" required="true" requiredMessage="Renseigner le Nom de l'élève" styleClass="uCase"/>
+
+<h:outputText value="Prénoms"/>
+<p:inputText styleClass="inputStyle2" value="#{manageInscription.monEtudiant.prenoms}" required="true" requiredMessage="Renseigner le prénom de l'élève"/>
+
+<h:outputText value="Date Naissance"/>
+<p:inputMask mask="99/99/9999" value="#{manageInscription.monEtudiant.datenais}">
+<f:convertDateTime pattern="dd/MM/yyy"/>
+</p:inputMask>
+
+<h:outputText value="Lieu Naissance"/>
+<p:inputText styleClass="inputStyle2" value="#{manageInscription.monEtudiant.lieunais}" required="true" requiredMessage="Renseigner le lieu de naissance"/>
+
+<h:outputText value="Pays"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscription.selectedPays}" converter="#{comboPays}">
+	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+	<f:selectItems value="#{comboPays.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
+	<p:ajax event="change" process="@this"></p:ajax>
+</p:selectOneMenu>
+
+<h:outputText value="Nom République"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="République"></p:selectOneMenu>
+
+<h:outputText value="Nationalité"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="ivoirienne"></p:selectOneMenu>
+
+<h:outputText value=""></h:outputText>
+<h:outputText value=""></h:outputText>
+
+<h:outputText value="Regime"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="Boursier"></p:selectOneMenu>
+
+<h:outputText value="Campus"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="Dortoir 1"></p:selectOneMenu>
+
+<h:outputText value="Nombre Frères"/>
+<p:inputText style="width:50px" maxlength="3" value="" required="true" requiredMessage="Renseigner le Nombre de frères de l'élève"></p:inputText>
+
+<h:outputText value="Nombre Soeurs"/>
+<p:inputText style="width:50px" maxlength="3" value="" required="true" requiredMessage="Renseigner le Nombre de soeurs de l'élève"></p:inputText>
+</p:panelGrid>
+</fieldset>
+
+<fieldset>
+<legend>Ecole</legend>
+<p:panelGrid id="panelGrid3" columns="4" cellspacing="8">
+<h:outputText value="Nom Ecole"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="esn"></p:selectOneMenu>
+
+<h:outputText value="Nom Filière"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="om1"></p:selectOneMenu>
+
+<h:outputText value="Nom Section"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="apm"></p:selectOneMenu>
+
+</p:panelGrid>
+
+</fieldset>
+<fieldset>
+<legend>Action</legend>
+<p:panelGrid id="panelGrid4" columns="3">
+<p:commandButton value="Inscrire" actionListener="manageInscription.enregisterInscription"></p:commandButton>
+<p:commandButton value="Annuler"></p:commandButton>
+<p:commandButton value="Quitter"></p:commandButton>
+
+</p:panelGrid>
+
+</fieldset>
+</h:form>
+
+</p:panel>
+
+</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Nationalites"
+		table="nationalites"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODENATIONALITE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="Libnationalite"
+			column="LIBNATIONALITE"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+	
+
+		<set name="Candidats" inverse="true" lazy="true">
+			<key column="CODENATIONALITE"/>
+			<one-to-many class="Candidat"/>
+		</set>
+
+		<set name="Etudiants" inverse="true" lazy="true">
+			<key column="CODENATIONALITE"/>
+			<one-to-many class="Etudiants"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

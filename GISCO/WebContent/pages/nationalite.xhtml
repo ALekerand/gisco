@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+<p:growl id="grow" sticky="false" showDetail="true"></p:growl>
+	<p:panel header="Enregistrement des nationalités" styleClass="tableMarge">
+	<fieldset>
+	<legend>Nationalité</legend>
+	<h:panelGrid id="panelGrid2" columns="2">
+	<h:outputText value="Libellé nationalité"></h:outputText>
+	<h:inputText value="#{manageNationalite.maNationalite.libnationalite}" styleClass="inputStyle2" required="true"></h:inputText>
+	</h:panelGrid>
+	</fieldset>
+	<br></br>
+	<h:panelGrid id ="panelGrid" columns="3">
+	<p:commandButton value="Enregistrer" actionListener="#{manageNationalite.EnregistrerNationalite}" update="panelGrid2, tableNationalite, grow"></p:commandButton>
+	<p:commandButton value="Modifier"></p:commandButton>
+	<p:commandButton value="Annuler" actionListener="#{manageNationalite.annulerSaisie}" update="panelGrid2"></p:commandButton>
+	</h:panelGrid>
+	</p:panel>
+	<p:dataTable id="tableNationalite" var="tete" selectionMode="single" value="#{manageNationalite.maNationaliteModel}"
+	selection="#{manageNationalite.selectedNationalite}" styleClass="tableMarge">
+	<p:ajax event="rowSelect" listener="#{manageNationalite.afficherSelectedNationalite}" update=":form:panelGrid2"></p:ajax>
+	<f:facet name="header">
+	Liste des Nationalités
+	</f:facet>
+	<p:column headerText="Code nationalité" rendered="false">#{tete.id}</p:column>
+	<p:column headerText="Libellé Nationalité">#{tete.libnationalite}</p:column>
+	<f:facet name="footer">
+	<p:commandButton value="Supprimer" onclick="Confirmation.show()"></p:commandButton>
+	</f:facet>
+	</p:dataTable>
+	
+	<p:confirmDialog id="confirmDialog" message="Voulez-vous supprimer cette Nationalité ?"
+	header="Suppression" severity="alert" widgetVar="Confirmation">
+		<p:commandButton value="Oui" oncomplete="Confirmation.hide()" actionListener="#{manageNationalite.supprimerNationalite}" update="tableNationalite, panelGrid2"></p:commandButton>
+		<p:commandButton value="Non" onclick="Confirmation.hide()" actionListener="#{manageNationalite.annulerSaisie}" update="panelGrid2"></p:commandButton>
+	</p:confirmDialog>
+	</h:form>
+	</ui:define>
+</ui:composition>
+</h:html>

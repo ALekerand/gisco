@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Ecolages"
+		table="ecolages"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_ECOLAGE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="MontantEcolage"
+			column="MONTANT_ECOLAGE"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<many-to-one
+			name="CodeSection"
+			column="CODE_SECTION"
+			class="Section"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="Echeances" inverse="true" lazy="true">
+			<key column="CODE_ECOLAGE"/>
+			<one-to-many class="Echeance"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

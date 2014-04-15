@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+ <link rel="stylesheet" type="text/css" href="../ressources/css/ngo.css"></link>
+<link rel="stylesheet" type="text/css" href="../ressources/css/monStyle.css"></link>
+  <title><ui:insert name="title">Page template</ui:insert></title>
+</h:head>
+
+<h:body>
+<p:layout fullPage="true">
+<p:layoutUnit position="north">
+<div id="header">
+    <ui:insert name="header">
+    	Header area.  See comments below this line in the source.
+    	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+    	<!-- <ui:include src="header.xhtml"/> -->
+    	<ui:include  src="/templates/header.xhtml"></ui:include>
+    </ui:insert>
+</div>
+</p:layoutUnit>
+
+<p:layoutUnit position="west" size="200" header="Menu" collapsible="true">
+
+	<h:form>
+	<p:panelMenu>
+		<p:submenu label="Autorisation">
+			<p:menuitem value="Créer un utilisateur"/>
+			"WebContent/templates/template.xhtml"<p:menuitem value="Changer un mot de passe"/>
+		</p:submenu>
+		
+		<p:submenu label="Concours">
+			<p:menuitem value="Inscription" outcome="inscriptionconcours.xhtml"/>
+			<p:menuitem value="Paiement"/>
+			<p:menuitem value="Complement"/>
+		</p:submenu>
+		
+		<p:submenu label="Parametrage">
+			<p:menuitem value="Des Ecoles" outcome="ecole.xhtml"/>
+			<p:menuitem value="Des Pays" outcome="pays2.xhtml"/>
+			<p:menuitem value="Des Nationalités" outcome="nationalite.xhtml"/>
+			<p:menuitem value="Des Sexes" outcome="sexe.xhtml"/>
+			<p:menuitem value="Des Niveaux" outcome="niveau.xhtml"/>
+			<p:menuitem value="Des Diplômes" outcome="diplome.xhtml"/>
+			<p:menuitem value="Des Concours" outcome="concours.xhtml"/>
+			<p:menuitem value="Des années concours" outcome="anneeconcours.xhtml"/>
+			<p:menuitem value="Des années académiques" outcome="anneeScolaire1.xhtml"/>
+		</p:submenu>
+		
+		<p:submenu label="Etudiant">
+			<p:menuitem value="Inscription" outcome="inscription.xhtml"/>
+			<p:menuitem value="Réinscription"/>
+			<p:menuitem value="Complement"/>
+		</p:submenu>
+		
+	</p:panelMenu>
+	</h:form>
+</p:layoutUnit>
+
+<p:layoutUnit position="center">
+<div id="content">
+  <ui:insert name="content">
+    	Content area.  See comments below this line in the source.
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+    	<!-- </div> -->
+    	
+  </ui:insert>
+</div>
+</p:layoutUnit>
+
+<p:layoutUnit position="south">
+<div id="footer">
+  <ui:insert name="footer">
+    	Footer area.  See comments below this line in the source.
+    	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
+		<!--<ui:include src="footer.xhtml"/>  -->
+		<ui:include src="/templates/footer.xhtml"></ui:include>
+  </ui:insert>
+</div>
+</p:layoutUnit>
+</p:layout>
+</h:body>
+
+</html>

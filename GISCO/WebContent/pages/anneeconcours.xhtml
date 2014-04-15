@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+
+<p:growl showDetail="true" autoUpdate="true"></p:growl>
+<p:panel header="Paramétrage des années concours" styleClass="tableMarge">
+<fieldset>
+<legend>Année concours</legend>
+
+<h:outputText  value="&nbsp;&nbsp;&nbsp;Année début &nbsp;&nbsp;&nbsp;"/>
+<p:inputText id="debut" style="width:50px" maxlength="4" value="#{manageAnneeConcours.monAnneeConcours.anneeConcoursDebut}">
+<p:ajax event="blur" listener="#{manageAnneeConcours.afficherLibAnneeConcours}" update="inputLibAnneeConcours, fin"></p:ajax>
+</p:inputText>
+
+<h:outputText  value="&nbsp;&nbsp;&nbsp;Année fin &nbsp;&nbsp;&nbsp;"/>
+<p:inputText id="fin" style="width:50px" maxlength="4" value="#{manageAnneeConcours.monAnneeConcours.anneeConcoursFin}" readonly="true">
+
+</p:inputText>
+
+<h:outputText value="&nbsp;&nbsp;&nbsp;Libellé Année Concours &nbsp;&nbsp;&nbsp;"></h:outputText>
+<p:inputText id="inputLibAnneeConcours" style="width:90px" maxlength="12" value="#{manageAnneeConcours.monAnneeConcours.libAnneeConcours}" readonly="true"></p:inputText>
+<p:separator></p:separator>
+<h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
+
+<h:outputText value="Pays"/>
+<p:selectOneMenu id="cb_pays" styleClass="oneMenuStyle" value="#{manageAnneeConcours.selectedPays}" converter="#{comboPays}">
+	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
+	<f:selectItems value="#{comboPays.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
+	<p:ajax event="change" process="@this"></p:ajax>
+</p:selectOneMenu>
+<h:outputText></h:outputText>
+<h:outputText></h:outputText>
+
+<h:outputText value="Ecole"/>
+<p:selectOneMenu id="cb_ecole" value="#{manageAnneeConcours.selectedEcole}" converter="#{comboEcole}">
+	<f:selectItem itemLabel="Sélectionnez une Ecole &nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
+	<f:selectItems value="#{comboEcole.listeEcole}" var="toto" itemLabel="#{toto.abrevEcole}" itemValue="#{toto}"></f:selectItems>
+	<p:ajax event="change" listener="#{manageAnneeConcours.ChargerListeConcours}" update="cb_concours, table"></p:ajax>
+	
+</p:selectOneMenu>
+<h:outputText></h:outputText>
+<h:outputText></h:outputText>
+
+<h:outputText value="Libellé concours"></h:outputText>
+<p:selectOneMenu id="cb_concours" value="#{manageAnneeConcours.selectedConcours}" converter="#{comboConcours}" >
+	<f:selectItem itemLabel="Sélectionnez un concours &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+	<f:selectItems value="#{manageAnneeConcours.maListeConcours}" var="ya" itemLabel="#{ya.abrevObtentionDiplome}" itemValue="#{ya}"/>
+	
+</p:selectOneMenu>
+
+<h:outputText value="Date compostion"/>
+<p:calendar  value="#{manageAnneeConcours.monAnneeConcours.dateComposition}" pattern="dd/MM/yyyy" showOn="button"></p:calendar>
+
+<h:outputText value="Droit inscription"/>
+<p:inputText style="width:80px" maxlength="8" value="#{manageAnneeConcours.monAnneeConcours.droitConcours}" >
+<p:ajax event="blur" update="@this"></p:ajax>
+	<f:convertNumber pattern="##,###.##"></f:convertNumber>
+
+</p:inputText>
+
+
+<h:outputText value="Nombre place"/>
+<p:inputText style="width:50px" maxlength="3" value="#{manageAnneeConcours.monAnneeConcours.nbrePlaces}"></p:inputText>
+
+</h:panelGrid>
+
+
+<br/>
+
+<p:separator/>
+<h:panelGrid columns="2">
+<p:commandButton value="Enregistrer" actionListener="#{manageAnneeConcours.EnregistrerAnneeConcours}"></p:commandButton>
+<p:commandButton value="Annuler" actionListener="#{manageAnneeConcours.annulerSaisie}" update="panelGrid1,inputLibAnneeConcours,debut,fin,table"></p:commandButton>
+
+</h:panelGrid>
+</fieldset>
+
+<br></br>
+
+<fieldset>
+<legend>Des années concours</legend>
+<p:dataTable id="table" value="#{manageAnneeConcours.maListehybride}"  var="tata">
+<f:facet name="header">Liste des années concours par pays</f:facet>
+
+<p:column headerText="Code" style="width:0%" rendered="false">#{tata.idAnneeConcours}</p:column>
+<p:column headerText="Libellé concours" style="width:20%">#{tata.libConcours}</p:column>
+<p:column headerText="Libellé Diplôme" style="width:40%">#{tata.obtentionDiplome}</p:column>
+<p:column headerText="Abréviation" style="width:15%">#{tata.abrevObtentionDiplome}</p:column>
+<p:column headerText="Droit d'inscription" style="width:15%">
+	<h:outputText value="#{tata.droitConcours}">
+	<f:convertNumber pattern="##,###.##"></f:convertNumber>
+	</h:outputText>
+</p:column>
+<p:column headerText="Nombre places" style="width:10%">#{tata.nbrePlaces}</p:column>
+
+
+</p:dataTable>
+
+</fieldset>
+</p:panel>
+
+
+</h:form>
+
+</ui:define>
+
+</ui:composition>
+</html>

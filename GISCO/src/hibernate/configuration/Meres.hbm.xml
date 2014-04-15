@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Meres"
+		table="meres"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="NUM_MERE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NomPrenomsMere"
+			column="NOM_PRENOMS_MERE"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<many-to-one
+			name="CodeProfession"
+			column="CODE_PROFESSION"
+			class="Professions"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeAdresse"
+			column="CODE_ADRESSE"
+			class="Adresses"
+			not-null="false"
+		>
+		</many-to-one>
+	
+
+		<set name="Etudiants" inverse="true" lazy="true">
+			<key column="NUM_MERE"/>
+			<one-to-many class="Etudiants"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration
+    PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory >
+
+		<!-- local connection properties -->
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1/gisbd</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+		<!-- property name="hibernate.connection.pool_size"></property -->
+
+		<!-- dialect for MySQL -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="current_session_context_class">thread</property>
+        
+		 <!--<property name="hibernate.show_sql">false</property>-->
+        <property name="hibernate.show_sql">true</property>
+        
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        
+        <!-- Les fichiers de mapping de la BD -->
+        <mapping resource="/hibernate/configuration/Absence.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Activites.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Adresses.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Anneeconcours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Annees.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Avoir.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Caisconcours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Campus.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Candidat.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/CandidatSalle.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Candidature.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Concours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Correspondre.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Detailcampus.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Diplomes.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Echeance.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Ecolages.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Ecole.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/EtudiantCandidature.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Etudiants.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Filieres.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Inscriptionconcours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Inscriptions.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Logement.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Loger.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Matiere.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Matiereconcours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/MatiereExam.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Matrimoniales.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Meres.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Mode.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Motif.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Nationalites.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Nature.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Niveaux.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Noteconcours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Notes.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Notexam.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Origine.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Parammatiere.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Parammatierexam.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Pays.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Peres.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Professions.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Regime.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Salles.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Santes.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Scolarites.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Section.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Semestre.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Sexes.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Tuteurs.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/TypeMatiere.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Typematiereconcours.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/TypeMatiereExam.hbm.xml"/>
+        <mapping resource="/hibernate/configuration/Versement.hbm.xml"/>
+        
+        
+    </session-factory>
+</hibernate-configuration>

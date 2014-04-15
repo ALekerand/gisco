@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Caisconcours"
+		table="caisconcours"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_CAISCONCOURS"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="DateCaisconcours"
+			column="DATE_CAISCONCOURS"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="LibCaisconcours"
+			column="LIB_CAISCONCOURS"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="MontantCaisconcours"
+			column="MONTANT_CAISCONCOURS"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<many-to-one
+			name="CodeAnneesConcours"
+			column="CODE_ANNEES_CONCOURS"
+			class="Anneeconcours"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="NumCandidat"
+			column="NUM_CANDIDAT"
+			class="Candidat"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeMode"
+			column="CODE_MODE"
+			class="Mode"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

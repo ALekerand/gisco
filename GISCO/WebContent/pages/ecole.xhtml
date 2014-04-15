@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+<p:growl id="grow"  sticky="false" showDetail="true"></p:growl>
+<p:panel header="Enregistrement des Ecoles" styleClass="tableMarge">
+<fieldset>
+<legend>Ecole</legend>
+<h:panelGrid id="panelGrid1" columns="2">
+<h:outputText value="Libellé Ecole"></h:outputText>
+<p:inputText value="#{manageEcole.monEcole.nomEcole}" styleClass="inputStyle2" required="true" requiredMessage="Renseigner le champ Libellé Ecole"></p:inputText>
+<h:outputText value="Abréviation"></h:outputText>
+<p:inputText value="#{manageEcole.monEcole.abrevEcole}" required="true" requiredMessage="Renseigner le champ Abréviation" styleClass="uCase"></p:inputText>
+</h:panelGrid>
+</fieldset>
+<br></br>
+<h:panelGrid id="panelGrid2" columns="3">
+<p:commandButton value="Enregistrer" actionListener="#{manageEcole.enregistrerEcole}" update="dataTable1, panelGrid1, grow"></p:commandButton>
+<p:commandButton value="Modifier" actionListener="#{manageEcole.modifierEcole}"></p:commandButton>
+<p:commandButton value="Annuler"></p:commandButton>
+</h:panelGrid>
+</p:panel>
+<br></br>
+<p:dataTable id="dataTable1" var="toto" selectionMode="single" value="#{manageEcole.monEcoleModel}"
+selection="#{manageEcole.selectedEcole}" styleClass="tableMarge">
+<p:ajax event="rowSelect" listener="#{manageEcole.afficherSelectedEcole}" update=":form:panelGrid1"></p:ajax>
+<f:facet name="header">Liste des Ecoles</f:facet>
+<p:column headerText="Code Ecole" rendered="false">#{toto.id}</p:column>
+<p:column headerText="Libellé Ecole" style="width:70%">#{toto.nomEcole}</p:column>
+<p:column headerText="Abréviation" style="width:30%">#{toto.abrevEcole}</p:column>
+<f:facet name="footer">
+<p:commandButton value="Supprimer" onclick="Confirmatio.show()"></p:commandButton>
+</f:facet>
+</p:dataTable>
+<p:confirmDialog id="confirmDialog" message="Voulez vous supprimer cette Ecole ?"
+	header="Suppression" severity="alert" widgetVar="Confirmation">
+	<p:commandButton value="Oui" oncomplete="Confirmation.hide()" actionListener="#{manageEcole.supprimerEcole}" update="dataTable1, panelGrid1"></p:commandButton>
+	<p:commandButton value="Non" onclick="Confirmation.hide()" actionListener="#{manageEcole.annulerSaisie}" update="panelGrid2"></p:commandButton>
+
+</p:confirmDialog>
+</h:form>
+</ui:define>
+</ui:composition>
+</h:html>

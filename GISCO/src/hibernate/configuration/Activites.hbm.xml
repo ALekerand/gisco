@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="hibernate.beans">
+	<class
+		name="Activites"
+		table="activites"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_ACTIVITE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibActivite"
+			column="LIB_ACTIVITE"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+	
+
+		<set name="Versements" inverse="true" lazy="true">
+			<key column="CODE_ACTIVITE"/>
+			<one-to-many class="Versement"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>
