@@ -11,6 +11,7 @@ import hibernate.beans.Niveaux;
 import hibernate.beans.Pays;
 import hibernate.beans.Sexes;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,11 +22,15 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
+import com.itextpdf.text.DocumentException;
+
 import requetes.ReqAnneeConcours;
 import requetes.ReqConcours;
+import utilitaires.DateCalculator;
 
 import dao.Crud;
 import dataModel.ConcoursModel;
+import etats.EtatAutorisationConcours;
 
 
 public class ManageInscriptionConcours {
@@ -48,6 +53,8 @@ public class ManageInscriptionConcours {
 	private List listeConcoursChoisis;
 	private Concours selectedsConcours[];
 	private Inscriptionconcours inscriptionconcours;
+	private DateCalculator dateCalculator = new DateCalculator();
+	private EtatAutorisationConcours autorisationConcours = new EtatAutorisationConcours();
 
 	
 	
@@ -84,6 +91,15 @@ public class ManageInscriptionConcours {
 		 try {
 			enregistrerCandidat();
 			 enregTableInscription();
+			 //Edition Etat
+			 getAutorisationConcours().setAnneeconcours(monObjetAnneeConcours);
+			 getAutorisationConcours().setCandidat(monCandidat);
+			 for(Concours concours : selectedsConcours){
+				 getAutorisationConcours().setConcours(concours);	
+				 getAutorisationConcours().creerAutorisation();
+			 }
+			 
+			getAutorisationConcours().creerAutorisation();
 		} catch (Exception e) {
 			logger.error("Une erreur est survenue lors de l'enregistrement du candidat",e);
 		}
@@ -110,11 +126,12 @@ public class ManageInscriptionConcours {
 		
 	}
 	
-	public void calculerAge(){
+	public int calculerAge(){
+		setAge(0);
 		System.out.println("Calcul de l'age");
-		Date dateActulle = Calendar.getInstance().getTime();
-		 setAge((dateActulle.getYear()-monCandidat.getDateNaissance().getYear()));
-		 System.out.println("Calcul éffectué");
+	int nbreJour =	(int) getDateCalculator().calculerDifference(getMonCandidat().getDateNaissance(), Calendar.getInstance().getTime());
+	System.out.println("----------->>> Age"+getAge());
+	return age = nbreJour/365; 
 	} 
 	
 	
@@ -289,6 +306,30 @@ public class ManageInscriptionConcours {
 
 	public void setSelectedsConcours(Concours[] selectedsConcours) {
 		this.selectedsConcours = selectedsConcours;
+	}
+
+
+
+	public DateCalculator getDateCalculator() {
+		return dateCalculator;
+	}
+
+
+
+	public void setDateCalculator(DateCalculator dateCalculator) {
+		this.dateCalculator = dateCalculator;
+	}
+
+
+
+	public EtatAutorisationConcours getAutorisationConcours() {
+		return autorisationConcours;
+	}
+
+
+
+	public void setAutorisationConcours(EtatAutorisationConcours autorisationConcours) {
+		this.autorisationConcours = autorisationConcours;
 	}
 
 
