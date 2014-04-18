@@ -16,12 +16,14 @@
 <legend>Année académique</legend>
 <p:panelGrid id="panaelGrid1" columns="6" cellspacing="8">
 <h:outputText value="Année Début &nbsp;&nbsp;&nbsp;"/>
-<p:inputText id="debut" value="#{manageAnneeScolaire.monAnneeScolaire.anneesDebut}" style="width:50px" maxlength="4">
+<p:inputText id="debut" value="#{manageAnneeScolaire.monAnneeScolaire.anneesDebut}" style="width:50px" maxlength="4" converterMessage="La saisie ne correspond pas à une année">
+	<f:convertNumber integerOnly="true" type="number"></f:convertNumber>
+
 <p:ajax event="blur" listener="#{manageAnneeScolaire.afficherLibAnneeScolaire}" update="inputlibanneescolaire, fin"></p:ajax>
 </p:inputText>
 
 <h:outputText value="Année fin &nbsp;&nbsp;&nbsp;"/>
-<p:inputText id="fin" value="#{manageAnneeScolaire.monAnneeScolaire.anneesFin}" style="width:50px" maxlength="4"></p:inputText>
+<p:inputText id="fin" value="#{manageAnneeScolaire.monAnneeScolaire.anneesFin}" style="width:50px" maxlength="4" readonly="true"></p:inputText>
 
 <h:outputText value="Année Académique"/>
 <p:inputText id="inputlibanneescolaire" value="#{manageAnneeScolaire.monAnneeScolaire.libAnneeScolaire}"></p:inputText>
@@ -49,7 +51,7 @@
 <br></br>
 <h:panelGrid columns="2">
 <p:commandButton value="Enregistrer" actionListener="#{manageAnneeScolaire.enregistrerAnneeScolaire}"></p:commandButton>
-<p:commandButton value="Annuler" actionListener="#{manageAnneeScolaire.annulerSaisie}" update="panaelGrid1,debut,fin,inputlibanneescolaire"></p:commandButton>
+<p:commandButton value="Annuler" actionListener="#{manageAnneeScolaire.annulerSaisie}" process="@this" update="panaelGrid1,debut,fin,inputlibanneescolaire"></p:commandButton>
 <p:commandButton value="test" actionListener="#{manageAnneeScolaire.test}"></p:commandButton>
 </h:panelGrid>
 

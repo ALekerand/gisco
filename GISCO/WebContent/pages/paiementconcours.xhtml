@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<p:panel header="Paiement de droit d'inscription au Concours" styleClass="tableMarge">
+<h:form id="form">
+<p:growl autoUpdate="true"></p:growl>
+
+<p:dataTable id="td1" var="toto" selectionMode="single" styleClass="tableMarge">
+
+<f:facet name="header">
+Liste des candidats en attente de paiement de droit au Concours
+</f:facet>
+<p:column headerText="N° Candidat" rendered="false"></p:column >
+<p:column headerText="Nom" style="width:30%"></p:column>
+<p:column headerText="Prénoms" style="width:40%"></p:column>
+<p:column headerText="Date naissance" style="width:10%"></p:column>
+<p:column headerText="Lieu naissance" style="width:20%"></p:column>
+<f:facet name="footer">
+</f:facet>
+</p:dataTable>
+
+<h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
+<h:outputText value="Nom"></h:outputText>
+<p:inputText value="" styleClass="uCase"></p:inputText>
+
+
+<h:outputText value="Prénoms"></h:outputText>
+<p:inputText value="" styleClass="inputStyle2"></p:inputText>
+
+
+<h:outputText value="Date de naissance" styleClass="outputStyle"></h:outputText>
+<p:inputMask mask="99/99/9999"  value="">
+<f:convertDateTime  pattern="dd/MM/yyy"/>
+</p:inputMask>
+
+<h:outputText value="Lieu de naissance"></h:outputText>
+<p:inputText value=""></p:inputText>
+
+
+<h:outputText value="Sexe"></h:outputText>
+<p:inputText value=""></p:inputText>
+
+</h:panelGrid>
+
+<!-- DataTable 2 -->
+
+<p:dataTable id="dt2">  
+  
+        <f:facet name="header">  
+  		Liste des Concours
+  		</f:facet>
+        <p:column selectionMode="simple" style="width:2%" />  
+  
+        <p:column headerText="Libellé Concours" style="width:80%">   
+        </p:column>        
+ 
+    </p:dataTable> 
+
+<h:panelGrid columns="2">
+<p:commandButton value="Valider">
+	
+	<p:confirm header="Confirmation" message="Confirmez vous cette inscription ?" icon="ui-icon-alert" />  
+
+</p:commandButton>
+
+</h:panelGrid>
+
+
+
+ <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+    </p:confirmDialog>  
+    
+</h:form>
+</p:panel>
+</ui:define>
+
+
+</ui:composition>
+
+
+</html>
