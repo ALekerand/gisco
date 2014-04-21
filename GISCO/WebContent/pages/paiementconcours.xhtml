@@ -13,11 +13,22 @@
 <p:growl autoUpdate="true"></p:growl>
 
 
-<p:panelGrid columns="3">
+<fieldset>
+<legend>Recherche</legend>
+
+<h:panelGrid columns="4">
 <h:outputText value="Num Candidat"></h:outputText>
 <p:inputText ></p:inputText>
-<p:commandButton value="Rechercher"></p:commandButton>
-</p:panelGrid>
+
+
+<p:commandButton value="Rechercher" icon="ui-icon-search"></p:commandButton>
+<a href="anneeScolaire.xhtml">Consulter la liste</a>
+</h:panelGrid>
+</fieldset>
+<br />
+<fieldset>
+<legend>Information du candidat</legend>
+
 <h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
 <h:outputText value="Nom"></h:outputText>
 <p:inputText value="" styleClass="uCase"></p:inputText>
@@ -40,7 +51,8 @@
 <p:inputText value=""></p:inputText>
 
 </h:panelGrid>
-
+</fieldset>
+<br />
 <p:dataTable id="dt2">  
   
         <f:facet name="header">  
@@ -57,32 +69,15 @@
  
     </p:dataTable> 
     
-    <p:commandButton value="Valider"></p:commandButton>
+    <p:commandButton value="Valider" icon="ui-icon-check"></p:commandButton>
 
 
 
 <!-- DataTable 2 -->
 
-<p:dataTable id="dt2">  
+ 
 
-        <f:facet name="header">  
-  		Liste des Concours
-  		</f:facet>
-        <p:column selectionMode="simple" style="width:2%" />  
-        
-        <p:column headerText="Libellé Concours" style="width:80%">   
-        </p:column>        
 
-    </p:dataTable> 
-
-<h:panelGrid columns="2">
-<p:commandButton value="Valider">
-	
-	<p:confirm header="Confirmation" message="Confirmez vous cette inscription ?" icon="ui-icon-alert" />  
-
-</p:commandButton>
-
-</h:panelGrid>
 
 
 
