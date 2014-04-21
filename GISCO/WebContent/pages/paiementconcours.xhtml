@@ -16,29 +16,8 @@
 <p:panelGrid columns="3">
 <h:outputText value="Num Candidat"></h:outputText>
 <p:inputText ></p:inputText>
-<
-
+<p:commandButton value="Rechercher"></p:commandButton>
 </p:panelGrid>
-
-
-
-
-
-
-<p:dataTable id="td1" var="toto" selectionMode="single" styleClass="tableMarge">
-
-<f:facet name="header">
-Liste des candidats en attente de paiement de droit au Concours
-</f:facet>
-<p:column headerText="N° Candidat" rendered="false"></p:column >
-<p:column headerText="Nom" style="width:30%"></p:column>
-<p:column headerText="Prénoms" style="width:40%"></p:column>
-<p:column headerText="Date naissance" style="width:10%"></p:column>
-<p:column headerText="Lieu naissance" style="width:20%"></p:column>
-<f:facet name="footer">
-</f:facet>
-</p:dataTable>
-
 <h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
 <h:outputText value="Nom"></h:outputText>
 <p:inputText value="" styleClass="uCase"></p:inputText>
@@ -62,18 +41,38 @@ Liste des candidats en attente de paiement de droit au Concours
 
 </h:panelGrid>
 
+<p:dataTable id="dt2">  
+  
+        <f:facet name="header">  
+
+        </f:facet>  
+  
+        <p:column selectionMode="multiple" style="width:2%" />  
+  
+        <p:column headerText="Concours" style="width:25%">  
+        </p:column>  
+  
+        <p:column headerText="Montant" style="width:25%">  
+        </p:column>  
+ 
+    </p:dataTable> 
+    
+    <p:commandButton value="Valider"></p:commandButton>
+
+
+
 <!-- DataTable 2 -->
 
 <p:dataTable id="dt2">  
-  
+
         <f:facet name="header">  
   		Liste des Concours
   		</f:facet>
         <p:column selectionMode="simple" style="width:2%" />  
-  
+        
         <p:column headerText="Libellé Concours" style="width:80%">   
         </p:column>        
- 
+
     </p:dataTable> 
 
 <h:panelGrid columns="2">
