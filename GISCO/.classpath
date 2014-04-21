@@ -41,8 +41,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.faces.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.faces-2.1.14.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/blitzer-1.0.10.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.4.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.4.2-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
