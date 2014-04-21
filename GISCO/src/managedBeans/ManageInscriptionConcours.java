@@ -267,7 +267,12 @@ public class ManageInscriptionConcours {
 
 	public Anneeconcours getMonObjetAnneeConcours() {
 		reqAnneeConcours = new ReqAnneeConcours();
-		setMonObjetAnneeConcours(reqAnneeConcours.recupererDernierAnneeConcours().get(0));
+		try {
+			setMonObjetAnneeConcours(reqAnneeConcours.recupererDernierAnneeConcours().get(0));
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("Renseigner une Année Scolaire");
+		//	e.printStackTrace();
+		}
 		
 		return monObjetAnneeConcours;
 	}
