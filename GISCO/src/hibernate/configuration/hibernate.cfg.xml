@@ -18,7 +18,6 @@
         
         <property name="current_session_context_class">thread</property>
         
-		 <!--<property name="hibernate.show_sql">false</property>-->
         <property name="hibernate.show_sql">true</property>
         
         <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
@@ -80,7 +79,6 @@
         <mapping resource="/hibernate/configuration/Typematiereconcours.hbm.xml"/>
         <mapping resource="/hibernate/configuration/TypeMatiereExam.hbm.xml"/>
         <mapping resource="/hibernate/configuration/Versement.hbm.xml"/>
-        
         
     </session-factory>
 </hibernate-configuration>

@@ -53,11 +53,11 @@
 			length="8"
 		/>
 		<property
-			name="NbrePlaces"
-			column="NBRE_PLACES"
-			type="big_decimal"
+			name="NbreplacesConcours"
+			column="NBREPLACES_CONCOURS"
+			type="integer"
 			not-null="false"
-			length="8"
+			length="10"
 		/>
 		<many-to-one
 			name="Codepays"
@@ -71,8 +71,6 @@
 			column="CODE_CONCOURS"
 			class="Concours"
 			not-null="true"
-			lazy="false"
-			
 		>
 		</many-to-one>
 	
@@ -80,11 +78,6 @@
 		<set name="Inscriptionconcours" inverse="true" lazy="true">
 			<key column="CODE_ANNEES_CONCOURS"/>
 			<one-to-many class="Inscriptionconcours"/>
-		</set>
-
-		<set name="Caisconcours" inverse="true" lazy="true">
-			<key column="CODE_ANNEES_CONCOURS"/>
-			<one-to-many class="Caisconcours"/>
 		</set>
 
 

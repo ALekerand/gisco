@@ -71,6 +71,7 @@
 			column="CODESEXE"
 			class="Sexes"
 			not-null="true"
+			lazy="false"
 		>
 		</many-to-one>
 		<many-to-one
@@ -92,11 +93,6 @@
 		<set name="Inscriptionconcours" inverse="true" lazy="true">
 			<key column="NUM_CANDIDAT"/>
 			<one-to-many class="Inscriptionconcours"/>
-		</set>
-
-		<set name="Caisconcours" inverse="true" lazy="true">
-			<key column="NUM_CANDIDAT"/>
-			<one-to-many class="Caisconcours"/>
 		</set>
 
 		<set name="Noteconcours" inverse="true" lazy="true">

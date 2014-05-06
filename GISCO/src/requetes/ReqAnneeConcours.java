@@ -4,11 +4,12 @@ import hibernate.beans.Anneeconcours;
 import hibernate.beans.Concours;
 import hibernate.util.HibernateUtil;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
 
-public class ReqAnneeConcours {
+public class ReqAnneeConcours implements Serializable {
 
 	public List<Anneeconcours> recupererListeAnneeConcours(int codePays, String libanneeconcours){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();

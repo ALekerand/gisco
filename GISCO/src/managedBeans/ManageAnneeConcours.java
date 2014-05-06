@@ -1,6 +1,7 @@
 package managedBeans;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.faces.context.FacesContext;
 
 import requetes.ReqAnneeConcours;
 import requetes.ReqConcours;
-
 import hibernate.beans.Anneeconcours;
 import hibernate.beans.Concours;
 import hibernate.beans.Ecole;
@@ -17,8 +17,12 @@ import hibernate.beans.Pays;
 import hybride.ConcoursAnneeConcours;
 import dao.Crud;
 
-public class ManageAnneeConcours {
+public class ManageAnneeConcours implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Crud monCrud = new Crud();
 	private Ecole selectedEcole = new Ecole();
 	private Pays selectedPays = new Pays();
@@ -56,7 +60,7 @@ public class ManageAnneeConcours {
 		monObjet.setAnneeConcoursFin(null);
 		monObjet.setDateComposition(null);
 		monObjet.setDroitConcours(null);
-		monObjet.setNbrePlaces(null);
+		monObjet.setNbreplacesConcours(null);
 		monObjet.setLibAnneeConcours("");
 		setSelectedPays(null);
 		setSelectedEcole(null);
@@ -95,7 +99,7 @@ public class ManageAnneeConcours {
 				concoursAnneeConcours.setLibAnneeConcours(obj.getLibAnneeConcours());
 				concoursAnneeConcours.setDateComposition(obj.getDateComposition());
 				concoursAnneeConcours.setDroitConcours(obj.getDroitConcours());
-				concoursAnneeConcours.setNbrePlaces(obj.getNbrePlaces());
+				concoursAnneeConcours.setNbreplacesConcours(obj.getNbreplacesConcours());
 				concoursAnneeConcours.setCodepays(obj.getCodepays());
 				concoursAnneeConcours.setCodeConcours(obj.getCodeConcours());
 					//partie Concours
@@ -121,7 +125,7 @@ public class ManageAnneeConcours {
 	
 	public void viderobjet(Anneeconcours quelqueObjets){
 		quelqueObjets.setDroitConcours(null);
-		quelqueObjets.setNbrePlaces(null);
+		quelqueObjets.setNbreplacesConcours(null);
 		quelqueObjets.setLibAnneeConcours("");
 		setSelectedPays(null);
 		setSelectedEcole(null);

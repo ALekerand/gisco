@@ -8,86 +8,83 @@
       
 <ui:composition template="/templates/template.xhtml">
 <ui:define name="content">
-<p:panel header="Paiement de droit d'inscription au Concours" styleClass="tableMarge">
 <h:form id="form">
-<p:growl autoUpdate="true"></p:growl>
+<p:panel header="Paiement de droit d'inscription au Concours" styleClass="tableMarge">
 
-
-<fieldset>
-<legend>Recherche</legend>
+<p:growl autoUpdate="true" showDetail="true"></p:growl>
+<br />
 
 <h:panelGrid columns="4">
 <h:outputText value="Num Candidat"></h:outputText>
-<p:inputText ></p:inputText>
+<p:inputText value="#{managedPaiementConcours.valeurRecherche}" ></p:inputText>
 
-
-<p:commandButton value="Rechercher" icon="ui-icon-search"></p:commandButton>
+<p:commandButton value="Rechercher" icon="ui-icon-search" actionListener="#{managedPaiementConcours.rechercherCandidat}" update="form"></p:commandButton>
 <a href="anneeScolaire.xhtml">Consulter la liste</a>
 </h:panelGrid>
-</fieldset>
+
 <br />
 <fieldset>
 <legend>Information du candidat</legend>
 
 <h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
-<h:outputText value="Nom"></h:outputText>
-<p:inputText value="" styleClass="uCase"></p:inputText>
+<h:outputText value="Nom"/>
+<p:inputText value="#{managedPaiementConcours.candidat.nomCandidat}" styleClass="uCase"/>
 
 
-<h:outputText value="Prénoms"></h:outputText>
-<p:inputText value="" styleClass="inputStyle2"></p:inputText>
+<h:outputText value="Prénoms"/>
+<p:inputText value="#{managedPaiementConcours.candidat.prenomsCandidat}"/>
 
 
-<h:outputText value="Date de naissance" styleClass="outputStyle"></h:outputText>
-<p:inputMask mask="99/99/9999"  value="">
-<f:convertDateTime  pattern="dd/MM/yyy"/>
+<h:outputText value="Date de naissance" styleClass="outputStyle"/>
+<p:inputMask mask="99/99/9999" value="#{managedPaiementConcours.candidat.dateNaissance}">
+<f:convertDateTime pattern="dd/MM/yyyy"/>
 </p:inputMask>
 
-<h:outputText value="Lieu de naissance"></h:outputText>
-<p:inputText value=""></p:inputText>
+<h:outputText value="Lieu de naissance"/>
+<p:inputText value="#{managedPaiementConcours.candidat.lieuNaissance}"/>
 
-
-<h:outputText value="Sexe"></h:outputText>
-<p:inputText value=""></p:inputText>
-
+<h:outputText value="Sexe"/>
+<p:inputText value="#{managedPaiementConcours.sexesCandidat.libsexe}"/>
 </h:panelGrid>
 </fieldset>
+
 <br />
-<p:dataTable id="dt2">  
-  
+<p:dataTable id="dt2" var="tata" value="#{managedPaiementConcours.listInscriptionconcours}"
+                 selection="#{managedPaiementConcours.selectedInscripConcours}" rowKey="#{tata.id}">
+  <p:ajax event="rowSelect" listener="#{managedPaiementConcours.calculerMontant}" update=":form:label_montantpaiement"></p:ajax>
         <f:facet name="header">  
 
-        </f:facet>  
+        </f:facet>
   
-        <p:column selectionMode="multiple" style="width:2%" />  
-  
-        <p:column headerText="Concours" style="width:25%">  
+        <p:column selectionMode="multiple" style="width:2%" /> 
+        <p:column headerText="concours" style="width:25%">
+            #{tata.codeConcours.libConcours}  
         </p:column>  
   
         <p:column headerText="Montant" style="width:25%">  
+            #{tata.codeAnneesConcours.droitConcours}  
         </p:column>  
- 
-    </p:dataTable> 
+    </p:dataTable>
     
-    <p:commandButton value="Valider" icon="ui-icon-check"></p:commandButton>
-
-
-
-<!-- DataTable 2 -->
-
- 
-
-
+    <br />
+    <h:panelGrid columns="2">
+    	<p:inputText id="label_montantpaiement" value="#{managedPaiementConcours.montantPaiement}"/>
+    	<p:commandButton value="Valider" icon="ui-icon-check" actionListener="#{managedPaiementConcours.test}">
+    		 <p:confirm header="Confirmation" message="Confirmez vous ce paiement ?" icon="ui-icon-alert" />
+    	</p:commandButton>
+    	   	<p:commandButton value="test" icon="ui-icon-check" actionListener="#{managedPaiementConcours.calculerMontant}"/>
+    </h:panelGrid>
+    
 
 
 
  <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
-        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
     </p:confirmDialog>  
     
-</h:form>
 </p:panel>
+</h:form>
 </ui:define>
 
 

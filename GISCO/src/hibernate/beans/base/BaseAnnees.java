@@ -48,10 +48,9 @@ public abstract class BaseAnnees  implements Serializable {
 	// fields
 	private java.lang.Integer anneesDebut;
 	private java.lang.Integer anneesFin;
-	private java.lang.String libAnneeScolaire;
 	private java.lang.String sessionExamen;
 	private java.util.Date dateCommission;
-	
+	private java.lang.String libAnneeScolaire;
 
 	// collections
 	private java.util.Set<hibernate.beans.Inscriptions> inscriptions;
@@ -116,25 +115,10 @@ public abstract class BaseAnnees  implements Serializable {
 		this.anneesFin = anneesFin;
 	}
 
-	/**
-	 * Return the value associated with the column: LIB_ANNEE_SCOLAIRE
-	 */
-	public java.lang.String getLibAnneeScolaire () {
-		return libAnneeScolaire;
-	}
-
-	/**
-	 * Set the value related to the column: LIB_ANNEE_SCOLAIRE
-	 * @param libAnneeScolaire the LIB_ANNEE_SCOLAIRE value
-	 */
-	public void setLibAnneeScolaire (java.lang.String libAnneeScolaire) {
-		this.libAnneeScolaire = libAnneeScolaire;
-	}
 
 
 	/**
 	 * Return the value associated with the column: SESSION_EXAMEN
-	 * 
 	 */
 	public java.lang.String getSessionExamen () {
 		return sessionExamen;
@@ -164,6 +148,25 @@ public abstract class BaseAnnees  implements Serializable {
 	public void setDateCommission (java.util.Date dateCommission) {
 		this.dateCommission = dateCommission;
 	}
+
+
+
+	/**
+	 * Return the value associated with the column: LIB_ANNEE_SCOLAIRE
+	 */
+	public java.lang.String getLibAnneeScolaire () {
+		return libAnneeScolaire;
+	}
+
+	/**
+	 * Set the value related to the column: LIB_ANNEE_SCOLAIRE
+	 * @param libAnneeScolaire the LIB_ANNEE_SCOLAIRE value
+	 */
+	public void setLibAnneeScolaire (java.lang.String libAnneeScolaire) {
+		this.libAnneeScolaire = libAnneeScolaire;
+	}
+
+
 
 	/**
 	 * Return the value associated with the column: Inscriptions

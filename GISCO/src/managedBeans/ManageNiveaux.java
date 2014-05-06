@@ -1,5 +1,6 @@
 package managedBeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,11 @@ import hibernate.beans.Niveaux;
 import dao.Crud;
 import dataModel.NiveauModel;
 
-public class ManageNiveaux {
+public class ManageNiveaux implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Crud monCrud = new Crud();
 	private Niveaux monNiveau = new Niveaux();
 	private NiveauModel monNiveauModel;

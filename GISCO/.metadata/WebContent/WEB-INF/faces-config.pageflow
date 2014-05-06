@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13655378798500" configfile="/GIS/WebContent/WEB-INF/faces-config.xml">
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13655378798500" configfile="/GISCO/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="templates/template.xhtml" x="156" y="96" id="pf13746963002610" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13746963002611" path="/templates/template.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/inscriptionconcours.xhtml" x="540" y="192" id="pf13746963002622" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13746963002611 pf13746977428680" path="/pages/inscriptionconcours.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/nationalite.xhtml" x="175" y="263" id="pf13746977428691" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13746977428680" path="/pages/nationalite.xhtml"/>

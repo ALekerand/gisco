@@ -10,7 +10,7 @@
 <ui:define name="content">
 <p:panel header="Enregistrement au Concours" styleClass="tableMarge">
 <h:form id="form">
-<p:growl autoUpdate="true"></p:growl>
+<p:growl autoUpdate="true"  ></p:growl>
 
 <fieldset>
 <legend>Année concours</legend>
@@ -126,15 +126,14 @@
 
 <h:panelGrid columns="2">
 <p:commandButton value="Enregistrer" actionListener="#{manageInscriptionConcours.incrirCandidat}">
-	
-	<p:confirm header="Confirmation" message="Confirmez vous cette inscription ?" icon="ui-icon-alert" />  
-
+	 <p:confirm header="Confirmation" message="Confirmez vous cette inscription ?" icon="ui-icon-alert" />  
 </p:commandButton>
+
 <p:commandButton value="Annuler" actionListener="#{manageInscriptionConcours.testMethode}" process="panelGrid1"></p:commandButton>
 </h:panelGrid>
 
 
-<p:commandButton value="test" actionListener="#{manageInscriptionConcours.test}"></p:commandButton>
+<p:commandButton value="test" actionListener="#{manageInscriptionConcours.test}" process="@this"></p:commandButton>
 
 
  <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  

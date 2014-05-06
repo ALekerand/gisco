@@ -39,16 +39,9 @@
 			length="8"
 		/>
 		<many-to-one
-			name="CodeAnneesConcours"
-			column="CODE_ANNEES_CONCOURS"
-			class="Anneeconcours"
-			not-null="true"
-		>
-		</many-to-one>
-		<many-to-one
-			name="NumCandidat"
-			column="NUM_CANDIDAT"
-			class="Candidat"
+			name="CodeInscriptionConcours"
+			column="CODE_INSCRIPTION_CONCOURS"
+			class="Inscriptionconcours"
 			not-null="true"
 		>
 		</many-to-one>

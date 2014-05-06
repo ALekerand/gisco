@@ -8,27 +8,27 @@
 	<managed-bean>
 		<managed-bean-name>manageNationalite</managed-bean-name>
 		<managed-bean-class>managedBeans.manageNationalite</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>manageSexe</managed-bean-name>
 		<managed-bean-class>managedBeans.manageSexe</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>managePays</managed-bean-name>
 		<managed-bean-class>managedBeans.ManagePays</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>manageEcole</managed-bean-name>
 		<managed-bean-class>managedBeans.ManageEcole</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>manageDiplome</managed-bean-name>
 		<managed-bean-class>managedBeans.ManageDiplome</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>comboEcole</managed-bean-name>
@@ -38,7 +38,7 @@
 	<managed-bean>
 		<managed-bean-name>manageInscriptionConcours</managed-bean-name>
 		<managed-bean-class>managedBeans.ManageInscriptionConcours</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>comboSexe</managed-bean-name>
@@ -73,12 +73,12 @@
 	<managed-bean>
 		<managed-bean-name>manageAnneeConcours</managed-bean-name>
 		<managed-bean-class>managedBeans.ManageAnneeConcours</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>manageConcours</managed-bean-name>
 		<managed-bean-class>managedBeans.ManageConcours</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>comboConcours</managed-bean-name>
@@ -93,6 +93,11 @@
 	<managed-bean>
 		<managed-bean-name>manageInscription</managed-bean-name>
 		<managed-bean-class>managedBeans.ManageInscription</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>managedPaiementConcours</managed-bean-name>
+		<managed-bean-class>managedBeans.ManagedPaiementConcours</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

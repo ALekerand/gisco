@@ -24,14 +24,12 @@ public class Caisconcours extends BaseCaisconcours {
 	 */
 	public Caisconcours (
 		java.lang.Integer id,
-		hibernate.beans.Anneeconcours codeAnneesConcours,
-		hibernate.beans.Candidat numCandidat,
+		hibernate.beans.Inscriptionconcours codeInscriptionConcours,
 		hibernate.beans.Mode codeMode) {
 
 		super (
 			id,
-			codeAnneesConcours,
-			numCandidat,
+			codeInscriptionConcours,
 			codeMode);
 	}
 

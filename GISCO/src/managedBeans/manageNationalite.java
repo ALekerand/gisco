@@ -1,5 +1,6 @@
 package managedBeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,12 @@ import dataModel.NationaliteModel;
 import hibernate.beans.Nationalites;
 
 
-public class manageNationalite {
+public class manageNationalite implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Nationalites maNationalite=new Nationalites();
 	private Crud monCrud=new Crud();
 	private Nationalites resultatNationalite = new Nationalites();

@@ -8,6 +8,7 @@ import hibernate.beans.Ecole;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 import javax.faces.bean.ManagedBean;
@@ -23,7 +24,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 
 @ManagedBean
-public class EtatAutorisationConcours {
+public class EtatAutorisationConcours implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	public EtatAutorisationConcours() {
 		// TODO Auto-generated constructor stub

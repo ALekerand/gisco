@@ -49,8 +49,8 @@ public abstract class BaseConcours  implements Serializable {
 	private java.lang.String libConcours;
 	private java.lang.String libEcoleConcours;
 	private java.lang.String abrevEcoleConcours;
-	private java.lang.String obtentionDiplome;
 	private java.lang.String abrevObtentionDiplome;
+	private java.lang.String obtentionDiplome;
 
 	// collections
 	private java.util.Set<hibernate.beans.Inscriptionconcours> inscriptionconcours;
@@ -133,23 +133,6 @@ public abstract class BaseConcours  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: OBTENTION_DIPLOME
-	 */
-	public java.lang.String getObtentionDiplome () {
-		return obtentionDiplome;
-	}
-
-	/**
-	 * Set the value related to the column: OBTENTION_DIPLOME
-	 * @param obtentionDiplome the OBTENTION_DIPLOME value
-	 */
-	public void setObtentionDiplome (java.lang.String obtentionDiplome) {
-		this.obtentionDiplome = obtentionDiplome;
-	}
-
-
-
-	/**
 	 * Return the value associated with the column: ABREV_OBTENTION_DIPLOME
 	 */
 	public java.lang.String getAbrevObtentionDiplome () {
@@ -162,6 +145,23 @@ public abstract class BaseConcours  implements Serializable {
 	 */
 	public void setAbrevObtentionDiplome (java.lang.String abrevObtentionDiplome) {
 		this.abrevObtentionDiplome = abrevObtentionDiplome;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: OBTENTION_DIPLOME
+	 */
+	public java.lang.String getObtentionDiplome () {
+		return obtentionDiplome;
+	}
+
+	/**
+	 * Set the value related to the column: OBTENTION_DIPLOME
+	 * @param obtentionDiplome the OBTENTION_DIPLOME value
+	 */
+	public void setObtentionDiplome (java.lang.String obtentionDiplome) {
+		this.obtentionDiplome = obtentionDiplome;
 	}
 
 

@@ -86,7 +86,6 @@ public abstract class BaseCandidat  implements Serializable {
 
 	// collections
 	private java.util.Set<hibernate.beans.Inscriptionconcours> inscriptionconcours;
-	private java.util.Set<hibernate.beans.Caisconcours> caisconcours;
 	private java.util.Set<hibernate.beans.Noteconcours> noteconcours;
 	private java.util.Set<hibernate.beans.Salles> salles;
 
@@ -302,28 +301,6 @@ public abstract class BaseCandidat  implements Serializable {
 	public void addToInscriptionconcours (hibernate.beans.Inscriptionconcours inscriptionconcours) {
 		if (null == getInscriptionconcours()) setInscriptionconcours(new java.util.TreeSet<hibernate.beans.Inscriptionconcours>());
 		getInscriptionconcours().add(inscriptionconcours);
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: Caisconcours
-	 */
-	public java.util.Set<hibernate.beans.Caisconcours> getCaisconcours () {
-		return caisconcours;
-	}
-
-	/**
-	 * Set the value related to the column: Caisconcours
-	 * @param caisconcours the Caisconcours value
-	 */
-	public void setCaisconcours (java.util.Set<hibernate.beans.Caisconcours> caisconcours) {
-		this.caisconcours = caisconcours;
-	}
-
-	public void addToCaisconcours (hibernate.beans.Caisconcours caisconcours) {
-		if (null == getCaisconcours()) setCaisconcours(new java.util.TreeSet<hibernate.beans.Caisconcours>());
-		getCaisconcours().add(caisconcours);
 	}
 
 

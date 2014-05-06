@@ -1,5 +1,6 @@
 package managedBeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,12 @@ import dao.Crud;
 import dataModel.EcoleModel;
 import hibernate.beans.Ecole;
 
-public class ManageEcole {
+public class ManageEcole implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static  Logger logger=Logger.getLogger(ManageEcole.class);
 	
 	private Ecole monEcole = new Ecole();

@@ -29,6 +29,7 @@
 			column="LIB_ECOLE_CONCOURS"
 			type="string"
 			not-null="false"
+			length="80"
 		/>
 		<property
 			name="AbrevEcoleConcours"
@@ -38,18 +39,18 @@
 			length="20"
 		/>
 		<property
-			name="ObtentionDiplome"
-			column="OBTENTION_DIPLOME"
-			type="string"
-			not-null="false"
-			length="100"
-		/>
-		<property
 			name="AbrevObtentionDiplome"
 			column="ABREV_OBTENTION_DIPLOME"
 			type="string"
 			not-null="false"
 			length="25"
+		/>
+		<property
+			name="ObtentionDiplome"
+			column="OBTENTION_DIPLOME"
+			type="string"
+			not-null="false"
+			length="100"
 		/>
 	
 
@@ -63,7 +64,7 @@
 			<one-to-many class="Matiereconcours"/>
 		</set>
 
-		<set name="Anneeconcours" inverse="true" lazy="true">
+		<set name="Anneeconcours" inverse="true" lazy="false">
 			<key column="CODE_CONCOURS"/>
 			<one-to-many class="Anneeconcours"/>
 		</set>

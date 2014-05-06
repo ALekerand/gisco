@@ -20,6 +20,7 @@ public abstract class BaseInscriptionconcours  implements Serializable {
 	public static String PROP_CODE_CONCOURS = "CodeConcours";
 	public static String PROP_CODE_ANNEES_CONCOURS = "CodeAnneesConcours";
 	public static String PROP_ID = "Id";
+	public static String PROP_SOLDE = "Solde";
 
 
 	// constructors
@@ -62,11 +63,15 @@ public abstract class BaseInscriptionconcours  implements Serializable {
 
 	// fields
 	private java.util.Date dateInscriptionConcours;
+	private boolean solde;
 
 	// many to one
 	private hibernate.beans.Anneeconcours codeAnneesConcours;
 	private hibernate.beans.Candidat numCandidat;
 	private hibernate.beans.Concours codeConcours;
+
+	// collections
+	private java.util.Set<hibernate.beans.Caisconcours> caisconcours;
 
 
 
@@ -105,6 +110,23 @@ public abstract class BaseInscriptionconcours  implements Serializable {
 	 */
 	public void setDateInscriptionConcours (java.util.Date dateInscriptionConcours) {
 		this.dateInscriptionConcours = dateInscriptionConcours;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: SOLDE
+	 */
+	public boolean isSolde () {
+		return solde;
+	}
+
+	/**
+	 * Set the value related to the column: SOLDE
+	 * @param solde the SOLDE value
+	 */
+	public void setSolde (boolean solde) {
+		this.solde = solde;
 	}
 
 
@@ -156,6 +178,28 @@ public abstract class BaseInscriptionconcours  implements Serializable {
 	 */
 	public void setCodeConcours (hibernate.beans.Concours codeConcours) {
 		this.codeConcours = codeConcours;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: Caisconcours
+	 */
+	public java.util.Set<hibernate.beans.Caisconcours> getCaisconcours () {
+		return caisconcours;
+	}
+
+	/**
+	 * Set the value related to the column: Caisconcours
+	 * @param caisconcours the Caisconcours value
+	 */
+	public void setCaisconcours (java.util.Set<hibernate.beans.Caisconcours> caisconcours) {
+		this.caisconcours = caisconcours;
+	}
+
+	public void addToCaisconcours (hibernate.beans.Caisconcours caisconcours) {
+		if (null == getCaisconcours()) setCaisconcours(new java.util.TreeSet<hibernate.beans.Caisconcours>());
+		getCaisconcours().add(caisconcours);
 	}
 
 

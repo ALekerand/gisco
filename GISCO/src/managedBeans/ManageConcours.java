@@ -1,5 +1,6 @@
 package managedBeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +8,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import requetes.ReqConcours;
-
 import hibernate.beans.Concours;
 import hibernate.beans.Ecole;
 import dao.Crud;
 import dataModel.ConcoursModel;
 
-public class ManageConcours {
+public class ManageConcours implements Serializable {
 	
 	private Crud monCrud = new Crud();
 	private Concours monConcours = new Concours();

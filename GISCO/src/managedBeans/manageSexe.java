@@ -1,5 +1,6 @@
 package managedBeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,11 @@ import dataModel.SexeModel;
 import hibernate.beans.Sexes;
 
 
-public class manageSexe {
+public class manageSexe implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Sexes monSexe = new Sexes();
 	private Crud monCrud = new Crud();
 	private SexeModel monSexeModel;

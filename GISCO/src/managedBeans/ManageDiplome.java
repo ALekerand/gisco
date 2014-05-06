@@ -2,6 +2,7 @@ package managedBeans;
 
 import hibernate.beans.Diplomes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import dao.Crud;
 import dataModel.DiplomeModel;
 import dataModel.PaysModel;
 
-public class ManageDiplome {
+public class ManageDiplome implements Serializable {
 	
 	private Crud monCrud = new Crud();
 	private Diplomes monDiplome = new Diplomes();

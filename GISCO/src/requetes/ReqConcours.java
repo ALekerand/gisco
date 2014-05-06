@@ -3,11 +3,12 @@ package requetes;
 import hibernate.beans.Concours;
 import hibernate.util.HibernateUtil;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
 
-public class ReqConcours {
+public class ReqConcours implements Serializable{
 
 	public ReqConcours() {
 		// TODO Auto-generated constructor stub

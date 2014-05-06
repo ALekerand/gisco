@@ -12,6 +12,7 @@ import hibernate.beans.Pays;
 import hibernate.beans.Sexes;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,13 +28,17 @@ import com.itextpdf.text.DocumentException;
 import requetes.ReqAnneeConcours;
 import requetes.ReqConcours;
 import utilitaires.DateCalculator;
-
 import dao.Crud;
 import dataModel.ConcoursModel;
 import etats.EtatAutorisationConcours;
 
 
-public class ManageInscriptionConcours {
+public class ManageInscriptionConcours implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static  Logger logger=Logger.getLogger(ManageInscriptionConcours.class);
 	
 	private Crud monCrud = new Crud();
@@ -88,8 +93,10 @@ public class ManageInscriptionConcours {
 	}
 	
 	public void incrirCandidat(){
+		System.out.println("------>> Appel methode d'enregistrement");//Clean after
 		 try {
 			enregistrerCandidat();
+			System.out.println("------>> Candidat enregistrer");//Clean after
 			 enregTableInscription();
 			 //Edition Etat
 			 getAutorisationConcours().setAnneeconcours(monObjetAnneeConcours);
@@ -141,9 +148,6 @@ public class ManageInscriptionConcours {
 	public List chargerListeConcours(){
 		listeconcours= reqConcours.recupererListeConcoursPays(selectedPays.getId(), monObjetAnneeConcours.getLibAnneeConcours());		
 		System.out.println("**************************"+listeconcours.size());
-		//setListeconcours(getMonCrud().getObjects("Concours"));
-		//monConcoursModel = new ConcoursModel(listeconcours);
-		//setMonConcoursModel((ConcoursModel) listeconcours);
 		return listeconcours;
 
 	}
@@ -155,7 +159,7 @@ public class ManageInscriptionConcours {
 	}
 	
 	public void test(){
-		System.out.println("******************Taille du tableau"+selectedsConcours.length);
+		System.out.println("******************Taille du tableau:"+selectedsConcours);
 	}
 
 	

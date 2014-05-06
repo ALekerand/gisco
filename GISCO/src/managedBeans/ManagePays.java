@@ -2,6 +2,7 @@ package managedBeans;
 
 import hibernate.beans.Pays;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,11 @@ import dataModel.PaysModel;
 
 
 
-public class ManagePays {
+public class ManagePays implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Pays monPays= new Pays();
 	private Crud monCrud=new Crud();
 	private Pays resultatPays =new Pays();

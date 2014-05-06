@@ -45,14 +45,14 @@
 			not-null="false"
 			length="10"
 		/>
-	
 		<property
 			name="LibAnneeScolaire"
 			column="LIB_ANNEE_SCOLAIRE"
 			type="string"
 			not-null="false"
-			length="15"
+			length="10"
 		/>
+	
 
 		<set name="Inscriptions" inverse="true" lazy="true">
 			<key column="CODE_ANNEES"/>

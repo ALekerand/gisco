@@ -15,10 +15,10 @@ import java.io.Serializable;
 public abstract class BaseAnneeconcours  implements Serializable {
 
 	public static String REF = "Anneeconcours";
+	public static String PROP_NBREPLACES_CONCOURS = "NbreplacesConcours";
 	public static String PROP_CODEPAYS = "Codepays";
 	public static String PROP_CODE_CONCOURS = "CodeConcours";
 	public static String PROP_LIB_ANNEE_CONCOURS = "LibAnneeConcours";
-	public static String PROP_NBRE_PLACES = "NbrePlaces";
 	public static String PROP_DROIT_CONCOURS = "DroitConcours";
 	public static String PROP_ID = "Id";
 	public static String PROP_DATE_COMPOSITION = "DateComposition";
@@ -68,7 +68,7 @@ public abstract class BaseAnneeconcours  implements Serializable {
 	private java.lang.String libAnneeConcours;
 	private java.util.Date dateComposition;
 	private java.math.BigDecimal droitConcours;
-	private java.math.BigDecimal nbrePlaces;
+	private java.lang.Integer nbreplacesConcours;
 
 	// many to one
 	private hibernate.beans.Pays codepays;
@@ -76,7 +76,6 @@ public abstract class BaseAnneeconcours  implements Serializable {
 
 	// collections
 	private java.util.Set<hibernate.beans.Inscriptionconcours> inscriptionconcours;
-	private java.util.Set<hibernate.beans.Caisconcours> caisconcours;
 
 
 
@@ -188,18 +187,18 @@ public abstract class BaseAnneeconcours  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: NBRE_PLACES
+	 * Return the value associated with the column: NBREPLACES_CONCOURS
 	 */
-	public java.math.BigDecimal getNbrePlaces () {
-		return nbrePlaces;
+	public java.lang.Integer getNbreplacesConcours () {
+		return nbreplacesConcours;
 	}
 
 	/**
-	 * Set the value related to the column: NBRE_PLACES
-	 * @param nbrePlaces the NBRE_PLACES value
+	 * Set the value related to the column: NBREPLACES_CONCOURS
+	 * @param nbreplacesConcours the NBREPLACES_CONCOURS value
 	 */
-	public void setNbrePlaces (java.math.BigDecimal nbrePlaces) {
-		this.nbrePlaces = nbrePlaces;
+	public void setNbreplacesConcours (java.lang.Integer nbreplacesConcours) {
+		this.nbreplacesConcours = nbreplacesConcours;
 	}
 
 
@@ -253,21 +252,9 @@ public abstract class BaseAnneeconcours  implements Serializable {
 		this.inscriptionconcours = inscriptionconcours;
 	}
 
-
-
-	/**
-	 * Return the value associated with the column: Caisconcours
-	 */
-	public java.util.Set<hibernate.beans.Caisconcours> getCaisconcours () {
-		return caisconcours;
-	}
-
-	/**
-	 * Set the value related to the column: Caisconcours
-	 * @param caisconcours the Caisconcours value
-	 */
-	public void setCaisconcours (java.util.Set<hibernate.beans.Caisconcours> caisconcours) {
-		this.caisconcours = caisconcours;
+	public void addToInscriptionconcours (hibernate.beans.Inscriptionconcours inscriptionconcours) {
+		if (null == getInscriptionconcours()) setInscriptionconcours(new java.util.TreeSet<hibernate.beans.Inscriptionconcours>());
+		getInscriptionconcours().add(inscriptionconcours);
 	}
 
 

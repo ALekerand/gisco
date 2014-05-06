@@ -24,11 +24,18 @@
 			not-null="false"
 			length="10"
 		/>
+		<property
+			name="Solde"
+			column="SOLDE"
+			type="boolean"
+			not-null="false"
+		/>
 		<many-to-one
 			name="CodeAnneesConcours"
 			column="CODE_ANNEES_CONCOURS"
 			class="Anneeconcours"
 			not-null="true"
+			lazy="false"
 		>
 		</many-to-one>
 		<many-to-one
@@ -36,6 +43,7 @@
 			column="NUM_CANDIDAT"
 			class="Candidat"
 			not-null="true"
+			lazy="false"
 		>
 		</many-to-one>
 		<many-to-one
@@ -43,8 +51,15 @@
 			column="CODE_CONCOURS"
 			class="Concours"
 			not-null="true"
+			lazy="false"
 		>
 		</many-to-one>
+	
+
+		<set name="Caisconcours" inverse="true" lazy="true">
+			<key column="CODE_INSCRIPTION_CONCOURS"/>
+			<one-to-many class="Caisconcours"/>
+		</set>
 
 
 	</class>	

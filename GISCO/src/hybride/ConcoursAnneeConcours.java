@@ -1,6 +1,8 @@
 package hybride;
 
-public class ConcoursAnneeConcours {
+import java.io.Serializable;
+
+public class ConcoursAnneeConcours implements Serializable {
 
 	// Propriétés de la table AnneeConcours
 	// primary key
@@ -12,7 +14,7 @@ public class ConcoursAnneeConcours {
 		private java.lang.String libAnneeConcours;
 		private java.util.Date dateComposition;
 		private java.math.BigDecimal droitConcours;
-		private java.math.BigDecimal nbrePlaces;
+		private java.lang.Integer nbreplacesConcours;
 
 		// many to one
 		private hibernate.beans.Pays codepays;
@@ -69,12 +71,7 @@ public class ConcoursAnneeConcours {
 		public void setDroitConcours(java.math.BigDecimal droitConcours) {
 			this.droitConcours = droitConcours;
 		}
-		public java.math.BigDecimal getNbrePlaces() {
-			return nbrePlaces;
-		}
-		public void setNbrePlaces(java.math.BigDecimal nbrePlaces) {
-			this.nbrePlaces = nbrePlaces;
-		}
+		
 		public hibernate.beans.Pays getCodepays() {
 			return codepays;
 		}
@@ -122,6 +119,12 @@ public class ConcoursAnneeConcours {
 		}
 		public void setAbrevObtentionDiplome(java.lang.String abrevObtentionDiplome) {
 			this.abrevObtentionDiplome = abrevObtentionDiplome;
+		}
+		public java.lang.Integer getNbreplacesConcours() {
+			return nbreplacesConcours;
+		}
+		public void setNbreplacesConcours(java.lang.Integer nbreplacesConcours) {
+			this.nbreplacesConcours = nbreplacesConcours;
 		}
 
 

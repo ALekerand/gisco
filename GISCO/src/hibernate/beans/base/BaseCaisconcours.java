@@ -16,9 +16,8 @@ public abstract class BaseCaisconcours  implements Serializable {
 
 	public static String REF = "Caisconcours";
 	public static String PROP_LIB_CAISCONCOURS = "LibCaisconcours";
-	public static String PROP_NUM_CANDIDAT = "NumCandidat";
 	public static String PROP_CODE_MODE = "CodeMode";
-	public static String PROP_CODE_ANNEES_CONCOURS = "CodeAnneesConcours";
+	public static String PROP_CODE_INSCRIPTION_CONCOURS = "CodeInscriptionConcours";
 	public static String PROP_DATE_CAISCONCOURS = "DateCaisconcours";
 	public static String PROP_ID = "Id";
 	public static String PROP_MONTANT_CAISCONCOURS = "MontantCaisconcours";
@@ -42,13 +41,11 @@ public abstract class BaseCaisconcours  implements Serializable {
 	 */
 	public BaseCaisconcours (
 		java.lang.Integer id,
-		hibernate.beans.Anneeconcours codeAnneesConcours,
-		hibernate.beans.Candidat numCandidat,
+		hibernate.beans.Inscriptionconcours codeInscriptionConcours,
 		hibernate.beans.Mode codeMode) {
 
 		this.setId(id);
-		this.setCodeAnneesConcours(codeAnneesConcours);
-		this.setNumCandidat(numCandidat);
+		this.setCodeInscriptionConcours(codeInscriptionConcours);
 		this.setCodeMode(codeMode);
 		initialize();
 	}
@@ -68,8 +65,7 @@ public abstract class BaseCaisconcours  implements Serializable {
 	private java.math.BigDecimal montantCaisconcours;
 
 	// many to one
-	private hibernate.beans.Anneeconcours codeAnneesConcours;
-	private hibernate.beans.Candidat numCandidat;
+	private hibernate.beans.Inscriptionconcours codeInscriptionConcours;
 	private hibernate.beans.Mode codeMode;
 
 
@@ -148,35 +144,18 @@ public abstract class BaseCaisconcours  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: CODE_ANNEES_CONCOURS
+	 * Return the value associated with the column: CODE_INSCRIPTION_CONCOURS
 	 */
-	public hibernate.beans.Anneeconcours getCodeAnneesConcours () {
-		return codeAnneesConcours;
+	public hibernate.beans.Inscriptionconcours getCodeInscriptionConcours () {
+		return codeInscriptionConcours;
 	}
 
 	/**
-	 * Set the value related to the column: CODE_ANNEES_CONCOURS
-	 * @param codeAnneesConcours the CODE_ANNEES_CONCOURS value
+	 * Set the value related to the column: CODE_INSCRIPTION_CONCOURS
+	 * @param codeInscriptionConcours the CODE_INSCRIPTION_CONCOURS value
 	 */
-	public void setCodeAnneesConcours (hibernate.beans.Anneeconcours codeAnneesConcours) {
-		this.codeAnneesConcours = codeAnneesConcours;
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: NUM_CANDIDAT
-	 */
-	public hibernate.beans.Candidat getNumCandidat () {
-		return numCandidat;
-	}
-
-	/**
-	 * Set the value related to the column: NUM_CANDIDAT
-	 * @param numCandidat the NUM_CANDIDAT value
-	 */
-	public void setNumCandidat (hibernate.beans.Candidat numCandidat) {
-		this.numCandidat = numCandidat;
+	public void setCodeInscriptionConcours (hibernate.beans.Inscriptionconcours codeInscriptionConcours) {
+		this.codeInscriptionConcours = codeInscriptionConcours;
 	}
 
 
