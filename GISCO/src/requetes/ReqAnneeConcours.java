@@ -32,6 +32,17 @@ public class ReqAnneeConcours implements Serializable {
 		session.getTransaction().commit();
 		return liste;
 	}
+	
+	
+	public Anneeconcours recupAnneeConcoursParConcours(String codeAnneeConcour){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		String queryString = "SELECT `anneeconcours`.* FROM anneeconcours WHERE (`anneeconcours`.`CODE_CONCOURS` ='"+codeAnneeConcour+"') ORDER BY `anneeconcours`.`CODE_CONCOURS` DESC LIMIT 0 , 1";
+		//String a = " SELECT `anneeconcours`. * FROM anneeconcours ORDER BY `anneeconcours`.`CODE_ANNEES_CONCOURS` DESC LIMIT 0 , 1";
+		Anneeconcours anneeconcours = (Anneeconcours) session.createSQLQuery(queryString).addEntity(Anneeconcours.class).uniqueResult();
+		session.getTransaction().commit();
+		return anneeconcours;
+	}
 
 	
 }

@@ -19,7 +19,8 @@ public class ReqInscriptionConcours implements Serializable{
 	public List<Inscriptionconcours> recupererInscription(String numCandidat){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		String query = "SELECT `inscriptionconcours`.* FROM inscriptionconcours WHERE (`inscriptionconcours`.`NUM_CANDIDAT`  ='"+numCandidat+"')";
+		String query =  "SELECT `inscriptionconcours`.* FROM inscriptionconcours WHERE ((`inscriptionconcours`.`NUM_CANDIDAT` ='"+numCandidat+"') AND (`inscriptionconcours`.`SOLDE` ='0'))";
+	//	String query = "SELECT `inscriptionconcours`.* FROM inscriptionconcours WHERE (`inscriptionconcours`.`NUM_CANDIDAT`  ='"+numCandidat+"')";
 		List<Inscriptionconcours> liste = session.createSQLQuery(query).addEntity(Inscriptionconcours.class).list();
 		session.getTransaction().commit();
 		return liste;

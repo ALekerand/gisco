@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+<p:growl id="grow" sticky="false" showDetail="true"></p:growl>
+<p:panel header="Modes de paiement" styleClass="tableMarge">
+<fieldset>
+<legend>Sexe</legend>
+
+<h:panelGrid columns="2">
+<h:outputText value="Mode"></h:outputText>
+<p:inputText id="inp_mode" value="#{managedModePaiement.mode.libMode}" required="tre"></p:inputText>
+</h:panelGrid>
+</fieldset>
+<h:panelGrid columns="2">
+
+<p:commandButton value="Enregistrer" actionListener="#{managedModePaiement.enregistrerMode}" update="form">
+	<p:confirm header="Annulation" message="Confirmez-vous Annuler ?" icon="ui-icon-alert"/>
+</p:commandButton>
+
+<p:commandButton value="Annuler" actionListener="#{managedModePaiement.viderPage}" update="inp_mode"/>
+</h:panelGrid>
+
+<br></br>
+<p:dataTable var="tata" selectionMode="single" value="#{managedModePaiement.listModes}" rowKey="#{tata.id}">
+	<f:facet name="header">Liste des Modes de paiement</f:facet>
+	
+	<p:column headerText="Code">#{tata.id}</p:column>
+	
+	<p:column headerText="Mode">#{tata.libMode}</p:column>
+
+</p:dataTable>
+
+<!-- Boite de confirmation -->
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+    </p:confirmDialog> 
+
+</p:panel>
+</h:form>
+</ui:define>
+</ui:composition>
+
+</h:html>

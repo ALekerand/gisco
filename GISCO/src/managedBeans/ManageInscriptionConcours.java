@@ -84,7 +84,8 @@ public class ManageInscriptionConcours implements Serializable {
 			//Rensegner les la Table InscriptionConcours
 		inscriptionconcours=new Inscriptionconcours();
 		inscriptionconcours.setNumCandidat(monCandidat);
-		inscriptionconcours.setCodeAnneesConcours(monObjetAnneeConcours);
+	//	inscriptionconcours.setCodeAnneesConcours(monObjetAnneeConcours);
+		inscriptionconcours.setCodeAnneesConcours(reqAnneeConcours.recupAnneeConcoursParConcours(selectedsConcours[i].getId().toString()));
 		inscriptionconcours.setCodeConcours(selectedsConcours[i]);
 		inscriptionconcours.setDateInscriptionConcours(Calendar.getInstance().getTime());
 		//Enregistrer ds la Table

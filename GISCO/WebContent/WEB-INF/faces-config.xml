@@ -98,7 +98,7 @@
 	<managed-bean>
 		<managed-bean-name>managedPaiementConcours</managed-bean-name>
 		<managed-bean-class>managedBeans.ManagedPaiementConcours</managed-bean-class>
-		<managed-bean-scope>view</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>templates/template.xhtml</display-name>
