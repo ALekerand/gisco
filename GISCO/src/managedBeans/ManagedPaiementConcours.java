@@ -69,23 +69,13 @@ public class ManagedPaiementConcours implements Serializable {
 		
 	return	listInscriptionconcours;
 	}
+
+	
 	
 	public int calculerMontant() {
 		setMontantPaiement(0);
-		System.out.println("Calcul du montant");//Clean After
-		System.out.println("taille tableau: "+selectedInscripConcours.length);//Clean After
-		
-	//	montantPaiement = new BigDecimal(10);
-		//setMontantPaiement(new BigDecimal(0));
 		for(int i = 0; i < selectedInscripConcours.length; i++) {
-			System.out.println("Montant "+selectedInscripConcours[i].getCodeAnneesConcours().getDroitConcours());//Clean After
-			//double var = selectedInscripConcours[i].getCodeAnneesConcours().getDroitConcours().doubleValue();
-	//	droit = droit + selectedInscripConcours[i].getCodeAnneesConcours().getDroitConcours().doubleValue();
 			montantPaiement += selectedInscripConcours[i].getCodeAnneesConcours().getDroitConcours().intValue();
-		//	montantPaiement.add(new BigDecimal(10));
-			System.out.println("montant: "+montantPaiement );//Clean After
-			System.out.println("Fin Calcul du montant");//Clean After
-
 		}
 		return montantPaiement;
 			
@@ -154,6 +144,8 @@ public class ManagedPaiementConcours implements Serializable {
 	public void reinitialiserPage() {
 		viderCondidat(candidat);
 		sexesCandidat.setLibsexe("");
+		setMontantPaiement(0);
+		
 	}
 	
 	

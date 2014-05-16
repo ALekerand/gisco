@@ -51,10 +51,19 @@
 <br />
 <p:dataTable id="dt2" var="tata" value="#{managedPaiementConcours.listInscriptionconcours}"
                  selection="#{managedPaiementConcours.selectedInscripConcours}" rowKey="#{tata.id}">
-                 
+
+  <p:ajax event="rowSelectCheckbox" listener="#{managedPaiementConcours.calculerMontant}"
+          update=":form:label_montantpaiement"/>
+          
   <p:ajax event="rowSelect" listener="#{managedPaiementConcours.calculerMontant}"
-  		  update=":form:label_montantpaiement">
-  </p:ajax>
+          update=":form:label_montantpaiement"/>
+          
+  <p:ajax event="rowSelectCheckbox" listener="#{managedPaiementConcours.calculerMontant}"
+          update=":form:label_montantpaiement"/>
+          
+  <p:ajax event="rowUnselect" listener="#{managedPaiementConcours.calculerMontant}"
+          update=":form:label_montantpaiement"/>
+          
         <f:facet name="header">  
 
         </f:facet>
