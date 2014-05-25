@@ -3,15 +3,18 @@ package managedBeans;
 import hibernate.beans.Annees;
 import hibernate.beans.Etudiants;
 import hibernate.beans.Pays;
-
 import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import dao.Crud;
-
+import objetService.IService;
 import requetes.ReqAnneeScolaire;
+
+@Component
+@Scope("session")
 
 public class ManageInscription implements Serializable {
 
@@ -20,8 +23,10 @@ public class ManageInscription implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	//Injection de Spring
+	@Autowired
+	IService service;
 	
-	private Crud monCrud = new Crud();
 	private Annees monObjetAnnees = new Annees();
 	private ReqAnneeScolaire reqAnneeScolaire;
 	private Etudiants monEtudiant = new Etudiants();
@@ -32,7 +37,7 @@ public class ManageInscription implements Serializable {
 	
 	
 	public void enregisterInscription(){
-		getMonCrud().addObject(monEtudiant);
+		getService().saveObject(monEtudiant);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));	
 		
 	}
@@ -62,16 +67,6 @@ public class ManageInscription implements Serializable {
 	}
 
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
-
 	public Etudiants getMonEtudiant() {
 		return monEtudiant;
 	}
@@ -89,6 +84,16 @@ public class ManageInscription implements Serializable {
 
 	public void setSelectedPays(Pays selectedPays) {
 		this.selectedPays = selectedPays;
+	}
+
+
+	public IService getService() {
+		return service;
+	}
+
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

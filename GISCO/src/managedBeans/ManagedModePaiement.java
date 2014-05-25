@@ -1,18 +1,21 @@
 package managedBeans;
 
 import hibernate.beans.Mode;
-
 import java.io.Serializable;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import dao.Crud;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@ManagedBean
-@ViewScoped
+import objetService.IService;
+
+@Component
+@Scope("request")
 public class ManagedModePaiement implements Serializable {
+	// injection de Spring
+	IService service;
 
 	/**
 	 * 
@@ -20,13 +23,12 @@ public class ManagedModePaiement implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//Attribut d'instance
-	private Crud crud = new Crud();
 	private Mode mode = new Mode();
 	private List<Mode> listModes;
 	
 	
 	public void enregistrerMode() {
-		crud.addObject(mode);
+		getService().saveObject(mode);
 		viderPage();
 	}
 	
@@ -36,12 +38,7 @@ public class ManagedModePaiement implements Serializable {
 	
 
 	//***************************ACCESSEURS**********************************//
-	public Crud getCrud() {
-		return crud;
-	}
-	public void setCrud(Crud crud) {
-		this.crud = crud;
-	}
+	
 	public Mode getMode() {
 		return mode;
 	}
@@ -50,12 +47,20 @@ public class ManagedModePaiement implements Serializable {
 	}
 
 	public List<Mode> getListModes() {
-		listModes = crud.getObjects("Mode");
+		listModes = getService().getObjects("Mode");
 		return listModes;
 	}
 
 	public void setListModes(List<Mode> listModes) {
 		this.listModes = listModes;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 	
 

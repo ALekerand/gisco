@@ -1,18 +1,24 @@
 package combo;
 
 import hibernate.beans.Pays;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import objetService.IService;
+
+@Component
+@Scope("session")
 public class ComboPays implements Converter {
-	private Crud monCrud = new Crud();
+	// Injection de Spring
+	@Autowired
+	IService service;
 	private List<Pays> listePays;
 	
 
@@ -41,19 +47,10 @@ public class ComboPays implements Converter {
 	}
 	
 	// *******************Accesseurs******************************
-	
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
 
 	public List getListePays() {
 		listePays = new ArrayList<Pays>();
-		for(Object ec:getMonCrud().getObjects("Pays")){
+		for(Object ec:getService().getObjects("Pays")){
 			listePays.add((Pays) ec);
 		}
 		
@@ -62,6 +59,14 @@ public class ComboPays implements Converter {
 
 	public void setListePays(List listePays) {
 		this.listePays = listePays;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

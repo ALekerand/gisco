@@ -4,18 +4,27 @@ import hibernate.beans.Ecole;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-public class ComboEcole implements Converter {	
+import objetService.IService;
+
+@Component
+@Scope("session")
+
+public class ComboEcole implements Converter {
+	// Injection de Spring
+	@Autowired
+	IService service;
+	
 	private List<Ecole> listeEcole;
-	private Crud monCrud = new Crud();
 
 	public ComboEcole() {
 		// TODO Auto-generated constructor stub
@@ -63,7 +72,7 @@ public class ComboEcole implements Converter {
 
 	public List<Ecole> getListeEcole() {
 		listeEcole = new ArrayList<>();
-			for(Object ec:getMonCrud().getObjects("Ecole")){
+			for(Object ec:getService().getObjects("Ecole")){
 				listeEcole.add((Ecole) ec);
 			}
 		
@@ -74,12 +83,12 @@ public class ComboEcole implements Converter {
 		this.listeEcole = listeEcole;
 	}
 
-	public Crud getMonCrud() {
-		return monCrud;
+	public IService getService() {
+		return service;
 	}
 
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

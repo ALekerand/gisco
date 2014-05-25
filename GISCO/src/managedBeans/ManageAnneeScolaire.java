@@ -5,21 +5,28 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import hibernate.beans.Annees;
-import dao.Crud;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import objetService.IService;
+import hibernate.beans.Annees;
+
+@Component
+@Scope("request")
 public class ManageAnneeScolaire implements Serializable {
 
 	/**
 	 * 
 	 */
+	// injection de spring
+		IService service;
+		
 	private static final long serialVersionUID = 1L;
-	private Crud monCrud = new Crud();
 	private Annees monAnneeScolaire = new Annees();
 	
 	
 	public String enregistrerAnneeScolaire(){
-		getMonCrud().addObject(monAnneeScolaire);
+		getService().saveObject(monAnneeScolaire);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));	
 		annulerSaisie();
 		return null;
@@ -51,16 +58,6 @@ public class ManageAnneeScolaire implements Serializable {
 	
 	// ************ Getters and Setters *****************
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
-
-
 	public Annees getMonAnneeScolaire() {
 		return monAnneeScolaire;
 	}
@@ -69,6 +66,14 @@ public class ManageAnneeScolaire implements Serializable {
 
 	public void setMonAnneeScolaire(Annees monAnneeScolaire) {
 		this.monAnneeScolaire = monAnneeScolaire;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 	
 }

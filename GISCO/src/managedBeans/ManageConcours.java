@@ -3,19 +3,25 @@ package managedBeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import objetService.IService;
 import requetes.ReqConcours;
 import hibernate.beans.Concours;
 import hibernate.beans.Ecole;
-import dao.Crud;
 import dataModel.ConcoursModel;
 
+@Component
+@Scope("session")
+
 public class ManageConcours implements Serializable {
+	// Injection de Spring
+	IService service;
 	
-	private Crud monCrud = new Crud();
 	private Concours monConcours = new Concours();
 	private Ecole selectedEcole = new Ecole();
 	private List listeConcours;
@@ -30,7 +36,7 @@ public class ManageConcours implements Serializable {
 		monConcours.setLibConcours("Concours "+selectedEcole.getAbrevEcole());
 		System.out.println(" ---->> Abréviation Ecole"+getSelectedEcole().getNomEcole());
 		// monConcours.setLibEcoleConcours(getSelectedEcole().getNomEcole());
-		getMonCrud().addObject(monConcours);
+		getService().saveObject(monConcours);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));	
 		annulerSaisie();
 	}
@@ -50,7 +56,7 @@ public class ManageConcours implements Serializable {
 	}
 	
 	public List<Concours> chargerListeconcours(){
-		setListeConcours(getMonCrud().getObjects("Concours"));
+		setListeConcours(getService().getObjects("Concours"));
 		return listeConcours;
 		
 	}
@@ -81,14 +87,6 @@ public class ManageConcours implements Serializable {
 	
 
 	//********************Accesseurs*********//
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
 
 	public Concours getMonConcours() {
 		return monConcours;
@@ -107,7 +105,7 @@ public class ManageConcours implements Serializable {
 	public List getListeConcours() {
 		//if(listeConcours.size()==0){
 		if(getSelectedEcole()==null){
-			setListeConcours(getMonCrud().getObjects("Concours"));
+			setListeConcours(getService().getObjects("Concours"));
 		}
 		return listeConcours;
 		
@@ -133,6 +131,12 @@ public class ManageConcours implements Serializable {
 	}
 	public void setMaListeConcoursEcole(List maListeConcoursEcole) {
 		this.maListeConcoursEcole = maListeConcoursEcole;
+	}
+	public IService getService() {
+		return service;
+	}
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

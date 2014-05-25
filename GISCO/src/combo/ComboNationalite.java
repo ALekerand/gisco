@@ -2,18 +2,26 @@ package combo;
 
 import hibernate.beans.Nationalites;
 import hibernate.beans.Pays;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import objetService.IService;
+
+@Component
+@Scope("session")
 
 public class ComboNationalite implements Converter {
-	private Crud monCrud = new Crud();
+	
+	// Injection de Spring
+	@Autowired
+	IService service;
 	private List<Nationalites> listeNationalite;
 
 	public ComboNationalite() {
@@ -42,18 +50,10 @@ public class ComboNationalite implements Converter {
 
 	
 	//****************Accesseurs******************
-	
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
 
 	public List<Nationalites> getListeNationalite() {
 		listeNationalite = new ArrayList<Nationalites>();
-		for(Object ec:getMonCrud().getObjects("Nationalites")){
+		for(Object ec:getService().getObjects("Nationalites")){
 			listeNationalite.add((Nationalites) ec);
 		}
 		return listeNationalite;
@@ -61,6 +61,14 @@ public class ComboNationalite implements Converter {
 
 	public void setListeNationalite(List<Nationalites> listeNationalite) {
 		this.listeNationalite = listeNationalite;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

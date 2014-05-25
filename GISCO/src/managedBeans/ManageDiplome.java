@@ -1,21 +1,26 @@
 package managedBeans;
 
 import hibernate.beans.Diplomes;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import dao.Crud;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import objetService.IService;
 import dataModel.DiplomeModel;
 import dataModel.PaysModel;
 
+@Component
+@Scope("session")
+
 public class ManageDiplome implements Serializable {
+	// Injection de Spring
+	IService service;
 	
-	private Crud monCrud = new Crud();
 	private Diplomes monDiplome = new Diplomes();
 	private List listeDiplome = new ArrayList<>();
 	private DiplomeModel monDiplomeModel;
@@ -23,7 +28,7 @@ public class ManageDiplome implements Serializable {
 	
 
 	public void enregistrerDiplome(){
-		getMonCrud().addObject(monDiplome);
+		getService().saveObject(monDiplome);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));
 		annulerSaisie();
 	}
@@ -38,7 +43,7 @@ public class ManageDiplome implements Serializable {
 	}
 	
 	public List ChargerToutDiplime(){
-		setListeDiplome(getMonCrud().getObjects("Diplomes"));
+		setListeDiplome(getService().getObjects("Diplomes"));
 		return listeDiplome;
 		
 	}
@@ -50,7 +55,7 @@ public class ManageDiplome implements Serializable {
 	
 	
 	public void supprimerDiplome(){
-		getMonCrud().deleteObject(selectedDiplome);
+		getService().deleteObject(selectedDiplome);
 		annulerSaisie();
 	}
 	
@@ -59,15 +64,6 @@ public class ManageDiplome implements Serializable {
 		System.out.println("***************Test appélé*****************");
 	}
 	//getters and setters
-	
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
 
 
 	public Diplomes getMonDiplome() {
@@ -103,6 +99,14 @@ public class ManageDiplome implements Serializable {
 
 	public void setListeDiplome(List listeDiplome) {
 		this.listeDiplome = listeDiplome;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

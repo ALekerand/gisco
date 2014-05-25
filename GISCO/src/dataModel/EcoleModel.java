@@ -1,5 +1,6 @@
 package dataModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import hibernate.beans.Ecole;
@@ -9,7 +10,7 @@ import javax.faces.model.ListDataModel;
 import org.primefaces.model.SelectableDataModel;
 
 public class EcoleModel extends ListDataModel<Ecole> implements
-		SelectableDataModel<Ecole> {
+		SelectableDataModel<Ecole>, Serializable {
 	
 	//CONSTRUCTEUR
 	public EcoleModel(){

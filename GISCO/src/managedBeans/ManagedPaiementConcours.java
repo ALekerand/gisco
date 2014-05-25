@@ -2,31 +2,30 @@ package managedBeans;
 
 import hibernate.beans.Caisconcours;
 import hibernate.beans.Candidat;
-import hibernate.beans.Concours;
 import hibernate.beans.Inscriptionconcours;
 import hibernate.beans.Mode;
 import hibernate.beans.Sexes;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import objetService.IService;
 
 import org.apache.log4j.Logger;
 import org.primefaces.component.inputtext.InputText;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import dao.Crud;
 import requetes.ReqInscriptionConcours;
 
-
+@Component
+@Scope("session")
 public class ManagedPaiementConcours implements Serializable {
 
 	/**
@@ -35,20 +34,23 @@ public class ManagedPaiementConcours implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static  Logger logger=Logger.getLogger(ManagedPaiementConcours.class);
 	
-	
-	private Crud monCrud = new Crud();
+	//Injection par Spring
+	@Autowired
+		IService  service;
+	@Autowired
+		private ReqInscriptionConcours reqInscriptionConcours;
+
+
 	
 	//Attributs d'instance
 	private String valeurRecherche;
 	private List<Inscriptionconcours> listInscriptionconcours = new ArrayList<Inscriptionconcours>();
-	private ReqInscriptionConcours reqInscriptionConcours = new ReqInscriptionConcours();
 	private Candidat candidat = new Candidat();
 	private Sexes sexesCandidat = new Sexes();
 	private Inscriptionconcours selectedInscripConcours[];
 	private int montantPaiement;
 	private Caisconcours caisconcours;
 	private Mode selectedMode = new Mode();
-//	private String optionMode = "1"; //Option mode reglement
 	private InputText inputRefCheque;
 	
 	
@@ -96,11 +98,11 @@ public class ManagedPaiementConcours implements Serializable {
 				caisconcours.setMontantCaisconcours(selectedInscripConcours[i].getCodeAnneesConcours().getDroitConcours());
 				
 				//Enregistrer le paiement
-				monCrud.addObject(caisconcours);
+				getService().saveObject(caisconcours);
 				
 				//Mis à jour du statut de l'inscription
 				selectedInscripConcours[i].setSolde(true);
-				monCrud.updateObject(selectedInscripConcours[i]);
+				getService().updateObject(selectedInscripConcours[i]);
 				
 				System.out.println("Paiement effectué");//Clean after
 				reinitialiserPage();
@@ -222,14 +224,6 @@ public class ManagedPaiementConcours implements Serializable {
 		this.montantPaiement = montantPaiement;
 	}
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
 
 	public InputText getInputRefCheque() {
 		return inputRefCheque;
@@ -245,6 +239,18 @@ public class ManagedPaiementConcours implements Serializable {
 
 	public void setSelectedMode(Mode selectedMode) {
 		this.selectedMode = selectedMode;
+	}
+
+
+
+	public IService getService() {
+		return service;
+	}
+
+
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 	

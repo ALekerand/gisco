@@ -3,32 +3,36 @@ package managedBeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import objetService.IService;
 import dataModel.NationaliteModel;
 import hibernate.beans.Nationalites;
 
-
+@Component
+@Scope("session")
 public class manageNationalite implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	//Injection de Spring
+	@Autowired
+	IService service;
+	
 	private Nationalites maNationalite=new Nationalites();
-	private Crud monCrud=new Crud();
 	private Nationalites resultatNationalite = new Nationalites();
 	private List listeNationalite = new ArrayList<>();
 	private NationaliteModel maNationaliteModel;
 	private Nationalites selectedNationalite=new Nationalites();
 	
 	public void EnregistrerNationalite(){
-		getMonCrud().addObject(maNationalite);
+		getService().saveObject(maNationalite);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Opération effectuée avec succès"));
 		annulerSaisie();
 		
@@ -36,7 +40,7 @@ public class manageNationalite implements Serializable {
 
 	
 	public List chargerToutNationalite(){
-		setListeNationalite(getMonCrud().getObjects("Nationalites"));
+		setListeNationalite(getService().getObjects("Nationalites"));
 		System.out.println(listeNationalite.size());
 		
 		return listeNationalite;
@@ -62,13 +66,11 @@ public class manageNationalite implements Serializable {
 	
 	public void supprimerNationalite(){
 		System.out.println("Supression debut");
-		getMonCrud().deleteObject(selectedNationalite);
+		getService().deleteObject(selectedNationalite);
 		System.out.println("Supression fin");
 		annulerSaisie();
 		
 	}
-	
-
 	
 	//Getters & setters
 	
@@ -79,14 +81,6 @@ public class manageNationalite implements Serializable {
 
 	public void setMaNationalite(Nationalites maNationalite) {
 		this.maNationalite = maNationalite;
-	}
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
 	}
 
 	public Nationalites getResultatNationalite() {
@@ -123,6 +117,16 @@ public class manageNationalite implements Serializable {
 
 	public void setSelectedNationalite(Nationalites selectedNationalite) {
 		this.selectedNationalite = selectedNationalite;
+	}
+
+
+	public IService getService() {
+		return service;
+	}
+
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 	
 	

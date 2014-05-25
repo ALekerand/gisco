@@ -8,6 +8,12 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import objetService.IService;
+import objetService.Service;
+
 import requetes.ReqAnneeConcours;
 import requetes.ReqConcours;
 import hibernate.beans.Anneeconcours;
@@ -15,15 +21,18 @@ import hibernate.beans.Concours;
 import hibernate.beans.Ecole;
 import hibernate.beans.Pays;
 import hybride.ConcoursAnneeConcours;
-import dao.Crud;
 
+@Component
+@Scope("session")
 public class ManageAnneeConcours implements Serializable {
 
 	/**
 	 * 
 	 */
+	//Injection par Spring
+	IService  service;
+	
 	private static final long serialVersionUID = 1L;
-	private Crud monCrud = new Crud();
 	private Ecole selectedEcole = new Ecole();
 	private Pays selectedPays = new Pays();
 	private Anneeconcours monAnneeConcours = new Anneeconcours();
@@ -35,8 +44,8 @@ public class ManageAnneeConcours implements Serializable {
 	
 	public void EnregistrerAnneeConcours(){
 		monAnneeConcours.setCodepays(getSelectedPays());
-		monAnneeConcours.setCodeConcours(getSelectedConcours());		
-		getMonCrud().addObject(monAnneeConcours);
+		monAnneeConcours.setCodeConcours(getSelectedConcours());
+		getService().saveObject(monAnneeConcours);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));
 		//Charger la dataTable des objets hybrid
 		chargerListeAnneeConcoursConcours();
@@ -136,13 +145,7 @@ public class ManageAnneeConcours implements Serializable {
 	
 	//***********************Accesseurs*********************//
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
+	
 
 	public Ecole getSelectedEcole() {
 		return selectedEcole;
@@ -199,6 +202,15 @@ public class ManageAnneeConcours implements Serializable {
 	public void setMaListehybride(List<ConcoursAnneeConcours> maListehybride) {
 		this.maListehybride = maListehybride;
 	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
+	}
+
 	
 	
 	

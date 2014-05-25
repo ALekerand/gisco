@@ -2,22 +2,28 @@ package combo;
 
 import hibernate.beans.Mode;
 import hibernate.beans.Sexes;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@ManagedBean
-@SessionScoped
+import objetService.IService;
+
+
+@Component
+@Scope("session")
 public class ComboMode implements Converter {
-	private Crud monCrud = new Crud();
+	// Injection de Spring
+	@Autowired
+	IService service;
+	
 	private List<Mode> listModes;
 
 	public ComboMode() {
@@ -48,17 +54,9 @@ public class ComboMode implements Converter {
 	
 	//Getters and Setters
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
 	public List<Mode> getListModes() {
 		listModes = new ArrayList<Mode>();
-		for(Object md:getMonCrud().getObjects("Mode")){
+		for(Object md:getService().getObjects("Mode")){
 			listModes.add((Mode) md);
 		}
 		return listModes;
@@ -66,6 +64,14 @@ public class ComboMode implements Converter {
 
 	public void setListModes(List<Mode> listModes) {
 		this.listModes = listModes;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 	
 

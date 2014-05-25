@@ -2,20 +2,27 @@ package combo;
 
 import hibernate.beans.Diplomes;
 import hibernate.beans.Niveaux;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import objetService.IService;
+
+@Component
+@Scope("session")
 public class ComboDiplome implements Converter {
+	//Injection de Spring
+	@Autowired
+	IService service;
 	
 	private List <Diplomes> listeDiplome;
-	private Crud monCrud = new Crud();
+
 	
 	
 
@@ -44,19 +51,9 @@ public class ComboDiplome implements Converter {
 		}
 	}
 
-	
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
 	public List <Diplomes> getListeDiplome() {
 		listeDiplome = new ArrayList<>();
-		for(Object dp :getMonCrud().getObjects("Diplomes")){
+		for(Object dp :getService().getObjects("Diplomes")){
 			listeDiplome.add((Diplomes) dp);
 		}
 		return listeDiplome;
@@ -65,52 +62,13 @@ public class ComboDiplome implements Converter {
 	public void setListeDiplome(List <Diplomes> listeDiplome) {
 		this.listeDiplome = listeDiplome;
 	}
-	
-	/*private Crud monCrud = new Crud();
-	private List<Diplomes> listeDiplome;
 
-	public ComboDiplome() {
-		// TODO Auto-generated constructor stub
+	public IService getService() {
+		return service;
 	}
 
-	@Override
-	public Object getAsObject(FacesContext arg0, UIComponent arg1, String comboValue) {
-		// TODO Auto-generated method stub
-		if(comboValue.trim().equals("")){
-			return null;
-		}else{
-			for(Diplomes ec:listeDiplome){
-				if(ec.getLibDiplome().equals(comboValue))
-					return ec;
-			}
-		}
-		return null;
+	public void setService(IService service) {
+		this.service = service;
 	}
-
-	@Override
-	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
-	public List<Diplomes> getListeDiplome() {
-		listeDiplome= new ArrayList<Diplomes>();
-		for(Object ec:getMonCrud().getObjects("Diplomes")){
-			listeDiplome.add((Diplomes) ec);
-		}
-		return listeDiplome;
-	}
-
-	public void setListeDiplome(List<Diplomes> listeDiplome) {
-		this.listeDiplome = listeDiplome;
-	}*/
 
 }

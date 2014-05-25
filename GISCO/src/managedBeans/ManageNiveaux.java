@@ -3,20 +3,26 @@ package managedBeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import objetService.IService;
 import hibernate.beans.Niveaux;
-import dao.Crud;
 import dataModel.NiveauModel;
 
+@Component
+@Scope("session")
 public class ManageNiveaux implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Crud monCrud = new Crud();
+	//Injection de Spring
+	@Autowired
+	IService service;
+	
 	private Niveaux monNiveau = new Niveaux();
 	private NiveauModel monNiveauModel;
 	private List listeNiveau = new ArrayList<>();
@@ -25,7 +31,7 @@ public class ManageNiveaux implements Serializable {
 
 	public void enregistrerNiveaux() {
 		monNiveau.setAbrevNiveau(monNiveau.getAbrevNiveau().toUpperCase());
-		getMonCrud().addObject(monNiveau);
+		getService().saveObject(monNiveau);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));
 		annulerSaisie();
 	}
@@ -42,7 +48,7 @@ public class ManageNiveaux implements Serializable {
 	
 	@SuppressWarnings("rawtypes")
 	public List afficherToutNiveau(){
-		setListeNiveau(monCrud.getObjects("Niveaux"));
+		setListeNiveau(getService().getObjects("Niveaux"));
 		return listeNiveau;
 		
 		
@@ -55,15 +61,6 @@ public class ManageNiveaux implements Serializable {
 	
 	// ************************* Getters and Setters ***********************
 
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
 
 	public Niveaux getMonNiveau() {
 		return monNiveau;
@@ -97,6 +94,14 @@ public class ManageNiveaux implements Serializable {
 
 	public void setSelectedNiveau(Niveaux selectedNiveau) {
 		this.selectedNiveau = selectedNiveau;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 	
 	

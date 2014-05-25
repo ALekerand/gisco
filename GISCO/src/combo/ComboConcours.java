@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hibernate.beans.Concours;
-
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import objetService.IService;
+
+@Component
+@Scope("session")
 public class ComboConcours implements Converter {
+	
+	//Injection de Spring
+	@Autowired
+	IService service;
 	private List <Concours> listeConcours;
-	private Crud monCrud = new Crud();
 
 	public ComboConcours() {
 		// TODO Auto-generated constructor stub
@@ -48,7 +55,7 @@ public class ComboConcours implements Converter {
 
 	public List <Concours> getListeConcours() {
 		listeConcours = new ArrayList<>();
-		for(Object cc :getMonCrud().getObjects("Concours")){
+		for(Object cc :getService().getObjects("Concours")){
 			listeConcours.add((Concours) cc);
 		}
 		return listeConcours;
@@ -62,14 +69,18 @@ public class ComboConcours implements Converter {
 
 
 
-	public Crud getMonCrud() {
-		return monCrud;
+	public IService getService() {
+		return service;
 	}
 
 
 
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
+	public void setService(IService service) {
+		this.service = service;
 	}
+
+
+
+	
 
 }

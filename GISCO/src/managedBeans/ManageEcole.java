@@ -3,15 +3,18 @@ package managedBeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
+import objetService.IService;
 import org.apache.log4j.Logger;
-
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import dataModel.EcoleModel;
 import hibernate.beans.Ecole;
+
+@Component
+@Scope("session")
 
 public class ManageEcole implements Serializable {
 	/**
@@ -20,9 +23,11 @@ public class ManageEcole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private static  Logger logger=Logger.getLogger(ManageEcole.class);
+	//Injection de Spring
+	@Autowired
+	IService service;
 	
 	private Ecole monEcole = new Ecole();
-	private Crud monCrud = new Crud();
 	private EcoleModel monEcoleModel;
 	private Ecole selectedEcole = new Ecole();
 	private List listeEcole = new ArrayList<>();
@@ -31,7 +36,7 @@ public class ManageEcole implements Serializable {
 	public void enregistrerEcole(){
 		try {
 			monEcole.setAbrevEcole(monEcole.getAbrevEcole().toUpperCase());
-			getMonCrud().addObject(monEcole);
+			getService().saveObject(monEcole);
 			FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));
 			annulerSaisie();
 		} catch (Exception e) {
@@ -51,7 +56,7 @@ public class ManageEcole implements Serializable {
 	}
 	
 	public void modifierEcole(){
-		getMonCrud().updateObject(monEcole);
+		getService().updateObject(monEcole);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Modification","Opération effectuée avec succès"));
 		annulerSaisie();
 	}
@@ -61,13 +66,13 @@ public class ManageEcole implements Serializable {
 	}
 	
 	public List chargerToutEcole(){
-		setListeEcole(monCrud.getObjects("Ecole"));
+		setListeEcole(getService().getObjects("Ecole"));
 		return listeEcole;
 		
 	}
 	
 	public void supprimerEcole(){
-		getMonCrud().deleteObject(selectedEcole);
+		getService().deleteObject(selectedEcole);
 		annulerSaisie();
 	}
 
@@ -79,16 +84,6 @@ public class ManageEcole implements Serializable {
 
 	public void setMonEcole(Ecole monEcole) {
 		this.monEcole = monEcole;
-	}
-
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
 	}
 
 	public Ecole getSelectedEcole() {
@@ -115,6 +110,14 @@ public class ManageEcole implements Serializable {
 
 	public void setMonEcoleModel(EcoleModel monEcoleModel) {
 		this.monEcoleModel = monEcoleModel;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

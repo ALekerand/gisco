@@ -3,32 +3,40 @@ package managedBeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import dao.Crud;
+import objetService.IService;
 import dataModel.SexeModel;
 import hibernate.beans.Sexes;
 
-
+@Component
+@Scope("session")
 public class manageSexe implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	//Injection de Spring
+	@Autowired
+	IService service;
+	
 	private Sexes monSexe = new Sexes();
-	private Crud monCrud = new Crud();
 	private SexeModel monSexeModel;
 	private List listeSexe = new ArrayList<>();
 
 	
 	public void enregistrerSexe(){
-		getMonCrud().addObject(monSexe);
+		getService().saveObject(monSexe);
 		
 		
 	}
 	
 	
 	public List chargerToutSexe(){
-		setListeSexe(monCrud.getObjects("Sexe"));
+		setListeSexe(getService().getObjects("Sexe"));
 		return listeSexe;
 	}
 // geters et seters
@@ -40,14 +48,6 @@ public class manageSexe implements Serializable {
 
 	public void setMonSexe(Sexes monSexe) {
 		this.monSexe = monSexe;
-	}
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
 	}
 
 	public List getListeSexe() {
@@ -65,6 +65,16 @@ public class manageSexe implements Serializable {
 
 	public void setMonSexeModel(SexeModel monSexeModel) {
 		this.monSexeModel = monSexeModel;
+	}
+
+
+	public IService getService() {
+		return service;
+	}
+
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

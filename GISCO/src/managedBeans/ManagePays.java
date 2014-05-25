@@ -1,26 +1,32 @@
 package managedBeans;
 
 import hibernate.beans.Pays;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import dao.Crud;
+import objetService.IService;
 import dataModel.PaysModel;
 
 
-
+@Component
+@Scope("session")
 public class ManagePays implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	// Injection de Spring
+	@Autowired
+	IService service;
+	
 	private Pays monPays= new Pays();
-	private Crud monCrud=new Crud();
 	private Pays resultatPays =new Pays();
 	private List listePays= new ArrayList<>();
 	private PaysModel monPaysModel;
@@ -30,7 +36,7 @@ public class ManagePays implements Serializable {
 	
 	public void enregistrerPays(){
 		monPays.setAbrevpays(monPays.getAbrevpays().toUpperCase());
-		getMonCrud().addObject(monPays);
+		getService().saveObject(monPays);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));
 		viderPays(monPays);
 		
@@ -38,20 +44,20 @@ public class ManagePays implements Serializable {
 	}
 
 	public void rechercherPay(){
-		resultatPays=(Pays) getMonCrud().getObject(1, "Pays");
+		resultatPays=(Pays) getService().getObject(1, "Pays");
 		
 		System.out.println(resultatPays.getLibpays());
 	}
 	
 	public List chargerToutPays(){
-		setListePays(getMonCrud().getObjects("Pays"));
+		setListePays(getService().getObjects("Pays"));
 		
 		return listePays;
 		
 	}
 	
 	public void supprimerPays(){
-		getMonCrud().deleteObject(selectedPays);
+		getService().deleteObject(selectedPays);
 		System.out.println("Suppression effectuée");
 		annulerSaisie();
 	}
@@ -90,14 +96,6 @@ public class ManagePays implements Serializable {
 		this.monPays = monPays;
 	}
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
 	public Pays getResultatPays() {
 		return resultatPays;
 	}
@@ -130,6 +128,14 @@ public class ManagePays implements Serializable {
 
 	public void setSelectedPays(Pays selectedPays) {
 		this.selectedPays = selectedPays;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 	
 	

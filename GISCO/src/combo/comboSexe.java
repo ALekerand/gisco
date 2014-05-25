@@ -1,18 +1,25 @@
 package combo;
 
 import hibernate.beans.Sexes;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import dao.Crud;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import objetService.IService;
+
+@Component
+@Scope("session")
 
 public class comboSexe implements Converter {
-	private Crud monCrud = new Crud();
+	//Injection de Spring
+	@Autowired
+	IService service;
 	private List<Sexes> listeSexe;
 
 	public comboSexe() {
@@ -42,18 +49,9 @@ public class comboSexe implements Converter {
 	}
 	
 	//Getters and Setters
-
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
 	public List getListeSexe() {
 		listeSexe = new ArrayList<Sexes>();
-		for(Object ec:getMonCrud().getObjects("Sexes")){
+		for(Object ec:getService().getObjects("Sexes")){
 			listeSexe.add((Sexes) ec);
 		}
 		return listeSexe;
@@ -61,6 +59,14 @@ public class comboSexe implements Converter {
 
 	public void setListeSexe(List listeSexe) {
 		this.listeSexe = listeSexe;
+	}
+
+	public IService getService() {
+		return service;
+	}
+
+	public void setService(IService service) {
+		this.service = service;
 	}
 
 }

@@ -10,29 +10,25 @@ import hibernate.beans.Nationalites;
 import hibernate.beans.Niveaux;
 import hibernate.beans.Pays;
 import hibernate.beans.Sexes;
-
-import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
+import objetService.IService;
 import org.apache.log4j.Logger;
-
-import com.itextpdf.text.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import requetes.ReqAnneeConcours;
 import requetes.ReqConcours;
 import utilitaires.DateCalculator;
-import dao.Crud;
 import dataModel.ConcoursModel;
 import etats.EtatAutorisationConcours;
 
-
+@Component
+@Scope("session")
 public class ManageInscriptionConcours implements Serializable {
 	/**
 	 * 
@@ -41,7 +37,18 @@ public class ManageInscriptionConcours implements Serializable {
 
 	private static  Logger logger=Logger.getLogger(ManageInscriptionConcours.class);
 	
-	private Crud monCrud = new Crud();
+	//Injection de Spring
+	@Autowired
+	IService service;
+	@Autowired
+	private ReqAnneeConcours reqAnneeConcours;
+	@Autowired
+	private ReqConcours reqConcours;
+	@Autowired
+	private DateCalculator dateCalculator;
+	@Autowired
+	private EtatAutorisationConcours autorisationConcours;
+	
 	private Ecole selectedEcole = new Ecole();
 	private Pays selectedPays=new Pays();
 	private Sexes selectedSexe = new Sexes();
@@ -50,16 +57,12 @@ public class ManageInscriptionConcours implements Serializable {
 	private Niveaux selectedNiveau = new Niveaux();
 	private Diplomes selectedDiplome = new Diplomes();
 	private int age;
-	private ReqAnneeConcours reqAnneeConcours;
 	private Anneeconcours monObjetAnneeConcours = new Anneeconcours();
-	private ReqConcours reqConcours = new ReqConcours();
 	private ConcoursModel monConcoursModel;
 	private List listeconcours;
 	private List listeConcoursChoisis;
 	private Concours selectedsConcours[];
 	private Inscriptionconcours inscriptionconcours;
-	private DateCalculator dateCalculator = new DateCalculator();
-	private EtatAutorisationConcours autorisationConcours = new EtatAutorisationConcours();
 
 	
 	
@@ -69,7 +72,7 @@ public class ManageInscriptionConcours implements Serializable {
 			monCandidat.setCodenationalite(getSelectedNationalite());
 			monCandidat.setCodeniveau(getSelectedNiveau());
 			monCandidat.setCodeDiplome(getSelectedDiplome());
-			getMonCrud().addObject(getMonCandidat());
+			getService().saveObject(getMonCandidat());
 			FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));
 		
 			
@@ -89,7 +92,7 @@ public class ManageInscriptionConcours implements Serializable {
 		inscriptionconcours.setCodeConcours(selectedsConcours[i]);
 		inscriptionconcours.setDateInscriptionConcours(Calendar.getInstance().getTime());
 		//Enregistrer ds la Table
-		getMonCrud().addObject(inscriptionconcours);
+		getService().saveObject(inscriptionconcours);
 		}
 	}
 	
@@ -200,20 +203,6 @@ public class ManageInscriptionConcours implements Serializable {
 
 
 
-	public Crud getMonCrud() {
-		return monCrud;
-	}
-
-
-
-	public void setMonCrud(Crud monCrud) {
-		this.monCrud = monCrud;
-	}
-
-
-
-
-
 	public Candidat getMonCandidat() {
 		return monCandidat;
 	}
@@ -271,7 +260,6 @@ public class ManageInscriptionConcours implements Serializable {
 	}
 
 	public Anneeconcours getMonObjetAnneeConcours() {
-		reqAnneeConcours = new ReqAnneeConcours();
 		try {
 			setMonObjetAnneeConcours(reqAnneeConcours.recupererDernierAnneeConcours().get(0));
 		} catch (IndexOutOfBoundsException e) {
@@ -340,6 +328,30 @@ public class ManageInscriptionConcours implements Serializable {
 
 	public void setAutorisationConcours(EtatAutorisationConcours autorisationConcours) {
 		this.autorisationConcours = autorisationConcours;
+	}
+
+
+
+	public IService getService() {
+		return service;
+	}
+
+
+
+	public void setService(IService service) {
+		this.service = service;
+	}
+
+
+
+	public ReqAnneeConcours getReqAnneeConcours() {
+		return reqAnneeConcours;
+	}
+
+
+
+	public void setReqAnneeConcours(ReqAnneeConcours reqAnneeConcours) {
+		this.reqAnneeConcours = reqAnneeConcours;
 	}
 
 
