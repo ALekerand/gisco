@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="MatiereExam"
+		table="matiere_exam"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_MATIERE_EXAM"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibMatiereExam"
+			column="LIB_MATIERE_EXAM"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="AbrevMatiereExam"
+			column="ABREV_MATIERE_EXAM"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="CoefMatiereExam"
+			column="COEF_MATIERE_EXAM"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="CodeSection"
+			column="CODE_SECTION"
+			class="Section"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="Notexams" inverse="true" lazy="true">
+			<key column="CODE_MATIERE_EXAM"/>
+			<one-to-many class="Notexam"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

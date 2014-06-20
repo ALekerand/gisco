@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Salles"
+		table="salles"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_SALLE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NumSalle"
+			column="NUM_SALLE"
+			type="string"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="LibSalle"
+			column="LIB_SALLE"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="NbrePlace"
+			column="NBRE_PLACE"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+	
+		<set
+			name="Candidats"
+			table="candidat_salle"
+			cascade="all"
+			lazy="true"
+		>
+			<key column="CODE_SALLE"/>
+			<many-to-many column="NUM_CANDIDAT" class="Candidat"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

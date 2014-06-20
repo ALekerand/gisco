@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Nature"
+		table="nature"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_NATURE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibNature"
+			column="LIB_NATURE"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+	
+
+		<set name="Absences" inverse="true" lazy="true">
+			<key column="CODE_NATURE"/>
+			<one-to-many class="Absence"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

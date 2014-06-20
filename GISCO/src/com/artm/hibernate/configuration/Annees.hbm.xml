@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Annees"
+		table="annees"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_ANNEES"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="AnneesDebut"
+			column="ANNEES_DEBUT"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="AnneesFin"
+			column="ANNEES_FIN"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="SessionExamen"
+			column="SESSION_EXAMEN"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="DateCommission"
+			column="DATE_COMMISSION"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="LibAnneeScolaire"
+			column="LIB_ANNEE_SCOLAIRE"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+	
+
+		<set name="Inscriptions" inverse="true" lazy="true">
+			<key column="CODE_ANNEES"/>
+			<one-to-many class="Inscriptions"/>
+		</set>
+
+		<set name="Scolarites" inverse="true" lazy="true">
+			<key column="CODE_ANNEES"/>
+			<one-to-many class="Scolarites"/>
+		</set>
+
+		<set name="Absences" inverse="true" lazy="true">
+			<key column="CODE_ANNEES"/>
+			<one-to-many class="Absence"/>
+		</set>
+
+		<set name="Versements" inverse="true" lazy="true">
+			<key column="CODE_ANNEES"/>
+			<one-to-many class="Versement"/>
+		</set>
+
+		<set name="Notes" inverse="true" lazy="true">
+			<key column="CODE_ANNEES"/>
+			<one-to-many class="Notes"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

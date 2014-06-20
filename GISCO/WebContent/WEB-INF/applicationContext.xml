@@ -1,0 +1,120 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	xmlns:context="http://www.springframework.org/schema/context">
+
+	 <context:component-scan base-package="com.artm" />
+	<context:annotation-config />
+
+	<!-- definition de la datasource -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost/gisbd?zeroDateTimeBehavior=convertToNull" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<!-- configuration de la sessionFactory d'hibernate -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<!-- Les fichiers de mapping de la BD -->
+				<value>com/artm/hibernate/configuration/Absence.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Activites.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Adresses.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Anneeconcours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Annees.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Avoir.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Caisconcours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Campus.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Candidat.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/CandidatSalle.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Candidature.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Concours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Correspondre.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Detailcampus.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Diplomes.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Echeance.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Ecolages.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Ecole.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/EtudiantCandidature.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Etudiants.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Filieres.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Inscriptionconcours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Inscriptions.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Logement.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Loger.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Matiere.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Matiereconcours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/MatiereExam.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Matrimoniales.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Meres.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Mode.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Motif.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Nationalites.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Nature.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Niveaux.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Noteconcours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Notes.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Notexam.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Origine.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Parammatiere.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Parammatierexam.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Pays.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Peres.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Professions.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Regime.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Salles.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Santes.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Scolarites.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Section.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Semestre.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Sexes.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Tuteurs.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/TypeMatiere.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Typematiereconcours.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/TypeMatiereExam.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Versement.hbm.xml</value>
+		</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<!-- Transaction Manager is defined -->
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+<!-- User DAO Declaration -->
+    <bean id="Dao" class="com.artm.objetDao.Dao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+     <!-- User Service Declaration -->
+    <bean id="Service" class="com.artm.objetService.Service">
+        <property name="dao" ref="Dao" />
+	</bean>
+</beans>

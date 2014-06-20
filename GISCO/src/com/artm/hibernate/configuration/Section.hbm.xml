@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Section"
+		table="section"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_SECTION"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NomSection"
+			column="NOM_SECTION"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="AbrevSection"
+			column="ABREV_SECTION"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="SectionExam"
+			column="SECTION_EXAM"
+			type="boolean"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CodeFiliere"
+			column="CODE_FILIERE"
+			class="Filieres"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="Matieres" inverse="true" lazy="true">
+			<key column="CODE_SECTION"/>
+			<one-to-many class="Matiere"/>
+		</set>
+
+		<set name="Ecolages" inverse="true" lazy="true">
+			<key column="CODE_SECTION"/>
+			<one-to-many class="Ecolages"/>
+		</set>
+
+		<set name="Inscriptions" inverse="true" lazy="true">
+			<key column="CODE_SECTION"/>
+			<one-to-many class="Inscriptions"/>
+		</set>
+
+		<set name="MatiereExams" inverse="true" lazy="true">
+			<key column="CODE_SECTION"/>
+			<one-to-many class="MatiereExam"/>
+		</set>
+
+		<set name="Parammatierexams" inverse="true" lazy="true">
+			<key column="CODE_SECTION"/>
+			<one-to-many class="Parammatierexam"/>
+		</set>
+
+		<set name="Parammatieres" inverse="true" lazy="true">
+			<key column="CODE_SECTION"/>
+			<one-to-many class="Parammatiere"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

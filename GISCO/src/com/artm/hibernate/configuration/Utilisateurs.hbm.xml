@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Utilisateurs"
+		table="utilisateurs"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_UTILISATEUR"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NomUtilisateur"
+			column="NOM_UTILISATEUR"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="MotDePasse"
+			column="MOT_DE_PASSE"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

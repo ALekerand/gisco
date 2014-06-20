@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Semestre"
+		table="semestre"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_SEMESTRE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibSemestre"
+			column="LIB_SEMESTRE"
+			type="string"
+			not-null="false"
+			length="15"
+		/>
+	
+
+		<set name="Absences" inverse="true" lazy="true">
+			<key column="CODE_SEMESTRE"/>
+			<one-to-many class="Absence"/>
+		</set>
+
+		<set name="Notes" inverse="true" lazy="true">
+			<key column="CODE_SEMESTRE"/>
+			<one-to-many class="Notes"/>
+		</set>
+	
+		<set
+			name="Matieres"
+			table="correspondre"
+			cascade="all"
+			lazy="true"
+		>
+			<key column="CODE_SEMESTRE"/>
+			<many-to-many column="CODE_MATIERE" class="Matiere"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

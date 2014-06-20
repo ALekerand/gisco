@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Logement"
+		table="logement"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_LOGE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibCampusLoge"
+			column="LIB_CAMPUS_LOGE"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="LibDetailCampusLoge"
+			column="LIB_DETAIL_CAMPUS_LOGE"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="AbrevAmpusLoge"
+			column="ABREV_AMPUS_LOGE"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+	
+		<set
+			name="Etudiants"
+			table="loger"
+			cascade="all"
+			lazy="true"
+		>
+			<key column="CODE_LOGE"/>
+			<many-to-many column="NUMETUDIANT" class="Etudiants"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>
