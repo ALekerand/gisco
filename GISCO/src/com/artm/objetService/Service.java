@@ -2,9 +2,9 @@ package com.artm.objetService;
 
 import java.util.List;
 
-import com.artm.objetDao.IDao;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import com.artm.objetDao.IDao;
 
 @Transactional(readOnly=true)
 public class Service implements IService {

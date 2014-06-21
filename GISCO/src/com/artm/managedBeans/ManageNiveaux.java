@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.artm.dataModel.NiveauModel;
 import com.artm.hibernate.beans.Niveaux;
 import com.artm.objetService.IService;
 
@@ -27,16 +26,16 @@ public class ManageNiveaux implements Serializable {
 	IService service;
 	
 	private Niveaux monNiveau = new Niveaux();
-	private NiveauModel monNiveauModel;
-	private List listeNiveau = new ArrayList<>();
+	private List<Object> listeNiveau = new ArrayList<>();
 	private Niveaux selectedNiveau = new Niveaux();
 	
 
 	public void enregistrerNiveaux() {
 		monNiveau.setAbrevNiveau(monNiveau.getAbrevNiveau().toUpperCase());
 		getService().saveObject(monNiveau);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));
 		annulerSaisie();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));
+
 	}
 	
 	public void viderNiveau(Niveaux monObjet){
@@ -49,8 +48,8 @@ public class ManageNiveaux implements Serializable {
 		viderNiveau(monNiveau);
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public List afficherToutNiveau(){
+	@SuppressWarnings({"unchecked" })
+	public List<Object> afficherToutNiveau(){
 		setListeNiveau(getService().getObjects("Niveaux"));
 		return listeNiveau;
 		
@@ -74,20 +73,11 @@ public class ManageNiveaux implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public NiveauModel getMonNiveauModel() {
-		monNiveauModel = new NiveauModel(afficherToutNiveau());
-		return monNiveauModel;
+	public List<Object> getListeNiveau() {
+		return listeNiveau = getService().getObjects("Niveaux");
 	}
 
-	public void setMonNiveauModel(NiveauModel monNiveauModel) {
-		this.monNiveauModel = monNiveauModel;
-	}
-
-	public List getListeNiveau() {
-		return listeNiveau;
-	}
-
-	public void setListeNiveau(List listeNiveau) {
+	public void setListeNiveau(List<Object> listeNiveau) {
 		this.listeNiveau = listeNiveau;
 	}
 

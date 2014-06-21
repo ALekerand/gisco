@@ -36,9 +36,10 @@ public class ManagedPaiementConcours implements Serializable {
 	
 	//Injection par Spring
 	@Autowired
-		IService  service;
+	IService  service;
 	@Autowired
-		private ReqInscriptionConcours reqInscriptionConcours;
+	ReqInscriptionConcours reqInscriptionConcours;
+	
 
 
 	
@@ -56,7 +57,7 @@ public class ManagedPaiementConcours implements Serializable {
 	
 	public List<Inscriptionconcours> rechercherCandidat() {
 		reinitialiserPage();
-		listInscriptionconcours = reqInscriptionConcours.recupererInscription(valeurRecherche);
+		listInscriptionconcours = getReqInscriptionConcours().recupererInscription(valeurRecherche);
 		//continuer le processus si liste non vide
 		if (listInscriptionconcours.size()==0) {
 			//Message
@@ -166,16 +167,7 @@ public class ManagedPaiementConcours implements Serializable {
 
 
 
-	public ReqInscriptionConcours getReqInscriptionConcours() {
-		return reqInscriptionConcours;
-	}
-
-
-
-
-	public void setReqInscriptionConcours(ReqInscriptionConcours reqInscriptionConcours) {
-		this.reqInscriptionConcours = reqInscriptionConcours;
-	}
+	
 
 
 
@@ -228,6 +220,19 @@ public class ManagedPaiementConcours implements Serializable {
 	public InputText getInputRefCheque() {
 		return inputRefCheque;
 	}
+
+	public ReqInscriptionConcours getReqInscriptionConcours() {
+		return reqInscriptionConcours;
+	}
+
+
+
+	public void setReqInscriptionConcours(
+			ReqInscriptionConcours reqInscriptionConcours) {
+		this.reqInscriptionConcours = reqInscriptionConcours;
+	}
+
+
 
 	public void setInputRefCheque(InputText inputRefCheque) {
 		this.inputRefCheque = inputRefCheque;

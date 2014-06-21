@@ -3,71 +3,68 @@ package com.artm.requetes;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.artm.hibernate.beans.Concours;
-import com.artm.hibernate.util.HibernateUtil;
+
 
 public class ReqConcours implements Serializable{
 
-	public ReqConcours() {
-		// TODO Auto-generated constructor stub
-	}
-	
+	@Autowired
+	SessionFactory sessionFactory;
+
 	/**
-	 * Méthode pour de recupération des concours selon le debut de l'année concours et le pays
+	 * Méthode pour de recupération des concours selon le début de l'année concours et le pays
 	 * @param codePays
 	 * @param anneeDebut
 	 * @return Liste concours
 	 */
-		
+
 	//Liste des concours par Pays
+	@SuppressWarnings("unchecked")
 	public List<Concours> recupererListeConcoursPays(int codePays, int anneeDebut){
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+
 		String query = "SELECT C.* FROM  concours C Join anneeconcours AC ON AC.CODE_CONCOURS= C.CODE_CONCOURS " +
 				"WHERE AC.CODEPAYS='"+codePays+"' and AC.ANNEE_CONCOURS_DEBUT='"+anneeDebut+"'";
-		List liste = session.createSQLQuery(query).addEntity(Concours.class).list();
-		session.getTransaction().commit();
-		
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Concours.class).list();
 		return liste;
 	}
-		
-		
-		/**
-		 * Méthode pour de recupération des concours selon le libéllé l'année concours et le pays
-		 * @param codePays
-		 * @param anneeDebut
-		 * @return Liste concours
-		 */
-			
-		//Liste des concours par Pays
-		public List<Concours> recupererListeConcoursPays(int codePays, String libAnneeConcours){
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
-			String query = "SELECT C.* FROM  concours C Join anneeconcours AC ON AC.CODE_CONCOURS= C.CODE_CONCOURS " +
-					"WHERE AC.CODEPAYS='"+codePays+"' and AC.LIB_ANNEE_CONCOURS='"+libAnneeConcours+"'";
-			List liste = session.createSQLQuery(query).addEntity(Concours.class).list();
-			session.getTransaction().commit();
-			
-			return liste;
-		
-		
-	}
-	/*
-	 * 
-	 */
-	//Liste des Concours par Ecole
-	public List<Concours> recupererListeConcoursEcole(String paramEcole){
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		String query = "SELECT * FROM `concours` WHERE `ABREV_ECOLE_CONCOURS`='"+paramEcole+"'";
-		List liste = session.createSQLQuery(query).addEntity(Concours.class).list();
-		session.getTransaction().commit();
-		return liste;
-		
-	}
-	
 
-	
+
+	/**
+	 * Méthode pour de recupération des concours selon le libéllé l'année concours et le pays
+	 * @param codePays
+	 * @param anneeDebut
+	 * @return Liste concours
+	 */
+
+	public List<Concours> recupererListeConcoursPays(int codePays, String libAnneeConcours){
+
+		String query = "SELECT C.* FROM  concours C Join anneeconcours AC ON AC.CODE_CONCOURS= C.CODE_CONCOURS " +
+				"WHERE AC.CODEPAYS='"+codePays+"' and AC.LIB_ANNEE_CONCOURS='"+libAnneeConcours+"'";
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Concours.class).list();			
+		return liste;
+
+
+	}
+
+
+	public List<Concours> recupererListeConcoursEcole(String paramEcole){
+		String query = "SELECT * FROM `concours` WHERE `ABREV_ECOLE_CONCOURS`='"+paramEcole+"'";
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Concours.class).list();
+		return liste;
+	}
+
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 }

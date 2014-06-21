@@ -31,7 +31,7 @@ public class manageNationalite implements Serializable {
 	private Nationalites maNationalite=new Nationalites();
 	private Nationalites resultatNationalite = new Nationalites();
 	private List listeNationalite = new ArrayList<>();
-	private NationaliteModel maNationaliteModel;
+//	private NationaliteModel maNationaliteModel;
 	private Nationalites selectedNationalite=new Nationalites();
 	
 	public void EnregistrerNationalite(){
@@ -95,6 +95,7 @@ public class manageNationalite implements Serializable {
 	}
 
 	public List getListeNationalite() {
+		listeNationalite = getService().getObjects("Nationalites");
 		return listeNationalite;
 	}
 
@@ -102,7 +103,7 @@ public class manageNationalite implements Serializable {
 		this.listeNationalite = listeNationalite;
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public NationaliteModel getMaNationaliteModel() {
 		System.out.println("Debut de methode");
 		maNationaliteModel=new NationaliteModel(chargerToutNationalite());
@@ -112,7 +113,7 @@ public class manageNationalite implements Serializable {
 
 	public void setMaNationaliteModel(NationaliteModel maNationaliteModel) {
 		this.maNationaliteModel = maNationaliteModel;
-	}
+	}*/
 
 	public Nationalites getSelectedNationalite() {
 		return selectedNationalite;

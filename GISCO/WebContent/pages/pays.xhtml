@@ -5,14 +5,11 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-<link rel="stylesheet" type="text/css" href="../ressources/css/main.css"></link>
-<link rel="stylesheet" type="text/css" href="../ressources/css/monStyle.css"></link>
-  <title><ui:insert name="title">Default title</ui:insert></title>
-</h:head>
-
-<h:body>
-<h:form id="form">
+      
+      
+ <ui:composition template="/templates/template.xhtml">
+ <ui:define name="content">
+ <h:form id="form">
 <p:growl id="grow"  sticky="false" showDetail="true"></p:growl>
 <p:panel header="Enregistrement des pays" styleClass="tableMarge">
 <fieldset>
@@ -49,13 +46,18 @@ Liste des pays
 </f:facet>
 </p:dataTable>
 
-<p:confirmDialog id = "confirmDialog" message ="Voulez - vous supprimer ce pays ?" 
-header ="Suppression" severity = "alert" widgetVar="Confirmation" >
-	<p:commandButton value="Oui" oncomplete="Confirmation.hide()" actionListener="#{managePays.supprimerPays}" update ="tablepays, paysgrid"></p:commandButton>
-	<p:commandButton value="Non" onclick="Confirmation.hide()" actionListener="#{managePays.annulerSaisie}" update="paysgrid"></p:commandButton>
-
-</p:confirmDialog>
-
 </h:form>
-</h:body>
+
+<p:confirmDialog id = "confirmDialog" message ="Voulez - vous supprimer ce pays ?" 
+header ="Suppression" severity = "alert" widgetVar="Confirmation" appendToBody="true" >
+	<h:form id="form2">
+	<p:commandButton value="Oui" oncomplete="Confirmation.hide()" actionListener="#{managePays.supprimerPays}" update =":form:tablepays, :form:paysgrid"></p:commandButton>
+	<p:commandButton value="Non" onclick="Confirmation.hide()" actionListener="#{managePays.annulerSaisie}" update=":form:paysgrid"></p:commandButton>
+	</h:form>
+</p:confirmDialog>
+      </ui:define>
+      
+      </ui:composition>
+      
 </html>
+

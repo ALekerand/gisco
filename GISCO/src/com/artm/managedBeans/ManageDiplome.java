@@ -1,24 +1,26 @@
 package com.artm.managedBeans;
 
-import com.artm.hibernate.beans.Diplomes;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.artm.objetService.IService;
 import com.artm.dataModel.DiplomeModel;
-import com.artm.dataModel.PaysModel;
+import com.artm.hibernate.beans.Diplomes;
+import com.artm.objetService.IService;
 
 @Component
 @Scope("session")
 
 public class ManageDiplome implements Serializable {
 	// Injection de Spring
+	@Autowired
 	IService service;
 	
 	private Diplomes monDiplome = new Diplomes();

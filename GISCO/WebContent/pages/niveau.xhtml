@@ -1,51 +1,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-      
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <ui:composition template="/templates/template.xhtml">
-<ui:define name="content">
+	<ui:define name="content">
 
-<h:form id="form">
-<p:growl id="grow" sticky="false" showDetail="true"></p:growl>
-<p:panel header="Enregistrement des Niveaux d'Eudes" styleClass="tableMarge">
-<fieldset>
-<legend>Niveaux</legend>
-<h:panelGrid id="panelGrid1" columns="2">
-<h:outputText value="Libellé Niveau"></h:outputText>
-<p:inputText value="#{manageNiveaux.monNiveau.libNiveau}" styleClass="inputStyle2" required="true" requiredMessage="Tapez le libellé Niveau"></p:inputText>
+		<h:form id="form">
+			<p:growl id="grow" sticky="false" showDetail="true"></p:growl>
+			<p:panel header="Enregistrement des Niveaux d'Eudes"
+				styleClass="tableMarge">
+				<fieldset>
+					<legend>Niveaux</legend>
+					<h:panelGrid id="panelGrid1" columns="2">
+						<h:outputText value="Libellé Niveau"></h:outputText>
+						<p:inputText value="#{manageNiveaux.monNiveau.libNiveau}"
+							styleClass="inputStyle2" required="true"
+							requiredMessage="Tapez le libellé Niveau"></p:inputText>
 
-<h:outputText value="Abréviation Niveau"></h:outputText>
-<p:inputText value="#{manageNiveaux.monNiveau.abrevNiveau}"  styleClass="inputStyle, uCase" required="true" requiredMessage="Tapez l'abréviation Niveau"></p:inputText>
+						<h:outputText value="Abréviation Niveau"></h:outputText>
+						<p:inputText value="#{manageNiveaux.monNiveau.abrevNiveau}"
+							styleClass="inputStyle, uCase" required="true"
+							requiredMessage="Tapez l'abréviation Niveau"></p:inputText>
 
-</h:panelGrid>
-</fieldset>
-<br></br>
-<h:panelGrid columns="3">
-<p:commandButton value="Enregistrer" actionListener="#{manageNiveaux.enregistrerNiveaux}" update="panelGrid1, grow"></p:commandButton>
-<p:commandButton value="Modifier"></p:commandButton>
-<p:commandButton value="Annuler" actionListener="#{manageNiveaux.annulerSaisie}" update="panelGrid1"></p:commandButton>
-</h:panelGrid>
-</p:panel>
+					</h:panelGrid>
+				</fieldset>
+				<br></br>
+				<h:panelGrid columns="3">
+					<p:commandButton value="Enregistrer"
+						action="#{manageNiveaux.enregistrerNiveaux}"
+						update="form"></p:commandButton>
+					<p:commandButton value="Modifier"></p:commandButton>
+					<p:commandButton value="Annuler"
+						actionListener="#{manageNiveaux.annulerSaisie}"
+						update="form"></p:commandButton>
+				</h:panelGrid>
+			</p:panel>
 
-<p:dataTable id="dataTable1" var="toto" selectionMode="single" value="#{manageNiveaux.monNiveauModel}"
-selection="#{manageNiveaux.selectedNiveau}" styleClass="tableMarge">
-<p:ajax event="rowSelect" listener="#{manageNiveaux.afficherSelectedNiveau}" update=":form:panelGrid1"></p:ajax>
-<f:facet name="header">Liste des niveaux d'Etude</f:facet>
-<p:column headerText="Code Niveau" rendered="false">#{toto.Id}</p:column>
-<p:column headerText="Libellé Niveau" style="width:70%">#{toto.libNiveau}</p:column>
-<p:column headerText="Abréviation" style="width:30%">#{toto.abrevNiveau}</p:column>
+			<p:dataTable id="dataTable1" var="toto" selectionMode="single"
+				value="#{manageNiveaux.listeNiveau}" rowKey="#{toto.id}"
+				selection="#{manageNiveaux.selectedNiveau}" styleClass="tableMarge">
+				<p:ajax event="rowSelect"
+					listener="#{manageNiveaux.afficherSelectedNiveau}"
+					update=":form:panelGrid1"></p:ajax>
+				<f:facet name="header">Liste des niveaux d'Etude</f:facet>
+				<p:column headerText="Code Niveau" rendered="false">#{toto.Id}</p:column>
+				<p:column headerText="Libellé Niveau" style="width:70%">#{toto.libNiveau}</p:column>
+				<p:column headerText="Abréviation" style="width:30%">#{toto.abrevNiveau}</p:column>
 
-<f:facet name="footer">
-<p:commandButton value="Supprimer"></p:commandButton>
+				<f:facet name="footer">
+					<p:commandButton value="Supprimer"></p:commandButton>
 
-</f:facet>
-</p:dataTable>
+				</f:facet>
+			</p:dataTable>
 
-</h:form>
-</ui:define>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>

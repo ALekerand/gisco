@@ -31,7 +31,7 @@ public class ManageEcole implements Serializable {
 	IService service;
 	
 	private Ecole monEcole = new Ecole();
-	private EcoleModel monEcoleModel;
+//	private EcoleModel monEcoleModel;
 	private Ecole selectedEcole = new Ecole();
 	private List listeEcole = new ArrayList<>();
 	
@@ -98,6 +98,7 @@ public class ManageEcole implements Serializable {
 	}
 
 	public List getListeEcole() {
+		listeEcole = getService().getObjects("Ecole");
 		return listeEcole;
 	}
 
@@ -105,7 +106,7 @@ public class ManageEcole implements Serializable {
 		this.listeEcole = listeEcole;
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public EcoleModel getMonEcoleModel() {
 		monEcoleModel = new EcoleModel(chargerToutEcole());
 		return monEcoleModel;
@@ -113,7 +114,7 @@ public class ManageEcole implements Serializable {
 
 	public void setMonEcoleModel(EcoleModel monEcoleModel) {
 		this.monEcoleModel = monEcoleModel;
-	}
+	}*/
 
 	public IService getService() {
 		return service;

@@ -19,7 +19,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <p:selectOneMenu styleClass="oneMenuStyle" value="#{manageConcours.selectedEcole}" converter="#{comboEcole}">
 	<f:selectItem itemLabel="Sélectionnez une Ecole &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
 	<f:selectItems value="#{comboEcole.listeEcole}" var="tata" itemLabel="#{tata.abrevEcole}" itemValue="#{tata}"/>
-	<p:ajax event="change" listener="#{manageConcours.afficherLibEcole}" update="inputEcole,inputLibconcours,dataTableConcours" ></p:ajax>
+	<p:ajax event="change" listener="#{manageConcours.afficherLibEcole}" update="form" ></p:ajax>
 </p:selectOneMenu>
 
 <h:outputText value="Ecole"></h:outputText>
@@ -39,7 +39,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <p:separator></p:separator>
 <h:panelGrid id="panelGrid1" columns="2">
 <p:commandButton value="Enregistrer" actionListener="#{manageConcours.enregistrerConcours}" update="panelGrid2,grow"></p:commandButton>
-<p:commandButton value="&nbsp;&nbsp;Annuler &nbsp;&nbsp;" actionListener="#{manageConcours.annulerSaisie}" update="panelGrid2"></p:commandButton>
+<p:commandButton value="&nbsp;&nbsp;Annuler &nbsp;&nbsp;" actionListener="#{manageConcours.annulerSaisie}" update="form"></p:commandButton>
 </h:panelGrid>
 </p:panel>
 

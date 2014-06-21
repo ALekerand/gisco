@@ -3,6 +3,7 @@ package com.artm.managedBeans;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import com.artm.objetService.IService;
 @Scope("request")
 public class ManagedModePaiement implements Serializable {
 	// injection de Spring
+	@Autowired
 	IService service;
 
 	/**

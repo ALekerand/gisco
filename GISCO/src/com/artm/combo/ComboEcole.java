@@ -2,8 +2,10 @@ package com.artm.combo;
 
 import com.artm.hibernate.beans.Ecole;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -18,8 +20,7 @@ import com.artm.objetService.IService;
 
 @Component
 @Scope("session")
-
-public class ComboEcole implements Converter {
+public class ComboEcole implements Converter, Serializable {
 	// Injection de Spring
 	@Autowired
 	IService service;

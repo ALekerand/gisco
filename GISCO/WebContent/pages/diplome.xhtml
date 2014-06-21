@@ -1,64 +1,79 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/template.xhtml">
- <ui:define name="content">
+	<ui:define name="content">
 
-<h:form id="form">
-<p:growl id="grow"  sticky="false" showDetail="true"></p:growl>
-<p:panel header="Enregistrement des diplômes" styleClass="tableMarge">
-<fieldset>
-<legend>Diplôme</legend>
-<h:panelGrid id="panelGrid1" columns="2">
-<h:outputText value="Libellé Diplôme"></h:outputText>
-<p:inputText value="#{manageDiplome.monDiplome.libDiplome}" styleClass="inputStyle2" required="true" requiredMessage="Renseigner le champ Libellé Diplôme"></p:inputText>
-<h:outputText value="Abréviation"></h:outputText>
-<p:inputText value="#{manageDiplome.monDiplome.abrevDiplome}" required="true" requiredMessage="Renseigner le champ Abréviation" styleClass="uCase"></p:inputText>
-</h:panelGrid>
-</fieldset>
-<br></br>
-<h:panelGrid columns="3">
-<p:commandButton value="Enregistrer" actionListener="#{manageDiplome.enregistrerDiplome}" update="panelGrid1, grow"></p:commandButton>
-<p:commandButton value="Modifier"></p:commandButton>
-<p:commandButton value="Annuler" actionListener="#{manageDiplome.annulerSaisie}" update="panelGrid1"></p:commandButton>
-</h:panelGrid>
-</p:panel>
+		<h:form id="form">
+			<p:growl id="grow" sticky="false" showDetail="true"></p:growl>
+			<p:panel header="Enregistrement des diplômes" styleClass="tableMarge">
+				<fieldset>
+					<legend>Diplôme</legend>
+					<h:panelGrid id="panelGrid1" columns="2">
+						<h:outputText value="Libellé Diplôme"></h:outputText>
+						<p:inputText value="#{manageDiplome.monDiplome.libDiplome}"
+							styleClass="inputStyle2" required="true"
+							requiredMessage="Renseigner le champ Libellé Diplôme"></p:inputText>
+						<h:outputText value="Abréviation"></h:outputText>
+						<p:inputText value="#{manageDiplome.monDiplome.abrevDiplome}"
+							required="true" requiredMessage="Renseigner le champ Abréviation"
+							styleClass="uCase"></p:inputText>
+					</h:panelGrid>
+				</fieldset>
+				<br></br>
+				<h:panelGrid columns="3">
+					<p:commandButton value="Enregistrer"
+						actionListener="#{manageDiplome.enregistrerDiplome}"
+						update="form"></p:commandButton>
+					<p:commandButton value="Modifier"></p:commandButton>
+					<p:commandButton value="Annuler"
+						actionListener="#{manageDiplome.annulerSaisie}"
+						update="panelGrid1"></p:commandButton>
+				</h:panelGrid>
+			</p:panel>
 
-<p:dataTable id="dataTable1" var="toto" selectionMode="single" value="#{manageDiplome.monDiplomeModel}"
-selection="#{manageDiplome.selectedDiplome}" styleClass="tableMarge">
-<p:ajax event="rowSelect" listener="#{manageDiplome.afficherSelectedDiplome}" update=":form:panelGrid1"></p:ajax>
-<f:facet name="header">
-Liste des Diplômes
-</f:facet>
+			<p:dataTable id="dataTable1" var="toto"
+				value="#{manageDiplome.listeDiplome}" selectionMode="single"
+				selection="#{manageDiplome.selectedDiplome}" styleClass="tableMarge"
+				rowKey="#{toto.id}">
+				<p:ajax event="rowSelect"
+					listener="#{manageDiplome.afficherSelectedDiplome}"
+					update=":form:panelGrid1"></p:ajax>
+				<f:facet name="header">Diplômes</f:facet>
 
-<p:column headerText="Code Diplôme" rendered="false">#{toto.Id}</p:column>
-<p:column headerText="Libellé Diplôme" style="width:70%">#{toto.libDiplome}</p:column>
-<p:column headerText="Abréviation" style="width:30%">#{toto.abrevDiplome}</p:column>
+				<p:column headerText="Code" style="width:20%">#{toto.Id}</p:column>
+				<p:column headerText="Libellé" style="width:50%">#{toto.libDiplome}</p:column>
+				<p:column headerText="Abréviation" style="width:30%">#{toto.abrevDiplome}</p:column>
 
-<f:facet name="footer">
-	<p:commandButton value="Supprimer" onclick="Confirmation.show()"/>
-</f:facet>
-</p:dataTable> 
+				<f:facet name="footer">
+					<p:commandButton value="Supprimer" onclick="Confirmation.show()" />
+				</f:facet>
+			</p:dataTable>
 
-</h:form>
+		</h:form>
 
-<p:confirmDialog id="confirmDialog" message="Voulez-vous supprimer ce Diplôme ?" header="Suppression"
-severity="alert" widgetVar="Confirmation" appendToBody="true">
-	<h:form id="form2">
-	<p:commandButton value="Oui" oncomplete="Confirmation.hide()" actionListener="#{manageDiplome.supprimerDiplome}" update=":form:dataTable1, :form:panelGrid1"/>
-	<p:commandButton value="Non" onclick="Confirmation.hide()" actionListener="#{manageDiplome.annulerSaisie}" update=":form:panelGrid1"/>
-	</h:form>
-</p:confirmDialog>
+		<p:confirmDialog id="confirmDialog"
+			message="Voulez-vous supprimer ce Diplôme ?" header="Suppression"
+			severity="alert" widgetVar="Confirmation" appendTo="@(body)">
+			<h:form id="form2">
+				<p:commandButton value="Oui" oncomplete="Confirmation.hide()"
+					actionListener="#{manageDiplome.supprimerDiplome}"
+					update=":form:dataTable1, :form:panelGrid1" />
+				<p:commandButton value="Non" onclick="Confirmation.hide()"
+					actionListener="#{manageDiplome.annulerSaisie}"
+					update=":form:panelGrid1" />
+			</h:form>
+		</p:confirmDialog>
 
 
 
 
-</ui:define>
-      
+	</ui:define>
+
 </ui:composition>
 </html>
