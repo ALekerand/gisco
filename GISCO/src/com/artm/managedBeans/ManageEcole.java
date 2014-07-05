@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.artm.dataModel.EcoleModel;
 import com.artm.hibernate.beans.Ecole;
 import com.artm.objetService.IService;
 
@@ -31,7 +30,6 @@ public class ManageEcole implements Serializable {
 	IService service;
 	
 	private Ecole monEcole = new Ecole();
-//	private EcoleModel monEcoleModel;
 	private Ecole selectedEcole = new Ecole();
 	private List listeEcole = new ArrayList<>();
 	
@@ -106,15 +104,6 @@ public class ManageEcole implements Serializable {
 		this.listeEcole = listeEcole;
 	}
 
-	/*@SuppressWarnings("unchecked")
-	public EcoleModel getMonEcoleModel() {
-		monEcoleModel = new EcoleModel(chargerToutEcole());
-		return monEcoleModel;
-	}
-
-	public void setMonEcoleModel(EcoleModel monEcoleModel) {
-		this.monEcoleModel = monEcoleModel;
-	}*/
 
 	public IService getService() {
 		return service;

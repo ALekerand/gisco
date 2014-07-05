@@ -1,6 +1,5 @@
 package com.artm.requetes;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -13,13 +12,9 @@ import com.artm.hibernate.beans.Inscriptionconcours;
 
 @Transactional
 @Component
-public class ReqInscriptionConcours implements Serializable{
+public class ReqInscriptionConcours{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	//Injection spring
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 

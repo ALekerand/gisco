@@ -43,13 +43,13 @@ public class ManageInscriptionConcours implements Serializable {
 	@Autowired
 	IService service;
 	@Autowired
-	private ReqAnneeConcours reqAnneeConcours;
+	ReqAnneeConcours reqAnneeConcours;
 	@Autowired
-	private ReqConcours reqConcours;
+	ReqConcours reqConcours;
 	@Autowired
-	private DateCalculator dateCalculator;
+	DateCalculator dateCalculator;
 	@Autowired
-	private EtatAutorisationConcours autorisationConcours;
+	EtatAutorisationConcours autorisationConcours;
 	
 	private Ecole selectedEcole = new Ecole();
 	private Pays selectedPays=new Pays();

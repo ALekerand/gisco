@@ -2,13 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.artm" />
+	<context:component-scan base-package="com.artm"/>
 	<context:annotation-config />
 
 	<!-- definition de la datasource -->
@@ -110,17 +111,17 @@
 	</bean>
 
 <!-- User DAO Declaration -->
+    
     <bean id="Dao" class="com.artm.objetDao.Dao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
      <!-- User Service Declaration -->
-    <bean id="Service" class="com.artm.objetService.Service">
+     
+     <bean id="Service" class="com.artm.objetService.Service">
         <property name="dao" ref="Dao" />
 	</bean>
 	
-	<!-- Déclaration des beans 
-	<bean id="ReqConcours" class="com.artm.requetes.ReqConcours">
-	</bean>-->
-	
+     
+     
 </beans>

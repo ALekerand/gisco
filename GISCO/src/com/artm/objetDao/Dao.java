@@ -2,9 +2,12 @@ package com.artm.objetDao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.artm.hibernate.beans.Inscriptionconcours;
 
 public class Dao implements IDao {
 
@@ -81,5 +84,6 @@ public class Dao implements IDao {
     public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+    
+    
 }

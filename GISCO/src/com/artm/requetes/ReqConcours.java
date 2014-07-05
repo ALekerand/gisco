@@ -1,6 +1,5 @@
 package com.artm.requetes;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -11,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.artm.hibernate.beans.Concours;
 
 
-public class ReqConcours implements Serializable{
+@Transactional
+@Component
+public class ReqConcours{
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -57,6 +58,9 @@ public class ReqConcours implements Serializable{
 		List liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Concours.class).list();
 		return liste;
 	}
+	
+	
+	
 
 
 	public SessionFactory getSessionFactory() {

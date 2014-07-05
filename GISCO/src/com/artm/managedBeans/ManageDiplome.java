@@ -17,7 +17,6 @@ import com.artm.objetService.IService;
 
 @Component
 @Scope("session")
-
 public class ManageDiplome implements Serializable {
 	// Injection de Spring
 	@Autowired

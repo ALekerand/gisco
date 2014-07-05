@@ -10,12 +10,10 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.artm.objetService.IService;
-import com.artm.requetes.ReqConcours;
 import com.artm.hibernate.beans.Concours;
 import com.artm.hibernate.beans.Ecole;
-import com.artm.dataModel.ConcoursModel;
+import com.artm.objetService.IService;
+import com.artm.requetes.ReqConcours;
 
 @Component
 @Scope("session")
@@ -29,7 +27,6 @@ public class ManageConcours implements Serializable {
 	private Concours monConcours = new Concours();
 	private Ecole selectedEcole = new Ecole();
 	private List listeConcours = new ArrayList<>();
-//	private ConcoursModel monConcoursModel = new ConcoursModel(chargerListeconcours());
 	
 	private List maListeConcoursEcole;
 
@@ -77,6 +74,7 @@ public class ManageConcours implements Serializable {
 		
 		listeConcours.clear();
 		setListeConcours(reqConcours.recupererListeConcoursEcole(selectedEcole.getAbrevEcole()));
+	//	setListeConcours(reqConcours.recupererListeConcoursEcole(selectedEcole.getAbrevEcole()));
 
 
 	}
@@ -92,6 +90,7 @@ public class ManageConcours implements Serializable {
 	public void setMonConcours(Concours monConcours) {
 		this.monConcours = monConcours;
 	}
+	
 	public Ecole getSelectedEcole() {
 		return selectedEcole;
 	}
@@ -120,17 +119,20 @@ public class ManageConcours implements Serializable {
 	public void setService(IService service) {
 		this.service = service;
 	}
+	
+	public List getListeConcours() {
+		return listeConcours;
+	}
+	public void setListeConcours(List listeConcours) {
+		this.listeConcours = listeConcours;
+	}
 	public ReqConcours getReqConcours() {
 		return reqConcours;
 	}
 	public void setReqConcours(ReqConcours reqConcours) {
 		this.reqConcours = reqConcours;
 	}
-	public List getListeConcours() {
-		return listeConcours = getService().getObjects("Concours");
-	}
-	public void setListeConcours(List listeConcours) {
-		this.listeConcours = listeConcours;
-	}
+	
+	
 
 }

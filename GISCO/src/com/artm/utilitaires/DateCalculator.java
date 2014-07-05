@@ -8,7 +8,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DateCalculator  implements Serializable{
 /**
 	 * 

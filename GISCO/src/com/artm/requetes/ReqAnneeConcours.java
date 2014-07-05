@@ -1,47 +1,50 @@
 package com.artm.requetes;
 
-import com.artm.hibernate.beans.Anneeconcours;
-import com.artm.hibernate.beans.Concours;
-import com.artm.hibernate.util.HibernateUtil;
-
-import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-public class ReqAnneeConcours implements Serializable {
+import com.artm.hibernate.beans.Anneeconcours;
+
+@Transactional
+@Component
+public class ReqAnneeConcours {
+	
+	@Autowired
+	SessionFactory sessionFactory;
 
 	public List<Anneeconcours> recupererListeAnneeConcours(int codePays, String libanneeconcours){
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
 		//String query = "SELECT `anneeconcours`.* FROM anneeconcours WHERE ((`anneeconcours`.`CODEPAYS` ='"+codePays+"') AND (`anneeconcours`.`LIB_ANNEE_CONCOURS` ='"+libanneeconcours+"'";
 		String a =     "SELECT `anneeconcours`.* FROM anneeconcours WHERE ((`anneeconcours`.`CODEPAYS` ='"+codePays+"') AND (`anneeconcours`.`LIB_ANNEE_CONCOURS` ='"+libanneeconcours+"'))";
-		List liste = session.createSQLQuery(a).addEntity(Anneeconcours.class).list();
-		session.getTransaction().commit();
-		
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(a).addEntity(Anneeconcours.class).list();		
 		return liste;
 		
 		
 	}
 
 	public List<Anneeconcours> recupererDernierAnneeConcours(){
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
 		String a = " SELECT `anneeconcours`. * FROM anneeconcours ORDER BY `anneeconcours`.`CODE_ANNEES_CONCOURS` DESC LIMIT 0 , 1";
-		List liste = session.createSQLQuery(a).addEntity(Anneeconcours.class).list();
-		session.getTransaction().commit();
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(a).addEntity(Anneeconcours.class).list();
 		return liste;
 	}
 	
 	
 	public Anneeconcours recupAnneeConcoursParConcours(String codeAnneeConcour){
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
 		String queryString = "SELECT `anneeconcours`.* FROM anneeconcours WHERE (`anneeconcours`.`CODE_CONCOURS` ='"+codeAnneeConcour+"') ORDER BY `anneeconcours`.`CODE_CONCOURS` DESC LIMIT 0 , 1";
 		//String a = " SELECT `anneeconcours`. * FROM anneeconcours ORDER BY `anneeconcours`.`CODE_ANNEES_CONCOURS` DESC LIMIT 0 , 1";
-		Anneeconcours anneeconcours = (Anneeconcours) session.createSQLQuery(queryString).addEntity(Anneeconcours.class).uniqueResult();
-		session.getTransaction().commit();
+		Anneeconcours anneeconcours = (Anneeconcours) getSessionFactory().getCurrentSession().createSQLQuery(queryString).addEntity(Anneeconcours.class).uniqueResult();
 		return anneeconcours;
+	}
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	
