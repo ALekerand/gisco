@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -20,11 +21,6 @@ import com.artm.objetService.IService;
 import com.artm.objetService.Service;
 import com.artm.requetes.ReqAnneeConcours;
 import com.artm.requetes.ReqConcours;
-//import hibernate.beans.Anneeconcours;
-//import hibernate.beans.Concours;
-//import hibernate.beans.Ecole;
-//import hibernate.beans.Pays;
-//import hybride.ConcoursAnneeConcours;
 
 @Component
 @Scope("session")
@@ -34,13 +30,17 @@ public class ManageAnneeConcours implements Serializable {
 	 * 
 	 */
 	//Injection par Spring
+	@Autowired
 	IService  service;
+	@Autowired
+	ReqConcours reqConcours;
+	@Autowired
+	ReqAnneeConcours reqAnneeConcours;
 	
 	private static final long serialVersionUID = 1L;
 	private Ecole selectedEcole = new Ecole();
 	private Pays selectedPays = new Pays();
 	private Anneeconcours monAnneeConcours = new Anneeconcours();
-	private ReqConcours maRequeteConcours;
 	private List maListeConcours;
 	private Concours selectedConcours = new Concours();
 	private List<ConcoursAnneeConcours> maListehybride = new ArrayList<>();
@@ -57,9 +57,9 @@ public class ManageAnneeConcours implements Serializable {
 	}
 	
 	public List ChargerListeConcours(){
-		maRequeteConcours = new ReqConcours();
+	//	maRequeteConcours = new ReqConcours();
 		maListeConcours = new ArrayList<>();
-		maListeConcours = maRequeteConcours.recupererListeConcoursEcole(getSelectedEcole().getAbrevEcole());
+		maListeConcours = reqConcours.recupererListeConcoursEcole(getSelectedEcole().getAbrevEcole());
 		System.out.println(selectedPays.getLibpays());//clean after
 		System.out.println(selectedEcole.getAbrevEcole());//clean after
 		//Charger la dataTable des objets hybrid
@@ -97,7 +97,6 @@ public class ManageAnneeConcours implements Serializable {
 		
 		maListehybride.clear();
 		List<Anneeconcours> listeAnneeConcours = new ArrayList<>();
-		ReqAnneeConcours reqAnneeConcours = new ReqAnneeConcours();
 		listeAnneeConcours = reqAnneeConcours.recupererListeAnneeConcours(selectedPays.getId(), monAnneeConcours.getLibAnneeConcours());
 		
 		for(Anneeconcours obj:listeAnneeConcours){
@@ -175,13 +174,6 @@ public class ManageAnneeConcours implements Serializable {
 		this.monAnneeConcours = monAnneeConcours;
 	}
 
-	public ReqConcours getMaRequeteConcours() {
-		return maRequeteConcours;
-	}
-
-	public void setMaRequeteConcours(ReqConcours maRequeteConcours) {
-		this.maRequeteConcours = maRequeteConcours;
-	}
 
 	public List getMaListeConcours() {
 		return maListeConcours;
@@ -213,6 +205,14 @@ public class ManageAnneeConcours implements Serializable {
 
 	public void setService(IService service) {
 		this.service = service;
+	}
+
+	public ReqConcours getReqConcours() {
+		return reqConcours;
+	}
+
+	public void setReqConcours(ReqConcours reqConcours) {
+		this.reqConcours = reqConcours;
 	}
 
 	
