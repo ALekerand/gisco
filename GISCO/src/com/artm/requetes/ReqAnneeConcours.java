@@ -32,6 +32,16 @@ public class ReqAnneeConcours {
 	}
 	
 	
+	public List<Anneeconcours> recupererAnneeConcours(String libanneeconcours){
+		String a = "SELECT `anneeconcours`. * FROM `anneeconcours` WHERE `anneeconcours`.`LIB_ANNEE_CONCOURS` ='"+libanneeconcours+"'" ;
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(a).addEntity(Anneeconcours.class).list();
+		System.out.println("------taille de la liste requette"+liste.size()); //clean afteer
+		return liste;
+	}
+	
+	
+	
+	
 	public Anneeconcours recupAnneeConcoursParConcours(String codeAnneeConcour){
 		String queryString = "SELECT `anneeconcours`.* FROM anneeconcours WHERE (`anneeconcours`.`CODE_CONCOURS` ='"+codeAnneeConcour+"') ORDER BY `anneeconcours`.`CODE_CONCOURS` DESC LIMIT 0 , 1";
 		//String a = " SELECT `anneeconcours`. * FROM anneeconcours ORDER BY `anneeconcours`.`CODE_ANNEES_CONCOURS` DESC LIMIT 0 , 1";

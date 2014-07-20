@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+<h:form id="form">
+
+<p:growl showDetail="true" autoUpdate="true"></p:growl>
+<p:panel header="Jonction photo concours" styleClass="tableMarge">
+<h:panelGrid id="panelGrid1" columns="2" cellspacing="8">
+<h:outputText value="Année Concours"/>
+<p:inputText value="#{manageJonctionPhoto.monObjetAnneeconcours.libAnneeConcours}" readonly="true"></p:inputText>
+<h:outputText value="Pays"/>
+<p:selectOneMenu id="cb_pays" styleClass="oneMenuStyle" value="#{manageAnneeConcours.selectedPays}" converter="#{comboPays}">
+	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
+	<f:selectItems value="#{manageJonctionPhoto.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
+	<p:ajax event="change" process="@this"></p:ajax>
+</p:selectOneMenu>
+</h:panelGrid>
+<fieldset>
+<legend>Des candidats ayant payé le droit concours</legend>
+<p:dataTable id="table" value="#{manageAnneeConcours.maListehybride}"  var="tata">
+<f:facet name="header">Liste des candidats</f:facet>
+
+<p:column headerText="N° Candidat" style="width:0%" rendered="false"></p:column>
+<p:column headerText="Nom" style="width:25%"></p:column>
+<p:column headerText="Prénoms" style="width:35%"></p:column>
+<p:column headerText="Sexe" style="width:10%"></p:column>
+<p:column headerText="Date de naissance" style="width:10%"></p:column>
+<p:column headerText="Lieu de naissance" style="width:20%"></p:column>
+
+</p:dataTable>
+
+</fieldset>
+
+<br/>
+
+<fieldset>
+<h:panelGrid id="panelGrid2" columns="4" cellspacing="8">
+
+<h:outputText value="Nom candidat"></h:outputText>
+<p:inputText value="" readonly="true"></p:inputText>
+
+<h:outputText value="Prénoms candidat"></h:outputText>
+<p:inputText value="" readonly="true"></p:inputText>
+
+<h:outputText value="Sexe candidat"></h:outputText>
+<p:inputText style="width:50px" value="" readonly="true"></p:inputText>
+
+<h:outputText value="Date naissance candidat"></h:outputText>
+<p:inputMask mask="99/99/9999" value="" readonly="true">
+<f:convertDateTime pattern="dd/MM/yyy"/>
+</p:inputMask>
+
+<h:outputText value="Lieu naissance candidat"></h:outputText>
+<p:inputText value="" readonly="true"></p:inputText>
+
+</h:panelGrid>
+</fieldset>
+
+<br/>
+
+<fieldset>
+<h:panelGrid id="panelGrid3" columns="2">
+<p:commandButton value="Scanner" icon="ui-icon-check"></p:commandButton>
+<p:commandButton value="Ok" icon="ui-icon-star"></p:commandButton>
+</h:panelGrid>
+</fieldset>
+
+</p:panel>
+
+</h:form>
+
+</ui:define>
+
+</ui:composition>
+</html>

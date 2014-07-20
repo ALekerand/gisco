@@ -18,6 +18,7 @@
 		</id>
 
 		<property
+			lazy="false"
 			name="Libpays"
 			column="LIBPAYS"
 			type="string"

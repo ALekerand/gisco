@@ -14,7 +14,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <fieldset>
 <legend>Année concours</legend>
 
-<h:outputText  value="&nbsp;&nbsp;&nbsp;Année début &nbsp;&nbsp;&nbsp;"/>
+<h:outputText value="&nbsp;&nbsp;&nbsp;Année début &nbsp;&nbsp;&nbsp;"/>
 <p:inputText id="debut" style="width:50px" maxlength="4" value="#{manageAnneeConcours.monAnneeConcours.anneeConcoursDebut}">
 <p:ajax event="blur" listener="#{manageAnneeConcours.afficherLibAnneeConcours}" update="inputLibAnneeConcours, fin"></p:ajax>
 </p:inputText>
