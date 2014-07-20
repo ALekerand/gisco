@@ -17,7 +17,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <h:outputText value="Pays"/>
 <p:selectOneMenu id="cb_pays" styleClass="oneMenuStyle" value="#{manageAnneeConcours.selectedPays}" converter="#{comboPays}">
 	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
-	<f:selectItems value="#{manageJonctionPhoto.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
+	<f:selectItems value=""></f:selectItems>
 	<p:ajax event="change" process="@this"></p:ajax>
 </p:selectOneMenu>
 </h:panelGrid>
@@ -66,6 +66,8 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 
 <fieldset>
 <h:panelGrid id="panelGrid3" columns="2">
+<p:fileUpload fileUploadListener="#{fileUploadController.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" description="Select Images"/>
+
 <p:commandButton value="Scanner" icon="ui-icon-check"></p:commandButton>
 <p:commandButton value="Ok" icon="ui-icon-star"></p:commandButton>
 </h:panelGrid>
