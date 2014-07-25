@@ -29,7 +29,8 @@ public class ManageJonctionPhoto implements Serializable {
 	
 	
 	private Anneeconcours monObjetAnneeconcours = new Anneeconcours();
-	List<Pays> listePays = new ArrayList<>();
+	private List<Pays> listePays = new ArrayList<>();
+	private Pays selectedPay = new Pays();
 	
 
 	
@@ -97,6 +98,20 @@ public class ManageJonctionPhoto implements Serializable {
 
 	public void setListePays(List<Pays> listePays) {
 		this.listePays = listePays;
+	}
+
+
+
+
+	public Pays getSelectedPay() {
+		return selectedPay;
+	}
+
+
+
+
+	public void setSelectedPay(Pays selectedPay) {
+		this.selectedPay = selectedPay;
 	}
 	
 	

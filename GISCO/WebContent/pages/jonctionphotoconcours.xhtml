@@ -15,9 +15,9 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <h:outputText value="Année Concours"/>
 <p:inputText value="#{manageJonctionPhoto.monObjetAnneeconcours.libAnneeConcours}" readonly="true"></p:inputText>
 <h:outputText value="Pays"/>
-<p:selectOneMenu id="cb_pays" styleClass="oneMenuStyle" value="#{manageAnneeConcours.selectedPays}" converter="#{comboPays}">
+<p:selectOneMenu id="cb_pays" styleClass="oneMenuStyle" value="#{manageJonctionPhoto.selectedPay}" converter="#{comboPays}">
 	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
-	<f:selectItems value=""></f:selectItems>
+	<f:selectItems value="#{manageJonctionPhoto.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
 	<p:ajax event="change" process="@this"></p:ajax>
 </p:selectOneMenu>
 </h:panelGrid>
