@@ -1,85 +1,30 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC
-	"-//Hibernate/Hibernate Mapping DTD//EN"
-	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-
-<hibernate-mapping package="com.artm.hibernate.beans">
-	<class
-		name="Anneeconcours"
-		table="anneeconcours"
-	>
-		<meta attribute="sync-DAO">false</meta>
-		<id
-			name="Id"
-			type="integer"
-			column="CODE_ANNEES_CONCOURS"
-		>
-			<generator class="org.hibernate.id.IncrementGenerator"/>
-		</id>
-
-		<property
-			name="AnneeConcoursDebut"
-			column="ANNEE_CONCOURS_DEBUT"
-			type="integer"
-			not-null="false"
-			length="10"
-		/>
-		<property
-			name="AnneeConcoursFin"
-			column="ANNEE_CONCOURS_FIN"
-			type="integer"
-			not-null="false"
-			length="10"
-		/>
-		<property
-			name="LibAnneeConcours"
-			column="LIB_ANNEE_CONCOURS"
-			type="string"
-			not-null="false"
-			length="15"
-		/>
-		<property
-			name="DateComposition"
-			column="DATE_COMPOSITION"
-			type="date"
-			not-null="false"
-			length="10"
-		/>
-		<property
-			name="DroitConcours"
-			column="DROIT_CONCOURS"
-			type="big_decimal"
-			not-null="false"
-			length="8"
-		/>
-		<property
-			name="NbreplacesConcours"
-			column="NBREPLACES_CONCOURS"
-			type="integer"
-			not-null="false"
-			length="10"
-		/>
-		<many-to-one
-			name="Codepays"
-			column="CODEPAYS"
-			class="Pays"
-			not-null="true"
-		>
-		</many-to-one>
-		<many-to-one
-			name="CodeConcours"
-			column="CODE_CONCOURS"
-			class="Concours"
-			not-null="true"
-		>
-		</many-to-one>
-	
-
-		<set name="Inscriptionconcours" inverse="true" lazy="true">
-			<key column="CODE_ANNEES_CONCOURS"/>
-			<one-to-many class="Inscriptionconcours"/>
-		</set>
-
-
-	</class>	
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false" package="com.artm.hibernate.beans">
+ <class name="Anneeconcours" table="anneeconcours">
+  <meta attribute="sync-DAO">false</meta>
+  <id column="CODE_ANNEES_CONCOURS" name="Id" type="integer">
+   <generator class="org.hibernate.id.IncrementGenerator"/>
+  </id>
+  <property column="ANNEE_CONCOURS_DEBUT" generated="never" lazy="false"
+   length="10" name="AnneeConcoursDebut" type="integer"/>
+  <property column="ANNEE_CONCOURS_FIN" generated="never" lazy="false"
+   length="10" name="AnneeConcoursFin" type="integer"/>
+  <property column="LIB_ANNEE_CONCOURS" generated="never" lazy="false"
+   length="15" name="LibAnneeConcours" type="string"/>
+  <property column="DATE_COMPOSITION" generated="never" lazy="false"
+   length="10" name="DateComposition" type="date"/>
+  <property column="DROIT_CONCOURS" generated="never" lazy="false"
+   length="8" name="DroitConcours" type="big_decimal"/>
+  <property column="NBREPLACES_CONCOURS" generated="never" lazy="false"
+   length="10" name="NbreplacesConcours" type="integer"/>
+  <many-to-one class="Pays" column="CODEPAYS" name="Codepays" not-null="true"/>
+  <many-to-one class="Concours" column="CODE_CONCOURS"
+   name="CodeConcours" not-null="true"/>
+  <set inverse="true" lazy="true" name="Inscriptionconcours" sort="unsorted">
+   <key column="CODE_ANNEES_CONCOURS"/>
+   <one-to-many class="Inscriptionconcours"/>
+  </set>
+ </class>
 </hibernate-mapping>

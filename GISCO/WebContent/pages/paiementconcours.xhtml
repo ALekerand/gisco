@@ -18,8 +18,13 @@
 <h:outputText value="Num Candidat"></h:outputText>
 <p:inputText value="#{managedPaiementConcours.valeurRecherche}" ></p:inputText>
 
+<p:commandLink onclick="list_paiement.show()">
+	<h:outputText value="Consulter la liste"></h:outputText>
+</p:commandLink>
+
+
 <p:commandButton value="Rechercher" icon="ui-icon-search" actionListener="#{managedPaiementConcours.rechercherCandidat}" update="form"></p:commandButton>
-<a href="anneeScolaire.xhtml">Consulter la liste</a>
+<a href="candidat_Payement.xhtml">Consulter la liste</a>
 </h:panelGrid>
 
 <br />
@@ -122,6 +127,31 @@
     </p:confirmDialog>  
     
 </p:panel>
+
+	<p:dialog id="dialog" appendTo="@(body)" header="Candidats en instance de paiement" 
+	widgetVar="list_paiement" modal="true" width="800" height="250" resizable="false">
+		<fieldset>
+	<legend>Candidat</legend>
+	
+	<p:dataTable >               
+	        <f:facet name="header">  
+	
+	        </f:facet>
+	  
+	        <p:column selectionMode="single"/> 
+	        
+	        <p:column headerText="Nom">
+	        </p:column>
+	        
+	        <p:column headerText="Prenoms">
+	   
+	        </p:column>  
+	  
+	        <p:column headerText="Date Naissance">  
+	        </p:column>  
+	    </p:dataTable>
+</fieldset>
+	</p:dialog>	
 </h:form>
 </ui:define>
 

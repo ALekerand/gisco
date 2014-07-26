@@ -117,12 +117,12 @@ public class ManagedPaiementConcours implements Serializable {
 	
 	public void choisirMode() {
 		switch (selectedMode.getLibMode()) {
-		case "espece":
+		case "Espèces":
 			inputRefCheque.setDisabled(true);
 			inputRefCheque.setRequired(false);
 			break;
 			
-		case "cheque":
+		case "Chèque":
 			inputRefCheque.setDisabled(false);
 			inputRefCheque.setRequired(true);
 			break;
