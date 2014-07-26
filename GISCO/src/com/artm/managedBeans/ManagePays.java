@@ -7,8 +7,10 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import com.artm.dataModel.PaysModel;
@@ -23,6 +25,7 @@ public class ManagePays implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static  Logger logger=Logger.getLogger(ManagePays.class);
 	
 	// Injection de Spring
 	@Autowired
@@ -59,8 +62,13 @@ public class ManagePays implements Serializable {
 	}
 	
 	public void supprimerPays(){
-		getService().deleteObject(selectedPays);
-		System.out.println("Suppression effectuée");
+		
+		try {
+			getService().deleteObject(selectedPays);
+			System.out.println("Suppression effectuée");
+		} catch (DataIntegrityViolationException e) {
+			FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_WARN,"SUPPRESSION","Suppression impossible pour ce pays!"));
+		}
 		annulerSaisie();
 	}
 	
