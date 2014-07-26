@@ -35,16 +35,22 @@ public class ManageJonctionPhoto implements Serializable {
 
 	
 	public List recuperPays(){
+		listePays.clear();
 		List<Anneeconcours> listeAnnecours = new ArrayList<>();
 		listeAnnecours = getReqAnneeConcours().recupererAnneeConcours(monObjetAnneeconcours.getLibAnneeConcours());
 		for (Anneeconcours anneeconcours : listeAnnecours ) {
+				//Verifier que la liste est vide
 			if(listePays.isEmpty()){
+				//on ajoute
 				listePays.add(anneeconcours.getCodepays());
 				System.out.println("---->> Ajout d'un pays");
-			}else{
-				if(!(listePays.contains(anneeconcours.getCodepays())));
+			}else{//Cas contraire
+					//Verifier si lélément n'est pas déjà dans la liste de pays
+				if(!(listePays.contains(anneeconcours.getCodepays()))){
+					//si non on l'ajoute
 				listePays.add(anneeconcours.getCodepays());
 				System.out.println("---->> Ajout d'un pays");
+			}
 			}
 		}
 		return listePays;
