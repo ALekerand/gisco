@@ -53,6 +53,8 @@ public class ManagedPaiementConcours implements Serializable {
 	private Caisconcours caisconcours;
 	private Mode selectedMode = new Mode();
 	private InputText inputRefCheque;
+	private List<Candidat> listCandidat = new ArrayList<Candidat>();
+	private Candidat selectedCandidat = new Candidat();
 	
 	
 	public List<Inscriptionconcours> rechercherCandidat() {
@@ -152,7 +154,30 @@ public class ManagedPaiementConcours implements Serializable {
 	}
 	
 	
-
+	public List<Candidat> chargerListeCandidat(){
+		System.out.println("------->> Taille de liste candidat"+listCandidat.size());//Clean after
+		listCandidat.clear();
+	List<Inscriptionconcours>	listeNonsolde = reqInscriptionConcours.recupInscripNonSolde();
+		for(Inscriptionconcours inscriptionconcours : listeNonsolde){
+			//vérifier si la liste n'est pas vide
+			if(listCandidat.isEmpty()){
+				listCandidat.add(inscriptionconcours.getNumCandidat());
+			}else{//cas contrat
+				if(!(listCandidat.contains(inscriptionconcours.getNumCandidat()))){
+					listCandidat.add(inscriptionconcours.getNumCandidat());
+				}
+				
+			}
+			}
+			
+		return listCandidat;
+	}
+	
+	public void chergerInfo(){
+		System.out.println("Methode chargement called");// Clean after
+		setValeurRecherche(selectedCandidat.getId().toString());
+		rechercherCandidat();
+	}
 	
 	
 	//****************************ACCESSEURS***********************************//
@@ -165,18 +190,9 @@ public class ManagedPaiementConcours implements Serializable {
 	}
 
 
-
-
-	
-
-
-
-
 	public List<Inscriptionconcours> getListInscriptionconcours() {
 		return listInscriptionconcours;
 	}
-
-
 
 
 	public void setListInscriptionconcours(List<Inscriptionconcours> listInscriptionconcours) {
@@ -256,6 +272,42 @@ public class ManagedPaiementConcours implements Serializable {
 
 	public void setService(IService service) {
 		this.service = service;
+	}
+
+
+
+	/*public List<Inscriptionconcours> getListeNonsolde() {
+		return listeNonsolde = reqInscriptionConcours.recupInscripNonSolde();
+	}
+
+
+
+	public void setListeNonsolde(List<Inscriptionconcours> listeNonsolde) {
+		this.listeNonsolde = listeNonsolde;
+	}*/
+
+
+	public List<Candidat> getListCandidat() {
+		chargerListeCandidat();
+		return listCandidat;
+	}
+
+
+
+	public void setListCandidat(List<Candidat> listCandidat) {
+		this.listCandidat = listCandidat;
+	}
+
+
+
+	public Candidat getSelectedCandidat() {
+		return selectedCandidat;
+	}
+
+
+
+	public void setSelectedCandidat(Candidat selectedCandidat) {
+		this.selectedCandidat = selectedCandidat;
 	}
 
 	

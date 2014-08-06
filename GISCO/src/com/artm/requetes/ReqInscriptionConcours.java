@@ -24,6 +24,16 @@ public class ReqInscriptionConcours{
 		List<Inscriptionconcours> liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Inscriptionconcours.class).list();
 		return liste;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Inscriptionconcours> recupInscripNonSolde() throws HibernateException{
+		String query = "SELECT `inscriptionconcours`.* FROM inscriptionconcours WHERE (`inscriptionconcours`.`SOLDE` ='0')";
+		List<Inscriptionconcours> liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Inscriptionconcours.class).list();
+		return liste;
+	}
+	
+	
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

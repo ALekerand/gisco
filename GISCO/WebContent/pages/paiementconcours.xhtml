@@ -14,17 +14,17 @@
 <p:growl autoUpdate="true" showDetail="true"></p:growl>
 <br />
 
-<h:panelGrid columns="4">
-<h:outputText value="Num Candidat"></h:outputText>
-<p:inputText value="#{managedPaiementConcours.valeurRecherche}" ></p:inputText>
-
-<p:commandLink onclick="list_paiement.show()">
-	<h:outputText value="Consulter la liste"></h:outputText>
-</p:commandLink>
-
+<h:panelGrid columns="2">
+<p:inputText id="imputRech" value="#{managedPaiementConcours.valeurRecherche}" >
+	<p:watermark for="imputRech" value="Numero candidat" />
+</p:inputText>
 
 <p:commandButton value="Rechercher" icon="ui-icon-search" actionListener="#{managedPaiementConcours.rechercherCandidat}" update="form"></p:commandButton>
-<a href="candidat_Payement.xhtml">Consulter la liste</a>
+
+<p:commandLink onclick="list_paiement.show()">
+	<h:outputText value="Consulter la liste"></h:outputText >
+</p:commandLink>
+
 </h:panelGrid>
 
 <br />
@@ -120,6 +120,9 @@
     	</p:commandButton>
     </h:panelGrid>
     
+        	<p:commandButton value="TEST" icon="ui-icon-check" actionListener="#{managedPaiementConcours.chargerListeCandidat}" update="form"/>
+    
+    
 
  <p:confirmDialog global="true">  
         <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
@@ -128,31 +131,47 @@
     
 </p:panel>
 
-	<p:dialog id="dialog" appendTo="@(body)" header="Candidats en instance de paiement" 
-	widgetVar="list_paiement" modal="true" width="800" height="250" resizable="false">
+</h:form>
+
+<p:dialog id="dialog" appendTo="@(body)" header="Candidats en instance de paiement" 
+	widgetVar="list_paiement" modal="true" width="850" height="400" resizable="false">
+	<h:form id="dialog_form">
 		<fieldset>
 	<legend>Candidat</legend>
 	
-	<p:dataTable >               
+	<p:dataTable value="#{managedPaiementConcours.listCandidat}" var="candidat" rowKey="#{candidat.id}" 
+	selection="#{managedPaiementConcours.selectedCandidat}">               
 	        <f:facet name="header">  
-	
 	        </f:facet>
-	  
-	        <p:column selectionMode="single"/> 
+	        <p:column selectionMode="single" style="width:3px"/> 
+	        
+	        <p:column headerText="Numero">
+	        	<h:outputText value="#{candidat.id}"/>
+	        </p:column>
 	        
 	        <p:column headerText="Nom">
+	        	<h:outputText value="#{candidat.nomCandidat}"/>
 	        </p:column>
 	        
 	        <p:column headerText="Prenoms">
+	        	<h:outputText value="#{candidat.prenomsCandidat}"/>
 	   
 	        </p:column>  
 	  
-	        <p:column headerText="Date Naissance">  
+	        <p:column headerText="Date Naissance"> 
+	         <h:outputText value="#{candidat.dateNaissance}">
+	         	<f:convertDateTime pattern="dd/MM/yyy"/>
+	         </h:outputText>
 	        </p:column>  
+	        
+	       <f:facet name="footer">  
+    		<p:commandButton value="OK" icon="ui-icon-check" actionListener="#{managedPaiementConcours.chergerInfo}" update=":form" proccess="dialog_form"/>
+	        </f:facet>
 	    </p:dataTable>
 </fieldset>
-	</p:dialog>	
 </h:form>
+	</p:dialog>	
+
 </ui:define>
 
 
