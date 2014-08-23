@@ -28,9 +28,10 @@
 					<p:commandButton value="Enregistrer"
 						actionListener="#{manageEcole.enregistrerEcole}"
 						update="dataTable1, panelGrid1, grow"></p:commandButton>
+						
 					<p:commandButton value="Modifier"
 						actionListener="#{manageEcole.modifierEcole}"></p:commandButton>
-					<p:commandButton value="Annuler"></p:commandButton>
+					<p:commandButton value="Annuler" actionListener="#{manageEcole.annulerSaisie}" update="panelGrid1"></p:commandButton>
 				</h:panelGrid>
 			</p:panel>
 			<br></br>
@@ -45,17 +46,19 @@
 				<p:column headerText="Libellé Ecole" style="width:70%">#{toto.nomEcole}</p:column>
 				<p:column headerText="Abréviation" style="width:30%">#{toto.abrevEcole}</p:column>
 				<f:facet name="footer">
-					<p:commandButton value="Supprimer" onclick="Confirmatio.show()"></p:commandButton>
+				
+					<p:commandButton value="Supprimer" onclick="Confirmation.show()"></p:commandButton>
 				</f:facet>
 			</p:dataTable>
+			
 			<p:confirmDialog id="confirmDialog"
 				message="Voulez vous supprimer cette Ecole ?" header="Suppression"
-				severity="alert" widgetVar="Confirmation">
+				severity="alert" widgetVar="Confirmation" appendToBody="true">
 				<p:commandButton value="Oui" oncomplete="Confirmation.hide()"
 					actionListener="#{manageEcole.supprimerEcole}"
-					update="dataTable1, panelGrid1"></p:commandButton>
+					update=":form:dataTable1, :form:panelGrid1"></p:commandButton>
 				<p:commandButton value="Non" onclick="Confirmation.hide()"
-					actionListener="#{manageEcole.annulerSaisie}" update="panelGrid2"></p:commandButton>
+					actionListener="#{manageEcole.annulerSaisie}" update=":form:panelGrid1"></p:commandButton>
 
 			</p:confirmDialog>
 		</h:form>

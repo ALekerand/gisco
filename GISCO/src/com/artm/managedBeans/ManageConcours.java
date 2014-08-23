@@ -31,7 +31,8 @@ public class ManageConcours implements Serializable {
 	private List maListeConcoursEcole;
 
 	public void enregistrerConcours(){
-		monConcours.setAbrevEcoleConcours(getSelectedEcole().getAbrevEcole());
+		monConcours.setAbrevEcoleConcours(getSelectedEcole().getAbrevEcole().toUpperCase());
+		monConcours.setAbrevObtentionDiplome(getMonConcours().getAbrevObtentionDiplome().toUpperCase());
 		monConcours.setLibConcours("Concours "+selectedEcole.getAbrevEcole());
 		getService().saveObject(monConcours);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));	

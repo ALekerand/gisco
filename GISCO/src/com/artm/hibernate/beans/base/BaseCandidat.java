@@ -18,6 +18,7 @@ public abstract class BaseCandidat  implements Serializable {
 	public static String PROP_PHOTO_CANDIDAT = "PhotoCandidat";
 	public static String PROP_DATE_NAISSANCE = "DateNaissance";
 	public static String PROP_CODEPAYS = "Codepays";
+	public static String PROP_NUM_VISTE = "NumViste";
 	public static String PROP_PRENOMS_CANDIDAT = "PrenomsCandidat";
 	public static String PROP_CODESEXE = "Codesexe";
 	public static String PROP_CODENATIONALITE = "Codenationalite";
@@ -79,12 +80,14 @@ public abstract class BaseCandidat  implements Serializable {
 
 	// many to one
 	private com.artm.hibernate.beans.Nationalites codenationalite;
+	private com.artm.hibernate.beans.Visite numViste;
 	private com.artm.hibernate.beans.Pays codepays;
 	private com.artm.hibernate.beans.Sexes codesexe;
 	private com.artm.hibernate.beans.Niveaux codeniveau;
 	private com.artm.hibernate.beans.Diplomes codeDiplome;
 
 	// collections
+	private java.util.Set<com.artm.hibernate.beans.Visite> visites;
 	private java.util.Set<com.artm.hibernate.beans.Inscriptionconcours> inscriptionconcours;
 	private java.util.Set<com.artm.hibernate.beans.Noteconcours> noteconcours;
 	private java.util.Set<com.artm.hibernate.beans.Salles> salles;
@@ -216,6 +219,23 @@ public abstract class BaseCandidat  implements Serializable {
 
 
 	/**
+	 * Return the value associated with the column: NUM_VISTE
+	 */
+	public com.artm.hibernate.beans.Visite getNumViste () {
+		return numViste;
+	}
+
+	/**
+	 * Set the value related to the column: NUM_VISTE
+	 * @param numViste the NUM_VISTE value
+	 */
+	public void setNumViste (com.artm.hibernate.beans.Visite numViste) {
+		this.numViste = numViste;
+	}
+
+
+
+	/**
 	 * Return the value associated with the column: CODEPAYS
 	 */
 	public com.artm.hibernate.beans.Pays getCodepays () {
@@ -279,6 +299,28 @@ public abstract class BaseCandidat  implements Serializable {
 	 */
 	public void setCodeDiplome (com.artm.hibernate.beans.Diplomes codeDiplome) {
 		this.codeDiplome = codeDiplome;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: Visites
+	 */
+	public java.util.Set<com.artm.hibernate.beans.Visite> getVisites () {
+		return visites;
+	}
+
+	/**
+	 * Set the value related to the column: Visites
+	 * @param visites the Visites value
+	 */
+	public void setVisites (java.util.Set<com.artm.hibernate.beans.Visite> visites) {
+		this.visites = visites;
+	}
+
+	public void addToVisites (com.artm.hibernate.beans.Visite visite) {
+		if (null == getVisites()) setVisites(new java.util.TreeSet<com.artm.hibernate.beans.Visite>());
+		getVisites().add(visite);
 	}
 
 

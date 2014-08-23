@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Visite"
+		table="visite"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="NUM_VISTE"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="MontantVisite"
+			column="MONTANT_VISITE"
+			type="big_decimal"
+			not-null="false"
+			length="8"
+		/>
+		<many-to-one
+			name="NumCandidat"
+			column="NUM_CANDIDAT"
+			class="Candidat"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="Candidats" inverse="true" lazy="true">
+			<key column="NUM_VISTE"/>
+			<one-to-many class="Candidat"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

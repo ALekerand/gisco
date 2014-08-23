@@ -72,8 +72,13 @@
 
 <h:outputText value="Date Diplome"></h:outputText>
 
+<p:inputMask mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}" required="true" requiredMessage="Renseigner la date du Diplome">
+<f:convertDateTime  pattern="dd/MM/yyy"/>
+<p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAge}" update="inputAgeDip"></p:ajax>
+</p:inputMask>
 
-
+<h:outputText value="Age Diplome"></h:outputText>
+<p:inputText id="inputAgeDip" value="#{manageInscriptionConcours.age}"></p:inputText>
 </h:panelGrid>
 </fieldset>
 

@@ -29,6 +29,7 @@ public class ManageDiplome implements Serializable {
 	
 
 	public void enregistrerDiplome(){
+		monDiplome.setAbrevDiplome(monDiplome.getAbrevDiplome().toUpperCase());
 		getService().saveObject(monDiplome);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));
 		annulerSaisie();

@@ -48,7 +48,7 @@
 
 			<p:confirmDialog id="confirmDialog"
 				message="Voulez-vous supprimer cette Nationalité ?"
-				header="Suppression" severity="alert" widgetVar="Confirmation">
+				header="Suppression" severity="alert" widgetVar="Confirmation" appendToBody="true">
 				<p:commandButton value="Oui" oncomplete="Confirmation.hide()"
 					actionListener="#{manageNationalite.supprimerNationalite}"
 					update="tableNationalite, panelGrid2"></p:commandButton>
