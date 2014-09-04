@@ -47,6 +47,7 @@ public class ManageJonctionPhoto implements Serializable {
 	private Pays selectedPay = new Pays();
 	private List listCandidat;
 	private Candidat selectedCandidat = new Candidat();
+	private Candidat candidat = new Candidat();
 
 
 	
@@ -109,6 +110,10 @@ public class ManageJonctionPhoto implements Serializable {
 		System.out.println(e.getMessage());
 
 		}
+		}
+		
+		public void chargerInfo(){
+			setCandidat(selectedCandidat);
 		}
 		
 		
@@ -204,6 +209,16 @@ public class ManageJonctionPhoto implements Serializable {
 
 	public void setSelectedCandidat(Candidat selectedCandidat) {
 		this.selectedCandidat = selectedCandidat;
+	}
+
+
+	public Candidat getCandidat() {
+		return candidat;
+	}
+
+
+	public void setCandidat(Candidat candidat) {
+		this.candidat = candidat;
 	}
 
 
