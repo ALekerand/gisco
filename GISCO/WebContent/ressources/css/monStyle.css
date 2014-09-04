@@ -9,6 +9,11 @@ fieldset{
 	border-left-color: blue;
 }*/
 
+body {
+color:black;
+background-color:#D3D3D3;
+}
+
 legend{
 	color: green;
 }
@@ -50,3 +55,4 @@ inputStyle3{
 	width:100px;
 	color:blue;
 }
+

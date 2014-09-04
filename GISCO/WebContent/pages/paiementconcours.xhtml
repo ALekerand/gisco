@@ -165,8 +165,8 @@
 	        </p:column>  
 	        
 	       <f:facet name="footer">  
-	        <p:commandButton id="decline" actionListener="#{managedPaiementConcours.chergerInfo}" value="OK" onclick="list_paiement.hide()" type="button"/>
-    		<p:commandButton value="OK" icon="ui-icon-check" actionListener="#{managedPaiementConcours.chergerInfo}" update=":form" proccess="dialog_form"/>
+	        <p:commandButton id="decline" actionListener="#{managedPaiementConcours.chergerInfo}" value="OK"  type="button"/>
+    		<p:commandButton value="OK" icon="ui-icon-check" actionListener="#{managedPaiementConcours.chergerInfo}" oncomplete="list_paiement.hide()" update=":form" proccess="dialog_form"/>
 	        </f:facet>
 	    </p:dataTable>
 </fieldset>

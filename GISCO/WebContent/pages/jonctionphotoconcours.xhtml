@@ -10,11 +10,11 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <h:form id="form">
 
 <p:growl showDetail="true" autoUpdate="true"></p:growl>
-<p:panel header="Jonction photo concours" styleClass="tableMarge">
-<h:panelGrid id="panelGrid1" columns="2" cellspacing="8">
+<p:panel header="Jonction photo concours">
+<h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
 <h:outputText value="Année Concours"/>
 <p:inputText value="#{manageJonctionPhoto.monObjetAnneeconcours.libAnneeConcours}" readonly="true"></p:inputText>
-<h:outputText value="Pays"/>
+<p:outputLabel for="cb_pays" value="Pays"/>
 <p:selectOneMenu id="cb_pays" styleClass="oneMenuStyle" value="#{manageJonctionPhoto.selectedPay}" converter="#{comboPays}">
 	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""/>
 	<f:selectItems value="#{manageJonctionPhoto.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
@@ -23,15 +23,34 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 </h:panelGrid>
 <fieldset>
 <legend>Des candidats ayant payé le droit concours</legend>
-<p:dataTable id="table" value="#{manageAnneeConcours.maListehybride}"  var="tata">
+<p:dataTable value="#{manageJonctionPhoto.listCandidat}" var="candidat" rowKey="#{candidat.id}" 
+	selection="#{manageJonctionPhoto.selectedCandidat}">  
+		
 <f:facet name="header">Liste des candidats</f:facet>
 
-<p:column headerText="N° Candidat" style="width:0%" rendered="false"></p:column>
-<p:column headerText="Nom" style="width:25%"></p:column>
-<p:column headerText="Prénoms" style="width:35%"></p:column>
+ <p:column selectionMode="single" style="width:3%"/> 
+ 
+<p:column headerText="N° Candidat" style="width:10%">
+	<h:outputText value="#{candidat.id}"/>
+</p:column>
+
+<p:column headerText="Nom" style="width:15%">
+	<h:outputText value="#{candidat.nomCandidat}"/>
+</p:column>
+
+<p:column headerText="Prénoms" style="width:32%">
+	<h:outputText value="#{candidat.prenomsCandidat}"/>
+</p:column>
+
 <p:column headerText="Sexe" style="width:10%"></p:column>
-<p:column headerText="Date de naissance" style="width:10%"></p:column>
-<p:column headerText="Lieu de naissance" style="width:20%"></p:column>
+
+<p:column headerText="Date naissance" style="width:10%">
+	<h:outputText value="#{candidat.dateNaissance}">
+    <f:convertDateTime pattern="dd/MM/yyy"/>
+    </h:outputText>
+</p:column>
+
+<p:column headerText="Lieu naissance" style="width:20%"></p:column>
 
 </p:dataTable>
 
@@ -40,24 +59,24 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <br/>
 
 <fieldset>
-<h:panelGrid id="panelGrid2" columns="4" cellspacing="8">
+<h:panelGrid id="panelGrid2" columns="10" cellspacing="8">
 
-<h:outputText value="Nom candidat"></h:outputText>
+<h:outputText value="Nom"></h:outputText>
 <p:inputText value="" readonly="true"></p:inputText>
 
-<h:outputText value="Prénoms candidat"></h:outputText>
+<h:outputText value="Prénoms"></h:outputText>
 <p:inputText value="" readonly="true"></p:inputText>
 
-<h:outputText value="Sexe candidat"></h:outputText>
-<p:inputText style="width:50px" value="" readonly="true"></p:inputText>
-
-<h:outputText value="Date naissance candidat"></h:outputText>
+<h:outputText value="Date"></h:outputText>
 <p:inputMask mask="99/99/9999" value="" readonly="true">
 <f:convertDateTime pattern="dd/MM/yyy"/>
 </p:inputMask>
 
-<h:outputText value="Lieu naissance candidat"></h:outputText>
+<h:outputText value="Lieu"></h:outputText>
 <p:inputText value="" readonly="true"></p:inputText>
+
+<h:outputText value="Sexe"></h:outputText>
+<p:inputText style="width:50px" value="" readonly="true"></p:inputText>
 
 </h:panelGrid>
 </fieldset>
@@ -66,10 +85,14 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 
 <fieldset>
 <h:panelGrid id="panelGrid3" columns="3">
-<p:fileUpload fileUploadListener="#{fileUploadController.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" description="Select Images"/>
+<p:fileUpload fileUploadListener ="#{manageJonctionPhoto.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+sizeLimit="1000000" description="Select Images">
+</p:fileUpload>
 
-<p:commandButton value="Scanner" icon="ui-icon-check"></p:commandButton>
-<p:commandButton value="Ok" icon="ui-icon-star"></p:commandButton>
+<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+	 <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+	 <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+    </p:confirmDialog> 
 </h:panelGrid>
 </fieldset>
 

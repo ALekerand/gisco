@@ -17,6 +17,7 @@ public class FileUploadController {
 	private String destination="E:\\tmp\\";
 
 	public void upload(FileUploadEvent event) { 
+		
 	FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded."); 
 	FacesContext.getCurrentInstance().addMessage(null, msg);
 	// Do what you want with the file       
@@ -44,4 +45,5 @@ public class FileUploadController {
 
 	}
 	}
+	
 }
