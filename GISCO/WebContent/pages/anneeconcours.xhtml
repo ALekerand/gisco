@@ -62,9 +62,13 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 <p:inputText style="width:80px" maxlength="8" value="#{manageAnneeConcours.monAnneeConcours.droitConcours}" >
 <p:ajax event="blur" update="@this"></p:ajax>
 	<f:convertNumber pattern="##,###.##"></f:convertNumber>
-
 </p:inputText>
 
+<h:outputText value="Droit visite"/>
+<p:inputText style="width:80px" maxlength="8" value="#{manageAnneeConcours.monAnneeConcours.droitVisite}" >
+<p:ajax event="blur" update="@this"></p:ajax>
+	<f:convertNumber pattern="##,###.##"></f:convertNumber>
+</p:inputText>
 
 <h:outputText value="Nombre place"/>
 <p:inputText style="width:50px" maxlength="3" value="#{manageAnneeConcours.monAnneeConcours.nbreplacesConcours}"></p:inputText>

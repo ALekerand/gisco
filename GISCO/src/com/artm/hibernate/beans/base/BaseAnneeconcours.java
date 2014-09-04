@@ -18,6 +18,7 @@ public abstract class BaseAnneeconcours  implements Serializable {
 	public static String PROP_NBREPLACES_CONCOURS = "NbreplacesConcours";
 	public static String PROP_CODEPAYS = "Codepays";
 	public static String PROP_CODE_CONCOURS = "CodeConcours";
+	public static String PROP_DROIT_VISITE = "DroitVisite";
 	public static String PROP_LIB_ANNEE_CONCOURS = "LibAnneeConcours";
 	public static String PROP_DROIT_CONCOURS = "DroitConcours";
 	public static String PROP_ID = "Id";
@@ -68,6 +69,7 @@ public abstract class BaseAnneeconcours  implements Serializable {
 	private java.lang.String libAnneeConcours;
 	private java.util.Date dateComposition;
 	private java.math.BigDecimal droitConcours;
+	private java.math.BigDecimal droitVisite;
 	private java.lang.Integer nbreplacesConcours;
 
 	// many to one
@@ -182,6 +184,23 @@ public abstract class BaseAnneeconcours  implements Serializable {
 	 */
 	public void setDroitConcours (java.math.BigDecimal droitConcours) {
 		this.droitConcours = droitConcours;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: DROIT_VISITE
+	 */
+	public java.math.BigDecimal getDroitVisite () {
+		return droitVisite;
+	}
+
+	/**
+	 * Set the value related to the column: DROIT_VISITE
+	 * @param droitVisite the DROIT_VISITE value
+	 */
+	public void setDroitVisite (java.math.BigDecimal droitVisite) {
+		this.droitVisite = droitVisite;
 	}
 
 

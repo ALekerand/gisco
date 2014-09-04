@@ -75,6 +75,7 @@ public class ManageAnneeConcours implements Serializable {
 		monObjet.setDroitConcours(null);
 		monObjet.setNbreplacesConcours(null);
 		monObjet.setLibAnneeConcours("");
+		monObjet.setDroitVisite(null);
 		setSelectedPays(null);
 		setSelectedEcole(null);
 		setSelectedConcours(null);

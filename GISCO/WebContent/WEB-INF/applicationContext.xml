@@ -87,6 +87,8 @@
 				<value>com/artm/hibernate/configuration/Typematiereconcours.hbm.xml</value>
 				<value>com/artm/hibernate/configuration/TypeMatiereExam.hbm.xml</value>
 				<value>com/artm/hibernate/configuration/Versement.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Paramvisite.hbm.xml</value>
+				<value>com/artm/hibernate/configuration/Visite.hbm.xml</value>
 		</list>
 		</property>
 		<property name="hibernateProperties">

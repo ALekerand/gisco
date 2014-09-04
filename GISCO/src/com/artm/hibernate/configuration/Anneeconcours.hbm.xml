@@ -17,6 +17,8 @@
    length="10" name="DateComposition" type="date"/>
   <property column="DROIT_CONCOURS" generated="never" lazy="false"
    length="8" name="DroitConcours" type="big_decimal"/>
+   <property column="DROIT_VISITE" generated="never" lazy="false"
+   length="8" name="DroitVisite" type="big_decimal"/>
   <property column="NBREPLACES_CONCOURS" generated="never" lazy="false"
    length="10" name="NbreplacesConcours" type="integer"/>
   <many-to-one class="Pays" column="CODEPAYS" name="Codepays" not-null="true"/>
