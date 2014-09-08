@@ -5,20 +5,25 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import com.artm.objetService.IService;
 import com.artm.hibernate.beans.Annees;
 
 @Component
-@Scope("request")
+@Scope("session")
 public class ManageAnneeScolaire implements Serializable {
 
+	private static  Logger logger=Logger.getLogger(ManageAnneeScolaire.class);
 	/**
 	 * 
 	 */
 	// injection de spring
+		@Autowired
 		IService service;
 		
 	private static final long serialVersionUID = 1L;
@@ -26,8 +31,14 @@ public class ManageAnneeScolaire implements Serializable {
 	
 	
 	public String enregistrerAnneeScolaire(){
-		getService().saveObject(monAnneeScolaire);
+		try {
+			getService().saveObject(monAnneeScolaire);
+			System.out.println("enregistrement effectué");
+		} catch (DataIntegrityViolationException e){
+		
+		
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué"));	
+		}
 		annulerSaisie();
 		return null;
 		
