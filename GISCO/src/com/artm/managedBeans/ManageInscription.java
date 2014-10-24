@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 
 import com.artm.hibernate.beans.Annees;
 import com.artm.hibernate.beans.Etudiants;
+import com.artm.hibernate.beans.Nationalites;
 import com.artm.hibernate.beans.Pays;
 import com.artm.objetService.IService;
 import com.artm.requetes.ReqAnneeScolaire;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @Component
 @Scope("session")
@@ -28,11 +30,16 @@ public class ManageInscription implements Serializable {
 	//Injection de Spring
 	@Autowired
 	IService service;
+	@Autowired
+	ReqAnneeScolaire reqAnneeScolaire;
+	
 	
 	private Annees monObjetAnnees = new Annees();
-	private ReqAnneeScolaire reqAnneeScolaire;
+	//private ReqAnneeScolaire reqAnneeScolaire;
 	private Etudiants monEtudiant = new Etudiants();
 	private Pays selectedPays = new Pays();
+	private Nationalites selectNationalites = new Nationalites();
+	
 	
 	
 	
@@ -48,8 +55,8 @@ public class ManageInscription implements Serializable {
 	// ************************ Getters and Setters
 
 	public Annees getMonObjetAnnees() {
-		reqAnneeScolaire = new ReqAnneeScolaire();
-		// setMonObjetAnnees(reqAnneeScolaire.recupererMaxAnneeScolaire().get(0));
+	//	reqAnneeScolaire = new ReqAnneeScolaire();
+		//setMonObjetAnnees(reqAnneeScolaire.recupererMaxAnneeScolaire().get(0));
 		setMonObjetAnnees((Annees) reqAnneeScolaire.recupererMaxAnneeScolaire());
 		return monObjetAnnees;
 	}
@@ -96,6 +103,16 @@ public class ManageInscription implements Serializable {
 
 	public void setService(IService service) {
 		this.service = service;
+	}
+
+
+	public Nationalites getSelectNationalites() {
+		return selectNationalites;
+	}
+
+
+	public void setSelectNationalites(Nationalites selectNationalites) {
+		this.selectNationalites = selectNationalites;
 	}
 
 }

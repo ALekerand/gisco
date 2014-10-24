@@ -41,27 +41,23 @@
 <h:outputText value="Lieu Naissance"/>
 <p:inputText styleClass="inputStyle2" value="#{manageInscription.monEtudiant.lieunais}" required="true" requiredMessage="Renseigner le lieu de naissance"/>
 
-<h:outputText value="Pays"/>
+<h:outputText value="République"/>
+<p:inputText styleClass="inputStyle2" value="République de" required="true" requiredMessage="Renseigner le champ République"></p:inputText>
+<h:outputText value="Pays Origine"/>
 <p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscription.selectedPays}" converter="#{comboPays}">
 	<f:selectItem itemLabel="Sélectionnez un Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
 	<f:selectItems value="#{comboPays.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
 	<p:ajax event="change" process="@this"></p:ajax>
 </p:selectOneMenu>
 
-<h:outputText value="Nom République"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="République"></p:selectOneMenu>
-
 <h:outputText value="Nationalité"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="ivoirienne"></p:selectOneMenu>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscription.selectNationalites}" converter="#{ComboNationalite}">
+	<f:selectItem itemLabel="Sélectionnez une Nationalité &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+	<f:selectItems value="#{comboNationalite.listeNationalite}" var="tata" itemLabel="#{tata.libnationalite}" itemValue="#{tata}"/>
+</p:selectOneMenu>
 
 <h:outputText value=""></h:outputText>
 <h:outputText value=""></h:outputText>
-
-<h:outputText value="Regime"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="Boursier"></p:selectOneMenu>
-
-<h:outputText value="Campus"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="Dortoir 1"></p:selectOneMenu>
 
 <h:outputText value="Nombre Frères"/>
 <p:inputText style="width:50px" maxlength="3" value="" required="true" requiredMessage="Renseigner le Nombre de frères de l'élève"></p:inputText>
@@ -75,20 +71,44 @@
 <legend>Ecole</legend>
 <p:panelGrid id="panelGrid3" columns="4" cellspacing="8">
 <h:outputText value="Nom Ecole"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="esn"></p:selectOneMenu>
+<p:selectOneMenu styleClass="oneMenuStyle" value="esn">
+	<f:selectItem itemLabel="Sélectionnez une Ecole &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+</p:selectOneMenu>
 
 <h:outputText value="Nom Filière"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="om1"></p:selectOneMenu>
+<p:selectOneMenu styleClass="oneMenuStyle" value="om1">
+	<f:selectItem itemLabel="Sélectionnez une Filière &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+</p:selectOneMenu>
 
 <h:outputText value="Nom Section"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="apm"></p:selectOneMenu>
+<p:selectOneMenu styleClass="oneMenuStyle" value="apm">
+	<f:selectItem itemLabel="Sélectionnez une Section &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+</p:selectOneMenu>
 
 </p:panelGrid>
 
 </fieldset>
+
+<fieldset>
+<legend>Bourse et Campus</legend>
+
+<p:panelGrid id="panelGrid4" columns="4" cellspacing="8">
+<h:outputText value="Regime"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="Boursier">
+	<f:selectItem itemLabel="Sélectionnez un Regime &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+</p:selectOneMenu>
+
+<h:outputText value="Hébergement"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="Dortoir">
+	<f:selectItem itemLabel="Sélectionnez un Campus &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+</p:selectOneMenu>
+</p:panelGrid>
+
+</fieldset>
+
 <fieldset>
 <legend>Action</legend>
-<p:panelGrid id="panelGrid4" columns="3">
+<p:panelGrid id="panelGrid5" columns="3">
 <p:commandButton value="Inscrire" actionListener="manageInscription.enregisterInscription"></p:commandButton>
 <p:commandButton value="Annuler"></p:commandButton>
 <p:commandButton value="Quitter"></p:commandButton>
