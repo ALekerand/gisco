@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Users"
+		table="users"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="USER_ID"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="UserName"
+			column="USER_NAME"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="UserPassword"
+			column="USER_PASSWORD"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="Enabled"
+			column="ENABLED"
+			type="boolean"
+			not-null="false"
+		/>
+		<property
+			name="UserNomPrenoms"
+			column="USER_NOM_PRENOMS"
+			type="string"
+			not-null="false"
+			length="45"
+		/>
+		<property
+			name="UserTel"
+			column="USER_TEL"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="Submenu10"
+			column="SUBMENU10"
+			type="boolean"
+			not-null="false"
+		/>
+		<property
+			name="Menuitem101"
+			column="MENUITEM101"
+			type="boolean"
+			not-null="false"
+		/>
+		<property
+			name="Menuitem102"
+			column="MENUITEM102"
+			type="boolean"
+			not-null="false"
+		/>
+		<property
+			name="Menuitem103"
+			column="MENUITEM103"
+			type="boolean"
+			not-null="false"
+		/>
+		<property
+			name="Menuitem104"
+			column="MENUITEM104"
+			type="boolean"
+			not-null="false"
+		/>
+		<many-to-one
+			name="Codepays"
+			column="CODEPAYS"
+			class="Pays"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="UserRole"
+			column="USER_ROLE_ID"
+			class="UserRole"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

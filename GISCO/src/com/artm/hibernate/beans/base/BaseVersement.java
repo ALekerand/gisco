@@ -44,15 +44,15 @@ public abstract class BaseVersement  implements Serializable {
 	 */
 	public BaseVersement (
 		java.lang.Integer id,
-		com.artm.hibernate.beans.Annees codeAnnees,
 		com.artm.hibernate.beans.Origine codeOriginr,
 		com.artm.hibernate.beans.Activites codeActivite,
+		com.artm.hibernate.beans.Annees codeAnnees,
 		com.artm.hibernate.beans.Mode codeMode) {
 
 		this.setId(id);
-		this.setCodeAnnees(codeAnnees);
 		this.setCodeOriginr(codeOriginr);
 		this.setCodeActivite(codeActivite);
+		this.setCodeAnnees(codeAnnees);
 		this.setCodeMode(codeMode);
 		initialize();
 	}
@@ -73,9 +73,9 @@ public abstract class BaseVersement  implements Serializable {
 
 	// many to one
 	private com.artm.hibernate.beans.Etudiants numetudiant;
-	private com.artm.hibernate.beans.Annees codeAnnees;
 	private com.artm.hibernate.beans.Origine codeOriginr;
 	private com.artm.hibernate.beans.Activites codeActivite;
+	private com.artm.hibernate.beans.Annees codeAnnees;
 	private com.artm.hibernate.beans.Mode codeMode;
 
 
@@ -171,23 +171,6 @@ public abstract class BaseVersement  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: CODE_ANNEES
-	 */
-	public com.artm.hibernate.beans.Annees getCodeAnnees () {
-		return codeAnnees;
-	}
-
-	/**
-	 * Set the value related to the column: CODE_ANNEES
-	 * @param codeAnnees the CODE_ANNEES value
-	 */
-	public void setCodeAnnees (com.artm.hibernate.beans.Annees codeAnnees) {
-		this.codeAnnees = codeAnnees;
-	}
-
-
-
-	/**
 	 * Return the value associated with the column: CODE_ORIGINR
 	 */
 	public com.artm.hibernate.beans.Origine getCodeOriginr () {
@@ -217,6 +200,23 @@ public abstract class BaseVersement  implements Serializable {
 	 */
 	public void setCodeActivite (com.artm.hibernate.beans.Activites codeActivite) {
 		this.codeActivite = codeActivite;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: CODE_ANNEES
+	 */
+	public com.artm.hibernate.beans.Annees getCodeAnnees () {
+		return codeAnnees;
+	}
+
+	/**
+	 * Set the value related to the column: CODE_ANNEES
+	 * @param codeAnnees the CODE_ANNEES value
+	 */
+	public void setCodeAnnees (com.artm.hibernate.beans.Annees codeAnnees) {
+		this.codeAnnees = codeAnnees;
 	}
 
 

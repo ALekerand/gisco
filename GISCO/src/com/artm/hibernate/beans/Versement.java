@@ -24,16 +24,16 @@ public class Versement extends BaseVersement {
 	 */
 	public Versement (
 		java.lang.Integer id,
-		com.artm.hibernate.beans.Annees codeAnnees,
 		com.artm.hibernate.beans.Origine codeOriginr,
 		com.artm.hibernate.beans.Activites codeActivite,
+		com.artm.hibernate.beans.Annees codeAnnees,
 		com.artm.hibernate.beans.Mode codeMode) {
 
 		super (
 			id,
-			codeAnnees,
 			codeOriginr,
 			codeActivite,
+			codeAnnees,
 			codeMode);
 	}
 

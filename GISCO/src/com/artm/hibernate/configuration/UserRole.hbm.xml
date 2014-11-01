@@ -5,32 +5,31 @@
 
 <hibernate-mapping package="com.artm.hibernate.beans">
 	<class
-		name="Utilisateurs"
-		table="utilisateurs"
+		name="UserRole"
+		table="user_role"
 	>
 		<meta attribute="sync-DAO">false</meta>
 		<id
 			name="Id"
 			type="integer"
-			column="CODE_UTILISATEUR"
+			column="USER_ROLE_ID"
 		>
 			<generator class="org.hibernate.id.IncrementGenerator"/>
 		</id>
 
 		<property
-			name="NomUtilisateur"
-			column="NOM_UTILISATEUR"
+			name="Autority"
+			column="AUTORITY"
 			type="string"
 			not-null="false"
-			length="30"
+			length="45"
 		/>
-		<property
-			name="MotDePasse"
-			column="MOT_DE_PASSE"
-			type="string"
-			not-null="false"
-			length="25"
-		/>
+	
+
+		<set name="Users" inverse="true" lazy="true">
+			<key column="USER_ROLE_ID"/>
+			<one-to-many class="Users"/>
+		</set>
 
 
 	</class>	

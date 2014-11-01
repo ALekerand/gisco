@@ -15,27 +15,37 @@ import java.io.Serializable;
 public abstract class BaseEtudiants  implements Serializable {
 
 	public static String REF = "Etudiants";
+	public static String PROP_TEL_ETUDIANT = "TelEtudiant";
+	public static String PROP_CODENATIONALITE = "Codenationalite";
+	public static String PROP_TEL_TUTEUR = "TelTuteur";
+	public static String PROP_DATENAIS = "Datenais";
+	public static String PROP_CODEMATRIMONIALE = "Codematrimoniale";
+	public static String PROP_NOM_PRENOMS_PERE = "NomPrenomsPere";
+	public static String PROP_NUMCNI = "Numcni";
+	public static String PROP_FONCTION_MERE = "FonctionMere";
+	public static String PROP_CODENIVEAU = "Codeniveau";
 	public static String PROP_MLE = "Mle";
 	public static String PROP_CODEPAYS = "Codepays";
-	public static String PROP_CODENATIONALITE = "Codenationalite";
 	public static String PROP_CODE_DIPLOME = "CodeDiplome";
-	public static String PROP_CODE_ADRESSE = "CodeAdresse";
-	public static String PROP_DATENAIS = "Datenais";
-	public static String PROP_NUMMERE2 = "Nummere2";
+	public static String PROP_NOM_PRENOMS_TUTEUR = "NomPrenomsTuteur";
 	public static String PROP_PHOTO = "Photo";
-	public static String PROP_CODEMATRIMONIALE = "Codematrimoniale";
 	public static String PROP_NOM = "Nom";
 	public static String PROP_NBSOEURS = "Nbsoeurs";
+	public static String PROP_TEL_PERE = "TelPere";
 	public static String PROP_PRENOMS = "Prenoms";
-	public static String PROP_NUMCNI = "Numcni";
+	public static String PROP_FONCTION_PERE = "FonctionPere";
+	public static String PROP_MAIL_ETUDIANT = "MailEtudiant";
+	public static String PROP_PAYS_NAISSANCE_ETUDIANT = "PaysNaissanceEtudiant";
+	public static String PROP_ECOLE_ANCIENNE_ETUDIANT = "EcoleAncienneEtudiant";
+	public static String PROP_NOM_PRENOMS_MERE = "NomPrenomsMere";
 	public static String PROP_ID = "Id";
 	public static String PROP_NBENFANTS = "Nbenfants";
+	public static String PROP_TEL_MERE = "TelMere";
 	public static String PROP_LIEUNAIS = "Lieunais";
-	public static String PROP_NUM_PERE = "NumPere";
+	public static String PROP_TEL_DOCTEUR = "TelDocteur";
 	public static String PROP_NBFRERES = "Nbfreres";
-	public static String PROP_CODENIVEAU = "Codeniveau";
+	public static String PROP_NOM_PRENOMS_DOCTEUT = "NomPrenomsDocteut";
 	public static String PROP_CODESANTE = "Codesante";
-	public static String PROP_NUM_MERE = "NumMere";
 
 
 	// constructors
@@ -86,23 +96,33 @@ public abstract class BaseEtudiants  implements Serializable {
 	private java.lang.String prenoms;
 	private java.util.Date datenais;
 	private java.lang.String lieunais;
+	private java.lang.String paysNaissanceEtudiant;
 	private java.lang.Integer nbenfants;
 	private java.lang.Integer nbsoeurs;
 	private java.lang.Integer nbfreres;
 	private java.lang.String numcni;
+	private java.lang.String nomPrenomsPere;
+	private java.lang.String fonctionPere;
+	private java.lang.String telPere;
+	private java.lang.String nomPrenomsMere;
+	private java.lang.String fonctionMere;
+	private java.lang.String telMere;
+	private java.lang.String nomPrenomsTuteur;
+	private java.lang.String telTuteur;
+	private java.lang.String nomPrenomsDocteut;
+	private java.lang.String telDocteur;
+	private java.lang.String telEtudiant;
+	private java.lang.String mailEtudiant;
+	private java.lang.String ecoleAncienneEtudiant;
 	private java.lang.String photo;
 
 	// many to one
-	private com.artm.hibernate.beans.Meres numMere;
 	private com.artm.hibernate.beans.Nationalites codenationalite;
 	private com.artm.hibernate.beans.Pays codepays;
-	private com.artm.hibernate.beans.Tuteurs nummere2;
 	private com.artm.hibernate.beans.Santes codesante;
 	private com.artm.hibernate.beans.Niveaux codeniveau;
 	private com.artm.hibernate.beans.Diplomes codeDiplome;
 	private com.artm.hibernate.beans.Matrimoniales codematrimoniale;
-	private com.artm.hibernate.beans.Adresses codeAdresse;
-	private com.artm.hibernate.beans.Peres numPere;
 
 	// collections
 	private java.util.Set<com.artm.hibernate.beans.Inscriptions> inscriptions;
@@ -225,6 +245,23 @@ public abstract class BaseEtudiants  implements Serializable {
 
 
 	/**
+	 * Return the value associated with the column: PAYS_NAISSANCE_ETUDIANT
+	 */
+	public java.lang.String getPaysNaissanceEtudiant () {
+		return paysNaissanceEtudiant;
+	}
+
+	/**
+	 * Set the value related to the column: PAYS_NAISSANCE_ETUDIANT
+	 * @param paysNaissanceEtudiant the PAYS_NAISSANCE_ETUDIANT value
+	 */
+	public void setPaysNaissanceEtudiant (java.lang.String paysNaissanceEtudiant) {
+		this.paysNaissanceEtudiant = paysNaissanceEtudiant;
+	}
+
+
+
+	/**
 	 * Return the value associated with the column: NBENFANTS
 	 */
 	public java.lang.Integer getNbenfants () {
@@ -293,6 +330,227 @@ public abstract class BaseEtudiants  implements Serializable {
 
 
 	/**
+	 * Return the value associated with the column: NOM_PRENOMS_PERE
+	 */
+	public java.lang.String getNomPrenomsPere () {
+		return nomPrenomsPere;
+	}
+
+	/**
+	 * Set the value related to the column: NOM_PRENOMS_PERE
+	 * @param nomPrenomsPere the NOM_PRENOMS_PERE value
+	 */
+	public void setNomPrenomsPere (java.lang.String nomPrenomsPere) {
+		this.nomPrenomsPere = nomPrenomsPere;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: FONCTION_PERE
+	 */
+	public java.lang.String getFonctionPere () {
+		return fonctionPere;
+	}
+
+	/**
+	 * Set the value related to the column: FONCTION_PERE
+	 * @param fonctionPere the FONCTION_PERE value
+	 */
+	public void setFonctionPere (java.lang.String fonctionPere) {
+		this.fonctionPere = fonctionPere;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: TEL_PERE
+	 */
+	public java.lang.String getTelPere () {
+		return telPere;
+	}
+
+	/**
+	 * Set the value related to the column: TEL_PERE
+	 * @param telPere the TEL_PERE value
+	 */
+	public void setTelPere (java.lang.String telPere) {
+		this.telPere = telPere;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: NOM_PRENOMS_MERE
+	 */
+	public java.lang.String getNomPrenomsMere () {
+		return nomPrenomsMere;
+	}
+
+	/**
+	 * Set the value related to the column: NOM_PRENOMS_MERE
+	 * @param nomPrenomsMere the NOM_PRENOMS_MERE value
+	 */
+	public void setNomPrenomsMere (java.lang.String nomPrenomsMere) {
+		this.nomPrenomsMere = nomPrenomsMere;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: FONCTION_MERE
+	 */
+	public java.lang.String getFonctionMere () {
+		return fonctionMere;
+	}
+
+	/**
+	 * Set the value related to the column: FONCTION_MERE
+	 * @param fonctionMere the FONCTION_MERE value
+	 */
+	public void setFonctionMere (java.lang.String fonctionMere) {
+		this.fonctionMere = fonctionMere;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: TEL_MERE
+	 */
+	public java.lang.String getTelMere () {
+		return telMere;
+	}
+
+	/**
+	 * Set the value related to the column: TEL_MERE
+	 * @param telMere the TEL_MERE value
+	 */
+	public void setTelMere (java.lang.String telMere) {
+		this.telMere = telMere;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: NOM_PRENOMS_TUTEUR
+	 */
+	public java.lang.String getNomPrenomsTuteur () {
+		return nomPrenomsTuteur;
+	}
+
+	/**
+	 * Set the value related to the column: NOM_PRENOMS_TUTEUR
+	 * @param nomPrenomsTuteur the NOM_PRENOMS_TUTEUR value
+	 */
+	public void setNomPrenomsTuteur (java.lang.String nomPrenomsTuteur) {
+		this.nomPrenomsTuteur = nomPrenomsTuteur;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: TEL_TUTEUR
+	 */
+	public java.lang.String getTelTuteur () {
+		return telTuteur;
+	}
+
+	/**
+	 * Set the value related to the column: TEL_TUTEUR
+	 * @param telTuteur the TEL_TUTEUR value
+	 */
+	public void setTelTuteur (java.lang.String telTuteur) {
+		this.telTuteur = telTuteur;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: NOM_PRENOMS_DOCTEUT
+	 */
+	public java.lang.String getNomPrenomsDocteut () {
+		return nomPrenomsDocteut;
+	}
+
+	/**
+	 * Set the value related to the column: NOM_PRENOMS_DOCTEUT
+	 * @param nomPrenomsDocteut the NOM_PRENOMS_DOCTEUT value
+	 */
+	public void setNomPrenomsDocteut (java.lang.String nomPrenomsDocteut) {
+		this.nomPrenomsDocteut = nomPrenomsDocteut;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: TEL_DOCTEUR
+	 */
+	public java.lang.String getTelDocteur () {
+		return telDocteur;
+	}
+
+	/**
+	 * Set the value related to the column: TEL_DOCTEUR
+	 * @param telDocteur the TEL_DOCTEUR value
+	 */
+	public void setTelDocteur (java.lang.String telDocteur) {
+		this.telDocteur = telDocteur;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: TEL_ETUDIANT
+	 */
+	public java.lang.String getTelEtudiant () {
+		return telEtudiant;
+	}
+
+	/**
+	 * Set the value related to the column: TEL_ETUDIANT
+	 * @param telEtudiant the TEL_ETUDIANT value
+	 */
+	public void setTelEtudiant (java.lang.String telEtudiant) {
+		this.telEtudiant = telEtudiant;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: MAIL_ETUDIANT
+	 */
+	public java.lang.String getMailEtudiant () {
+		return mailEtudiant;
+	}
+
+	/**
+	 * Set the value related to the column: MAIL_ETUDIANT
+	 * @param mailEtudiant the MAIL_ETUDIANT value
+	 */
+	public void setMailEtudiant (java.lang.String mailEtudiant) {
+		this.mailEtudiant = mailEtudiant;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: ECOLE_ANCIENNE_ETUDIANT
+	 */
+	public java.lang.String getEcoleAncienneEtudiant () {
+		return ecoleAncienneEtudiant;
+	}
+
+	/**
+	 * Set the value related to the column: ECOLE_ANCIENNE_ETUDIANT
+	 * @param ecoleAncienneEtudiant the ECOLE_ANCIENNE_ETUDIANT value
+	 */
+	public void setEcoleAncienneEtudiant (java.lang.String ecoleAncienneEtudiant) {
+		this.ecoleAncienneEtudiant = ecoleAncienneEtudiant;
+	}
+
+
+
+	/**
 	 * Return the value associated with the column: PHOTO
 	 */
 	public java.lang.String getPhoto () {
@@ -305,23 +563,6 @@ public abstract class BaseEtudiants  implements Serializable {
 	 */
 	public void setPhoto (java.lang.String photo) {
 		this.photo = photo;
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: NUM_MERE
-	 */
-	public com.artm.hibernate.beans.Meres getNumMere () {
-		return numMere;
-	}
-
-	/**
-	 * Set the value related to the column: NUM_MERE
-	 * @param numMere the NUM_MERE value
-	 */
-	public void setNumMere (com.artm.hibernate.beans.Meres numMere) {
-		this.numMere = numMere;
 	}
 
 
@@ -356,23 +597,6 @@ public abstract class BaseEtudiants  implements Serializable {
 	 */
 	public void setCodepays (com.artm.hibernate.beans.Pays codepays) {
 		this.codepays = codepays;
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: NUMMERE2
-	 */
-	public com.artm.hibernate.beans.Tuteurs getNummere2 () {
-		return nummere2;
-	}
-
-	/**
-	 * Set the value related to the column: NUMMERE2
-	 * @param nummere2 the NUMMERE2 value
-	 */
-	public void setNummere2 (com.artm.hibernate.beans.Tuteurs nummere2) {
-		this.nummere2 = nummere2;
 	}
 
 
@@ -441,40 +665,6 @@ public abstract class BaseEtudiants  implements Serializable {
 	 */
 	public void setCodematrimoniale (com.artm.hibernate.beans.Matrimoniales codematrimoniale) {
 		this.codematrimoniale = codematrimoniale;
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: CODE_ADRESSE
-	 */
-	public com.artm.hibernate.beans.Adresses getCodeAdresse () {
-		return codeAdresse;
-	}
-
-	/**
-	 * Set the value related to the column: CODE_ADRESSE
-	 * @param codeAdresse the CODE_ADRESSE value
-	 */
-	public void setCodeAdresse (com.artm.hibernate.beans.Adresses codeAdresse) {
-		this.codeAdresse = codeAdresse;
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: NUM_PERE
-	 */
-	public com.artm.hibernate.beans.Peres getNumPere () {
-		return numPere;
-	}
-
-	/**
-	 * Set the value related to the column: NUM_PERE
-	 * @param numPere the NUM_PERE value
-	 */
-	public void setNumPere (com.artm.hibernate.beans.Peres numPere) {
-		this.numPere = numPere;
 	}
 
 

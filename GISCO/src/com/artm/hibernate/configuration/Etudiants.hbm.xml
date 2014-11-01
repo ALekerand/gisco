@@ -53,6 +53,13 @@
 			length="50"
 		/>
 		<property
+			name="PaysNaissanceEtudiant"
+			column="PAYS_NAISSANCE_ETUDIANT"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
 			name="Nbenfants"
 			column="NBENFANTS"
 			type="integer"
@@ -80,6 +87,97 @@
 			not-null="false"
 			length="30"
 		/>
+		<property
+			name="NomPrenomsPere"
+			column="NOM_PRENOMS_PERE"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="FonctionPere"
+			column="FONCTION_PERE"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="TelPere"
+			column="TEL_PERE"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="NomPrenomsMere"
+			column="NOM_PRENOMS_MERE"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="FonctionMere"
+			column="FONCTION_MERE"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="TelMere"
+			column="TEL_MERE"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="NomPrenomsTuteur"
+			column="NOM_PRENOMS_TUTEUR"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="TelTuteur"
+			column="TEL_TUTEUR"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="NomPrenomsDocteut"
+			column="NOM_PRENOMS_DOCTEUT"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="TelDocteur"
+			column="TEL_DOCTEUR"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="TelEtudiant"
+			column="TEL_ETUDIANT"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="MailEtudiant"
+			column="MAIL_ETUDIANT"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="EcoleAncienneEtudiant"
+			column="ECOLE_ANCIENNE_ETUDIANT"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
 		<!-- please tell Joe Hudson that the type 'LONGBLOB' could not be resolved.. defaulting to java.lang.String -->
 		<property
 			name="Photo"
@@ -87,13 +185,6 @@
 			type="java.lang.String"
 			not-null="false"
 		/>
-		<many-to-one
-			name="NumMere"
-			column="NUM_MERE"
-			class="Meres"
-			not-null="false"
-		>
-		</many-to-one>
 		<many-to-one
 			name="Codenationalite"
 			column="CODENATIONALITE"
@@ -106,13 +197,6 @@
 			column="CODEPAYS"
 			class="Pays"
 			not-null="true"
-		>
-		</many-to-one>
-		<many-to-one
-			name="Nummere2"
-			column="NUMMERE2"
-			class="Tuteurs"
-			not-null="false"
 		>
 		</many-to-one>
 		<many-to-one
@@ -141,20 +225,6 @@
 			column="CODEMATRIMONIALE"
 			class="Matrimoniales"
 			not-null="true"
-		>
-		</many-to-one>
-		<many-to-one
-			name="CodeAdresse"
-			column="CODE_ADRESSE"
-			class="Adresses"
-			not-null="false"
-		>
-		</many-to-one>
-		<many-to-one
-			name="NumPere"
-			column="NUM_PERE"
-			class="Peres"
-			not-null="false"
 		>
 		</many-to-one>
 	

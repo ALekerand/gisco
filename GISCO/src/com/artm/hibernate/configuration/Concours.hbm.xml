@@ -1,33 +1,74 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
 <hibernate-mapping package="com.artm.hibernate.beans">
- <class lazy="false" name="Concours" table="concours">
-  <meta attribute="sync-DAO">false</meta>
-  <id column="CODE_CONCOURS" name="Id" type="integer">
-   <generator class="org.hibernate.id.IncrementGenerator"/>
-  </id>
-  <property column="LIB_CONCOURS" generated="never" lazy="false"
-   length="60" name="LibConcours" type="string"/>
-  <property column="LIB_ECOLE_CONCOURS" generated="never" lazy="false"
-   length="80" name="LibEcoleConcours" type="string"/>
-  <property column="ABREV_ECOLE_CONCOURS" generated="never" lazy="false"
-   length="20" name="AbrevEcoleConcours" type="string"/>
-  <property column="ABREV_OBTENTION_DIPLOME" generated="never"
-   lazy="false" length="25" name="AbrevObtentionDiplome" type="string"/>
-  <property column="OBTENTION_DIPLOME" generated="never" lazy="false"
-   length="100" name="ObtentionDiplome" type="string"/>
-  <set inverse="true" lazy="true" name="Inscriptionconcours" sort="unsorted">
-   <key column="CODE_CONCOURS"/>
-   <one-to-many class="Inscriptionconcours"/>
-  </set>
-  <set inverse="true" lazy="true" name="Matiereconcours" sort="unsorted">
-   <key column="CODE_CONCOURS"/>
-   <one-to-many class="Matiereconcours"/>
-  </set>
-  <set inverse="true" lazy="true" name="Anneeconcours" sort="unsorted">
-   <key column="CODE_CONCOURS"/>
-   <one-to-many class="Anneeconcours"/>
-  </set>
- </class>
+	<class
+		name="Concours"
+		table="concours"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="CODE_CONCOURS"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="LibConcours"
+			column="LIB_CONCOURS"
+			type="string"
+			not-null="false"
+			length="60"
+		/>
+		<property
+			name="LibEcoleConcours"
+			column="LIB_ECOLE_CONCOURS"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="AbrevEcoleConcours"
+			column="ABREV_ECOLE_CONCOURS"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="AbrevObtentionDiplome"
+			column="ABREV_OBTENTION_DIPLOME"
+			type="string"
+			not-null="false"
+			length="25"
+		/>
+		<property
+			name="ObtentionDiplome"
+			column="OBTENTION_DIPLOME"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+	
+
+		<set name="Inscriptionconcours" inverse="true" lazy="true">
+			<key column="CODE_CONCOURS"/>
+			<one-to-many class="Inscriptionconcours"/>
+		</set>
+
+		<set name="Matiereconcours" inverse="true" lazy="true">
+			<key column="CODE_CONCOURS"/>
+			<one-to-many class="Matiereconcours"/>
+		</set>
+
+		<set name="Anneeconcours" inverse="true" lazy="true">
+			<key column="CODE_CONCOURS"/>
+			<one-to-many class="Anneeconcours"/>
+		</set>
+
+
+	</class>	
 </hibernate-mapping>

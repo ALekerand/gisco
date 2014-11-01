@@ -49,6 +49,7 @@ public abstract class BasePays  implements Serializable {
 	private java.lang.String abrevpays;
 
 	// collections
+	private java.util.Set<com.artm.hibernate.beans.Users> users;
 	private java.util.Set<com.artm.hibernate.beans.Candidat> candidats;
 	private java.util.Set<com.artm.hibernate.beans.Etudiants> etudiants;
 	private java.util.Set<com.artm.hibernate.beans.Anneeconcours> anneeconcours;
@@ -124,6 +125,28 @@ public abstract class BasePays  implements Serializable {
 	 */
 	public void setAbrevpays (java.lang.String abrevpays) {
 		this.abrevpays = abrevpays;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: Users
+	 */
+	public java.util.Set<com.artm.hibernate.beans.Users> getUsers () {
+		return users;
+	}
+
+	/**
+	 * Set the value related to the column: Users
+	 * @param users the Users value
+	 */
+	public void setUsers (java.util.Set<com.artm.hibernate.beans.Users> users) {
+		this.users = users;
+	}
+
+	public void addToUsers (com.artm.hibernate.beans.Users users) {
+		if (null == getUsers()) setUsers(new java.util.TreeSet<com.artm.hibernate.beans.Users>());
+		getUsers().add(users);
 	}
 
 

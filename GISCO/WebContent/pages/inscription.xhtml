@@ -71,8 +71,9 @@
 <legend>Ecole</legend>
 <p:panelGrid id="panelGrid3" columns="4" cellspacing="8">
 <h:outputText value="Nom Ecole"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="esn">
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscription.selectedEcole}" converter="#{comboEcole}">
 	<f:selectItem itemLabel="Sélectionnez une Ecole &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+	<f:selectItems value="#{comboEcole.listeEcole}" var="tata" itemLabel="#{tata.abrevEcole}" itemValue="#{tata}"/>
 </p:selectOneMenu>
 
 <h:outputText value="Nom Filière"/>

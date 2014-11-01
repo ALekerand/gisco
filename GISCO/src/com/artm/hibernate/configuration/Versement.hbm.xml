@@ -46,13 +46,6 @@
 		>
 		</many-to-one>
 		<many-to-one
-			name="CodeAnnees"
-			column="CODE_ANNEES"
-			class="Annees"
-			not-null="true"
-		>
-		</many-to-one>
-		<many-to-one
 			name="CodeOriginr"
 			column="CODE_ORIGINR"
 			class="Origine"
@@ -63,6 +56,13 @@
 			name="CodeActivite"
 			column="CODE_ACTIVITE"
 			class="Activites"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeAnnees"
+			column="CODE_ANNEES"
+			class="Annees"
 			not-null="true"
 		>
 		</many-to-one>

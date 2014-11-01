@@ -69,8 +69,8 @@ public abstract class BaseAnneeconcours  implements Serializable {
 	private java.lang.String libAnneeConcours;
 	private java.util.Date dateComposition;
 	private java.math.BigDecimal droitConcours;
-	private java.math.BigDecimal droitVisite;
 	private java.lang.Integer nbreplacesConcours;
+	private java.math.BigDecimal droitVisite;
 
 	// many to one
 	private com.artm.hibernate.beans.Pays codepays;
@@ -189,23 +189,6 @@ public abstract class BaseAnneeconcours  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: DROIT_VISITE
-	 */
-	public java.math.BigDecimal getDroitVisite () {
-		return droitVisite;
-	}
-
-	/**
-	 * Set the value related to the column: DROIT_VISITE
-	 * @param droitVisite the DROIT_VISITE value
-	 */
-	public void setDroitVisite (java.math.BigDecimal droitVisite) {
-		this.droitVisite = droitVisite;
-	}
-
-
-
-	/**
 	 * Return the value associated with the column: NBREPLACES_CONCOURS
 	 */
 	public java.lang.Integer getNbreplacesConcours () {
@@ -218,6 +201,23 @@ public abstract class BaseAnneeconcours  implements Serializable {
 	 */
 	public void setNbreplacesConcours (java.lang.Integer nbreplacesConcours) {
 		this.nbreplacesConcours = nbreplacesConcours;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: DROIT_VISITE
+	 */
+	public java.math.BigDecimal getDroitVisite () {
+		return droitVisite;
+	}
+
+	/**
+	 * Set the value related to the column: DROIT_VISITE
+	 * @param droitVisite the DROIT_VISITE value
+	 */
+	public void setDroitVisite (java.math.BigDecimal droitVisite) {
+		this.droitVisite = droitVisite;
 	}
 
 

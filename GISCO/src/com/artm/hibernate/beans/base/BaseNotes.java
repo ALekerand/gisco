@@ -42,14 +42,14 @@ public abstract class BaseNotes  implements Serializable {
 	 */
 	public BaseNotes (
 		java.lang.Integer id,
-		com.artm.hibernate.beans.Semestre codeSemestre,
 		com.artm.hibernate.beans.Etudiants numetudiant,
+		com.artm.hibernate.beans.Semestre codeSemestre,
 		com.artm.hibernate.beans.Annees codeAnnees,
 		com.artm.hibernate.beans.Matiere codeMatiere) {
 
 		this.setId(id);
-		this.setCodeSemestre(codeSemestre);
 		this.setNumetudiant(numetudiant);
+		this.setCodeSemestre(codeSemestre);
 		this.setCodeAnnees(codeAnnees);
 		this.setCodeMatiere(codeMatiere);
 		initialize();
@@ -69,8 +69,8 @@ public abstract class BaseNotes  implements Serializable {
 	private java.util.Date dateNote;
 
 	// many to one
-	private com.artm.hibernate.beans.Semestre codeSemestre;
 	private com.artm.hibernate.beans.Etudiants numetudiant;
+	private com.artm.hibernate.beans.Semestre codeSemestre;
 	private com.artm.hibernate.beans.Annees codeAnnees;
 	private com.artm.hibernate.beans.Matiere codeMatiere;
 
@@ -133,23 +133,6 @@ public abstract class BaseNotes  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: CODE_SEMESTRE
-	 */
-	public com.artm.hibernate.beans.Semestre getCodeSemestre () {
-		return codeSemestre;
-	}
-
-	/**
-	 * Set the value related to the column: CODE_SEMESTRE
-	 * @param codeSemestre the CODE_SEMESTRE value
-	 */
-	public void setCodeSemestre (com.artm.hibernate.beans.Semestre codeSemestre) {
-		this.codeSemestre = codeSemestre;
-	}
-
-
-
-	/**
 	 * Return the value associated with the column: NUMETUDIANT
 	 */
 	public com.artm.hibernate.beans.Etudiants getNumetudiant () {
@@ -162,6 +145,23 @@ public abstract class BaseNotes  implements Serializable {
 	 */
 	public void setNumetudiant (com.artm.hibernate.beans.Etudiants numetudiant) {
 		this.numetudiant = numetudiant;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: CODE_SEMESTRE
+	 */
+	public com.artm.hibernate.beans.Semestre getCodeSemestre () {
+		return codeSemestre;
+	}
+
+	/**
+	 * Set the value related to the column: CODE_SEMESTRE
+	 * @param codeSemestre the CODE_SEMESTRE value
+	 */
+	public void setCodeSemestre (com.artm.hibernate.beans.Semestre codeSemestre) {
+		this.codeSemestre = codeSemestre;
 	}
 
 

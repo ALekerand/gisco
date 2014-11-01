@@ -1,44 +1,126 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping default-lazy="false" package="com.artm.hibernate.beans">
- <class name="Candidat" table="candidat">
-  <meta attribute="sync-DAO">false</meta>
-  <id column="NUM_CANDIDAT" name="Id" type="integer">
-   <generator class="org.hibernate.id.IncrementGenerator"/>
-  </id>
-  <property column="NOM_CANDIDAT" generated="never" lazy="false"
-   length="50" name="NomCandidat" type="string"/>
-  <property column="PRENOMS_CANDIDAT" generated="never" lazy="false"
-   length="80" name="PrenomsCandidat" type="string"/>
-  <property column="DATE_NAISSANCE" generated="never" lazy="false"
-   length="10" name="DateNaissance" type="date"/>
-  <property column="LIEU_NAISSANCE" generated="never" lazy="false"
-   length="50" name="LieuNaissance" type="string"/>
-  <property column="PHOTO_CANDIDAT" generated="never" lazy="false"
-   length="150" name="PhotoCandidat" type="string"/>
-  <many-to-one class="Nationalites" column="CODENATIONALITE"
-   name="Codenationalite" not-null="true"/>
-  <many-to-one class="Visite" column="NUM_VISTE" name="NumViste" not-null="false"/>
-  <many-to-one class="Pays" column="CODEPAYS" name="Codepays" not-null="true"/>
-  <many-to-one class="Sexes" column="CODESEXE" name="Codesexe" not-null="true"/>
-  <many-to-one class="Niveaux" column="CODENIVEAU" name="Codeniveau" not-null="true"/>
-  <many-to-one class="Diplomes" column="CODE_DIPLOME" name="CodeDiplome" not-null="true"/>
-  <set inverse="true" lazy="true" name="Visites" sort="unsorted">
-   <key column="NUM_CANDIDAT"/>
-   <one-to-many class="Visite"/>
-  </set>
-  <set inverse="true" lazy="true" name="Inscriptionconcours" sort="unsorted">
-   <key column="NUM_CANDIDAT"/>
-   <one-to-many class="Inscriptionconcours"/>
-  </set>
-  <set inverse="true" lazy="true" name="Noteconcours" sort="unsorted">
-   <key column="NUM_CANDIDAT"/>
-   <one-to-many class="Noteconcours"/>
-  </set>
-  <set cascade="all" lazy="true" name="Salles" sort="unsorted" table="candidat_salle">
-   <key column="NUM_CANDIDAT"/>
-   <many-to-many class="Salles" column="CODE_SALLE" unique="false"/>
-  </set>
- </class>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.artm.hibernate.beans">
+	<class
+		name="Candidat"
+		table="candidat"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="Id"
+			type="integer"
+			column="NUM_CANDIDAT"
+		>
+			<generator class="org.hibernate.id.IncrementGenerator"/>
+		</id>
+
+		<property
+			name="NomCandidat"
+			column="NOM_CANDIDAT"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="PrenomsCandidat"
+			column="PRENOMS_CANDIDAT"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="DateNaissance"
+			column="DATE_NAISSANCE"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="LieuNaissance"
+			column="LIEU_NAISSANCE"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="PhotoCandidat"
+			column="PHOTO_CANDIDAT"
+			type="string"
+			not-null="false"
+			length="150"
+		/>
+		<many-to-one
+			name="Codenationalite"
+			column="CODENATIONALITE"
+			class="Nationalites"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="NumViste"
+			column="NUM_VISTE"
+			class="Visite"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Codepays"
+			column="CODEPAYS"
+			class="Pays"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Codesexe"
+			column="CODESEXE"
+			class="Sexes"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Codeniveau"
+			column="CODENIVEAU"
+			class="Niveaux"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CodeDiplome"
+			column="CODE_DIPLOME"
+			class="Diplomes"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="Visites" inverse="true" lazy="true">
+			<key column="NUM_CANDIDAT"/>
+			<one-to-many class="Visite"/>
+		</set>
+
+		<set name="Inscriptionconcours" inverse="true" lazy="true">
+			<key column="NUM_CANDIDAT"/>
+			<one-to-many class="Inscriptionconcours"/>
+		</set>
+
+		<set name="Noteconcours" inverse="true" lazy="true">
+			<key column="NUM_CANDIDAT"/>
+			<one-to-many class="Noteconcours"/>
+		</set>
+	
+		<set
+			name="Salles"
+			table="candidat_salle"
+			cascade="all"
+			lazy="true"
+		>
+			<key column="NUM_CANDIDAT"/>
+			<many-to-many column="CODE_SALLE" class="Salles"/>
+		</set>
+
+
+	</class>	
 </hibernate-mapping>

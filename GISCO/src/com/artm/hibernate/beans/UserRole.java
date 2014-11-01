@@ -1,21 +1,21 @@
 package com.artm.hibernate.beans;
 
-import com.artm.hibernate.beans.base.BaseProfessions;
+import com.artm.hibernate.beans.base.BaseUserRole;
 
 
 
-public class Professions extends BaseProfessions {
+public class UserRole extends BaseUserRole {
 	private static final long serialVersionUID = 1L;
 
 /*[CONSTRUCTOR MARKER BEGIN]*/
-	public Professions () {
+	public UserRole () {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public Professions (java.lang.Integer id) {
+	public UserRole (java.lang.Integer id) {
 		super(id);
 	}
 

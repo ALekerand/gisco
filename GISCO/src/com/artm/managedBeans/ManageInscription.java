@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.artm.hibernate.beans.Annees;
+import com.artm.hibernate.beans.Ecole;
 import com.artm.hibernate.beans.Etudiants;
 import com.artm.hibernate.beans.Nationalites;
 import com.artm.hibernate.beans.Pays;
@@ -39,7 +40,7 @@ public class ManageInscription implements Serializable {
 	private Etudiants monEtudiant = new Etudiants();
 	private Pays selectedPays = new Pays();
 	private Nationalites selectNationalites = new Nationalites();
-	
+	private Ecole selectedEcole =new Ecole();
 	
 	
 	
@@ -48,7 +49,6 @@ public class ManageInscription implements Serializable {
 	public void enregisterInscription(){
 		getService().saveObject(monEtudiant);
 		FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO,"Enregistrement","Enregistrement effectué avec succès"));	
-		
 	}
 	
 	
@@ -113,6 +113,16 @@ public class ManageInscription implements Serializable {
 
 	public void setSelectNationalites(Nationalites selectNationalites) {
 		this.selectNationalites = selectNationalites;
+	}
+
+
+	public Ecole getSelectedEcole() {
+		return selectedEcole;
+	}
+
+
+	public void setSelectedEcole(Ecole selectedEcole) {
+		this.selectedEcole = selectedEcole;
 	}
 
 }

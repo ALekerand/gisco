@@ -32,16 +32,16 @@
 			length="10"
 		/>
 		<many-to-one
-			name="CodeSemestre"
-			column="CODE_SEMESTRE"
-			class="Semestre"
+			name="Numetudiant"
+			column="NUMETUDIANT"
+			class="Etudiants"
 			not-null="true"
 		>
 		</many-to-one>
 		<many-to-one
-			name="Numetudiant"
-			column="NUMETUDIANT"
-			class="Etudiants"
+			name="CodeSemestre"
+			column="CODE_SEMESTRE"
+			class="Semestre"
 			not-null="true"
 		>
 		</many-to-one>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="content">
+
+<h:form id="form" >
+	<p:growl autoUpdate="true"></p:growl>
+
+	<p:panel header="Paramétrage des Filières" styleClass="tableMarge">
+		<fieldset>
+			<legend>Filières</legend>
+				<h:panelGrid id="panelGrid1" columns="2">
+				
+					<h:outputText value="Ecole"/>
+					<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageFiliere.selectedEcole}" converter="#{comboEcole}">
+						<f:selectItem itemLabel="Sélectionnez une Filière &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
+						<f:selectItems value="#{comboEcole.listeEcole}" var="tata" itemLabel="#{tata.abrevEcole}" itemValue="#{tata}"></f:selectItems>
+					</p:selectOneMenu>
+					
+					<h:outputText value=""/>
+					<h:outputText value=""/>
+				
+					<h:outputText value="Libellé Filière"></h:outputText>
+						<p:inputText value="OM1"
+							styleClass="inputStyle2" required="true"
+							requiredMessage="Renseigner le champ Libellé Filière"></p:inputText>
+							
+						<h:outputText value="Abréviation"></h:outputText>
+						<p:inputText value="OM1"
+							required="true" requiredMessage="Renseigner le champ Abréviation"
+							styleClass="uCase"></p:inputText>
+					</h:panelGrid>
+					
+				</fieldset>
+				
+				<br />
+					
+					<p:dataTable>
+					
+						<f:facet name="header"> Liste des Filières par Ecole</f:facet>
+						
+							<p:column headerText="Code Filière" style="width:20%" rendered="true"></p:column>
+							<p:column headerText="Libellé Filière" style="width:50%"></p:column>
+							<p:column headerText="Abréviation" style="width:30%"></p:column>
+						<f:facet name="footer"></f:facet>
+					</p:dataTable>
+				
+				<br/>
+				
+				<fieldset>
+				<h:panelGrid id="panelGrid2" columns="3">
+					<p:commandButton value="Enregistrer" icon="ui-icon-check"></p:commandButton>
+						
+					<p:commandButton value="Modifier"></p:commandButton>
+					
+					<p:commandButton value="Suprimer"></p:commandButton>
+				</h:panelGrid>
+				</fieldset>
+
+</p:panel>
+
+</h:form>
+</ui:define>
+
+</ui:composition>
+
+
+</html>

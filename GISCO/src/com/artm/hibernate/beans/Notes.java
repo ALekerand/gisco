@@ -24,15 +24,15 @@ public class Notes extends BaseNotes {
 	 */
 	public Notes (
 		java.lang.Integer id,
-		com.artm.hibernate.beans.Semestre codeSemestre,
 		com.artm.hibernate.beans.Etudiants numetudiant,
+		com.artm.hibernate.beans.Semestre codeSemestre,
 		com.artm.hibernate.beans.Annees codeAnnees,
 		com.artm.hibernate.beans.Matiere codeMatiere) {
 
 		super (
 			id,
-			codeSemestre,
 			numetudiant,
+			codeSemestre,
 			codeAnnees,
 			codeMatiere);
 	}
