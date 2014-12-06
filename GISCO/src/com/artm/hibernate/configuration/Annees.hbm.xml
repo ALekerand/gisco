@@ -50,7 +50,7 @@
 			column="LIB_ANNEE_SCOLAIRE"
 			type="string"
 			not-null="false"
-			length="10"
+			length="15"
 		/>
 	
 

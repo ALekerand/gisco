@@ -18,14 +18,9 @@ public class ReqAnneeScolaire{
 	SessionFactory sessionFactory;
 	
 	public Annees recupererMaxAnneeScolaire(){
-	//String a = " SELECT `annees`.`CODE_ANNEES`, `annees`.`LIB_ANNEE_SCOLAIRE`FROM annees ORDER BY `annees`.`CODE_ANNEES` DESC";
-	//	String a = "SELECT `annees`.*, `annees`.`LIB_ANNEE_SCOLAIRE`FROM annees ORDER BY `annees`.`CODE_ANNEES` DESC";
 		String b = "SELECT `annees`.* FROM annees ORDER BY `annees`.`CODE_ANNEES` DESC LIMIT 0 , 1";
-
-	//	String a =" SELECT `annees`. * FROM annees ORDER BY `annees`.`CODE_ANNEES` DESC LIMIT 0 , 1";
 		List liste = getSessionFactory().getCurrentSession().createSQLQuery(b).addEntity(Annees.class).list();
 		return (Annees) liste.get(0);
-		
 	}
 	
 	public List<Anneeconcours> recupererDernierAnneeConcours(){
