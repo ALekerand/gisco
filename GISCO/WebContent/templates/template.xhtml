@@ -8,7 +8,7 @@
 <h:head>
  <link rel="stylesheet" type="text/css" href="../ressources/css/ngo.css"></link>
 <link rel="stylesheet" type="text/css" href="../ressources/css/monStyle.css"></link>
-  <title><ui:insert name="title">Page template</ui:insert></title>
+  <title><ui:insert name="title">GISCO</ui:insert></title>
 </h:head>
 
 <h:body>
@@ -24,9 +24,9 @@
 <p:layoutUnit position="west" size="200" header="Menu" collapsible="true">
 
 	<h:form>
-		<p:panelMenu>
-			<p:submenu label="Autorisation">
-			<p:menuitem value="Créer un utilisateur"/>
+		<p:panelMenu >
+			<p:submenu label="Autorisation" rendered="#{managedUser.submenu_10}">
+			<p:menuitem value="Créer un utilisateur" rendered="#{managedUser.menuItem_101}"/>
 			<p:menuitem value="Changer un mot de passe"/>
 		</p:submenu>
 		
@@ -38,7 +38,6 @@
 		
 		<p:submenu label="Parametrage">
 			<p:menuitem value="Des Ecoles" outcome="ecole.xhtml"/>
-			<p:menuitem value="Des Filières" outcome="filiere.xhtml"/>
 			<p:menuitem value="Des Pays" outcome="pays.xhtml"/>
 			<p:menuitem value="Des Nationalités" outcome="nationalite.xhtml"/>
 			<p:menuitem value="Des Sexes" outcome="sexe.xhtml"/>

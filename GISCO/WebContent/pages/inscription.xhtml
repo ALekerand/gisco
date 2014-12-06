@@ -18,15 +18,15 @@
 
 <fieldset>
 <legend>Année académique</legend>
-<p:panelGrid id="panaelGrid1" columns="2" cellspacing="8">
+<h:panelGrid id="panaelGrid1" columns="2" cellspacing="8">
 <h:outputText value="Année Académique"/>
 <p:inputText value="#{manageInscription.monObjetAnnees.libAnneeScolaire}" readonly="true"></p:inputText>
-</p:panelGrid>
+</h:panelGrid>
 </fieldset>
 
 <fieldset>
 <legend>Elève</legend>
-<p:panelGrid id="panelGrid2" columns="4" cellspacing="8">
+<h:panelGrid id="panelGrid2" columns="4" cellspacing="8">
 <h:outputText value="Nom"/>
 <p:inputText value="#{manageInscription.monEtudiant.nom}" required="true" requiredMessage="Renseigner le Nom de l'élève" styleClass="uCase"/>
 
@@ -64,12 +64,12 @@
 
 <h:outputText value="Nombre Soeurs"/>
 <p:inputText style="width:50px" maxlength="3" value="" required="true" requiredMessage="Renseigner le Nombre de soeurs de l'élève"></p:inputText>
-</p:panelGrid>
+</h:panelGrid>
 </fieldset>
 
 <fieldset>
 <legend>Ecole</legend>
-<p:panelGrid id="panelGrid3" columns="4" cellspacing="8">
+<h:panelGrid id="panelGrid3" columns="4" cellspacing="8">
 <h:outputText value="Nom Ecole"/>
 <p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscription.selectedEcole}" converter="#{comboEcole}">
 	<f:selectItem itemLabel="Sélectionnez une Ecole &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
@@ -86,14 +86,14 @@
 	<f:selectItem itemLabel="Sélectionnez une Section &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
 </p:selectOneMenu>
 
-</p:panelGrid>
+</h:panelGrid>
 
 </fieldset>
 
 <fieldset>
 <legend>Bourse et Campus</legend>
 
-<p:panelGrid id="panelGrid4" columns="4" cellspacing="8">
+<h:panelGrid id="panelGrid4" columns="4" cellspacing="8">
 <h:outputText value="Regime"/>
 <p:selectOneMenu styleClass="oneMenuStyle" value="Boursier">
 	<f:selectItem itemLabel="Sélectionnez un Regime &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
@@ -103,18 +103,18 @@
 <p:selectOneMenu styleClass="oneMenuStyle" value="Dortoir">
 	<f:selectItem itemLabel="Sélectionnez un Campus &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" itemValue=""></f:selectItem>
 </p:selectOneMenu>
-</p:panelGrid>
+</h:panelGrid>
 
 </fieldset>
 
 <fieldset>
 <legend>Action</legend>
-<p:panelGrid id="panelGrid5" columns="3">
+<h:panelGrid id="panelGrid5" columns="3">
 <p:commandButton value="Inscrire" actionListener="manageInscription.enregisterInscription"></p:commandButton>
 <p:commandButton value="Annuler"></p:commandButton>
 <p:commandButton value="Quitter"></p:commandButton>
 
-</p:panelGrid>
+</h:panelGrid>
 
 </fieldset>
 </h:form>
