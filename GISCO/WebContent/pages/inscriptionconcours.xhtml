@@ -8,7 +8,7 @@
       
 <ui:composition template="/templates/template.xhtml">
 <ui:define name="content">
-<p:panel header="Enregistrement au Concours" styleClass="tableMarge">
+<p:panel header="Enregistrement au Concours">
 <h:form id="form">
 <p:growl autoUpdate="true"  ></p:growl>
 
@@ -22,13 +22,13 @@
 
 <fieldset>
 <legend>Candidat</legend>
-<h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
+<h:panelGrid id="panelGrid1" columns="8" cellspacing="8">
 <h:outputText value="Nom"></h:outputText>
 <p:inputText value="#{manageInscriptionConcours.monCandidat.nomCandidat}" required="true" requiredMessage="Renseigner le Nom du Candidat" styleClass="uCase"></p:inputText>
 
 
 <h:outputText value="Prénoms"></h:outputText>
-<p:inputText styleClass="inputStyle2" value="#{manageInscriptionConcours.monCandidat.prenomsCandidat}" required="true" requiredMessage="Renseigner le prénom du Candidat"></p:inputText>
+<p:inputText  value="#{manageInscriptionConcours.monCandidat.prenomsCandidat}" required="true" requiredMessage="Renseigner le prénom du Candidat"></p:inputText>
 
 
 <h:outputText value="Date de naissance" styleClass="outputStyle"></h:outputText>

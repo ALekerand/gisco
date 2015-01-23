@@ -9,7 +9,7 @@
 <ui:composition template="/templates/template.xhtml">
 <ui:define name="content">
 <h:form id="form">
-<p:panel header="Paiement de droit d'inscription au Concours" styleClass="tableMarge">
+<p:panel header="Paiement de droit d'inscription au Concours">
 
 <p:growl autoUpdate="true" showDetail="true"></p:growl>
 <br />
@@ -31,7 +31,7 @@
 <fieldset>
 <legend>Information du candidat  </legend>
 
-<h:panelGrid id="panelGrid1" columns="4" cellspacing="8">
+<h:panelGrid id="panelGrid1" columns="8" cellspacing="8">
 <h:outputText value="Nom"/>
 <p:inputText value="#{managedPaiementConcours.candidat.nomCandidat}" styleClass="uCase"/>
 
