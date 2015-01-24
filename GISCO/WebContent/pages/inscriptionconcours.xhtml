@@ -67,15 +67,14 @@
 </p:selectOneMenu>
 
 <p:outputLabel value="Date Diplome" for="datedip"></p:outputLabel>
-<p:inputMask id="datedip" mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}" required="true" requiredMessage="Renseigner la date du Diplome">
+<p:inputMask id="datedip" mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateDiplome}" required="true" requiredMessage="Renseigner la date du Diplome">
 <f:convertDateTime  pattern="dd/MM/yyy"/>
-<p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAge}" update="inputAgeDip"></p:ajax>
+<p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAgeDiplome}" update="inputAgeDip"></p:ajax>
 </p:inputMask>
 
 <h:outputText value="Age Diplome">
-	<p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAge}" update="inputAge"></p:ajax>
 </h:outputText>
-<p:inputText id="inputAgeDip" value="#{manageInscriptionConcours.age}"></p:inputText>
+<p:inputText id="inputAgeDip" value="#{manageInscriptionConcours.ageDiplome}"></p:inputText>
 </h:panelGrid>
 </fieldset>
 

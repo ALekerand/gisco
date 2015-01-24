@@ -59,7 +59,7 @@ public class ManageInscriptionConcours implements Serializable {
 	private Niveaux selectedNiveau = new Niveaux();
 	private Diplomes selectedDiplome = new Diplomes();
 	private int age;
-	private String ageDiplome;
+	private int ageDiplome;
 	private Anneeconcours monObjetAnneeConcours = new Anneeconcours();
 	private ConcoursModel monConcoursModel;
 	private List listeconcours;
@@ -130,6 +130,7 @@ public class ManageInscriptionConcours implements Serializable {
 		monObjet.setCodeniveau(null);
 		monObjet.setCodepays(null);
 		setAge(0);
+		setAgeDiplome(0);
 		
 			
 	}
@@ -143,10 +144,11 @@ public class ManageInscriptionConcours implements Serializable {
 	} 
 	
 	public int calculerAgeDiplome(){
-		setAgeDiplome(null);
-	int nbreJour =	(int) getDateCalculator().calculerDifference(getMonCandidat().getDateNaissance(), Calendar.getInstance().getTime());
+		setAgeDiplome(0);
+	int nbreJour =	(int) getDateCalculator().calculerDifference(getMonCandidat().getDateDiplome(), Calendar.getInstance().getTime());
 	System.out.println("----------->>> Age"+getAge());
-	return age = nbreJour/365; 
+	int datedipl = (nbreJour/365);
+	return ageDiplome = nbreJour/365; 
 	} 
 	
 	
@@ -361,22 +363,16 @@ public class ManageInscriptionConcours implements Serializable {
 
 
 
-	public String getAgeDiplome() {
+	public int getAgeDiplome() {
 		return ageDiplome;
 	}
 
 
 
-	public void setAgeDiplome(String ageDiplome) {
+	public int setAgeDiplome(int ageDiplome) {
 		this.ageDiplome = ageDiplome;
+		return ageDiplome;
 	}
-
-
-	
-
-
-
-
 
 
 }
