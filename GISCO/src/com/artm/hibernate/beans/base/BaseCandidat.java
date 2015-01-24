@@ -15,18 +15,19 @@ import java.io.Serializable;
 public abstract class BaseCandidat  implements Serializable {
 
 	public static String REF = "Candidat";
-	public static String PROP_PHOTO_CANDIDAT = "PhotoCandidat";
-	public static String PROP_DATE_NAISSANCE = "DateNaissance";
-	public static String PROP_CODEPAYS = "Codepays";
-	public static String PROP_NUM_VISTE = "NumViste";
-	public static String PROP_PRENOMS_CANDIDAT = "PrenomsCandidat";
 	public static String PROP_CODESEXE = "Codesexe";
-	public static String PROP_CODENATIONALITE = "Codenationalite";
-	public static String PROP_LIEU_NAISSANCE = "LieuNaissance";
-	public static String PROP_NOM_CANDIDAT = "NomCandidat";
-	public static String PROP_CODE_DIPLOME = "CodeDiplome";
-	public static String PROP_ID = "Id";
+	public static String PROP_DATE_DIPLOME = "DateDiplome";
+	public static String PROP_DATE_NAISSANCE = "DateNaissance";
 	public static String PROP_CODENIVEAU = "Codeniveau";
+	public static String PROP_NUM_VISTE = "NumViste";
+	public static String PROP_CODE_DIPLOME = "CodeDiplome";
+	public static String PROP_NOM_CANDIDAT = "NomCandidat";
+	public static String PROP_CODEPAYS = "Codepays";
+	public static String PROP_PRENOMS_CANDIDAT = "PrenomsCandidat";
+	public static String PROP_PHOTO_CANDIDAT = "PhotoCandidat";
+	public static String PROP_ID = "Id";
+	public static String PROP_LIEU_NAISSANCE = "LieuNaissance";
+	public static String PROP_CODENATIONALITE = "Codenationalite";
 
 
 	// constructors
@@ -76,6 +77,7 @@ public abstract class BaseCandidat  implements Serializable {
 	private java.lang.String prenomsCandidat;
 	private java.util.Date dateNaissance;
 	private java.lang.String lieuNaissance;
+	private java.util.Date dateDiplome;
 	private java.lang.String photoCandidat;
 
 	// many to one
@@ -180,6 +182,23 @@ public abstract class BaseCandidat  implements Serializable {
 	 */
 	public void setLieuNaissance (java.lang.String lieuNaissance) {
 		this.lieuNaissance = lieuNaissance;
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: DATE_DIPLOME
+	 */
+	public java.util.Date getDateDiplome () {
+		return dateDiplome;
+	}
+
+	/**
+	 * Set the value related to the column: DATE_DIPLOME
+	 * @param dateDiplome the DATE_DIPLOME value
+	 */
+	public void setDateDiplome (java.util.Date dateDiplome) {
+		this.dateDiplome = dateDiplome;
 	}
 
 
