@@ -14,10 +14,9 @@
 				<fieldset>
 					<legend>Nationalité</legend>
 					<h:panelGrid id="panelGrid2" columns="2">
-						<h:outputText value="Libellé nationalité"></h:outputText>
-						<h:inputText
-							value="#{manageNationalite.maNationalite.libnationalite}"
-							styleClass="inputStyle2" required="true"></h:inputText>
+						<p:outputLabel value="Libellé nationalité" for="lib_nationalite"/>
+						<h:inputText  id="lib_nationalite"
+							value="#{manageNationalite.maNationalite.libnationalite}" required="true"></h:inputText>
 					</h:panelGrid>
 				</fieldset>
 				<br></br>
