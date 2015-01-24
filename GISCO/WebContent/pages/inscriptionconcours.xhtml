@@ -23,16 +23,14 @@
 <fieldset>
 <legend>Candidat</legend>
 <h:panelGrid id="panelGrid1" columns="8" cellspacing="8">
-<h:outputText value="Nom"></h:outputText>
-<p:inputText value="#{manageInscriptionConcours.monCandidat.nomCandidat}" required="true" requiredMessage="Renseigner le Nom du Candidat" styleClass="uCase"></p:inputText>
+<p:outputLabel value="Nom" for="nom"></p:outputLabel>
+<p:inputText id="nom" value="#{manageInscriptionConcours.monCandidat.nomCandidat}" required="true" requiredMessage="Renseigner le Nom du Candidat" styleClass="uCase"></p:inputText>
 
+<p:outputLabel value="Prénoms" for="Prénoms"></p:outputLabel>
+<p:inputText id="Prénoms"  value="#{manageInscriptionConcours.monCandidat.prenomsCandidat}" required="true" requiredMessage="Renseigner le prénom du Candidat"></p:inputText>
 
-<h:outputText value="Prénoms"></h:outputText>
-<p:inputText  value="#{manageInscriptionConcours.monCandidat.prenomsCandidat}" required="true" requiredMessage="Renseigner le prénom du Candidat"></p:inputText>
-
-
-<h:outputText value="Date de naissance" styleClass="outputStyle"></h:outputText>
-<p:inputMask mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}" required="true" requiredMessage="Renseigner la date de naissance du Candidat">
+<p:outputLabel value="Date de naissance" for="Datenais"></p:outputLabel>
+<p:inputMask id="Datenais" mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}" required="true" requiredMessage="Renseigner la date de naissance du Candidat">
 <f:convertDateTime  pattern="dd/MM/yyy"/>
 <p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAge}" update="inputAge"></p:ajax>
 </p:inputMask>
@@ -41,64 +39,47 @@
 <h:outputText value="Age"></h:outputText>
 <p:inputText id="inputAge" value="#{manageInscriptionConcours.age}"></p:inputText>
 
+<p:outputLabel value="Lieu de naissance" for="Lieunais"></p:outputLabel>
+<p:inputText id="Lieunais" value="#{manageInscriptionConcours.monCandidat.lieuNaissance}" required="true"></p:inputText>
 
-<h:outputText value="Lieu de naissance"></h:outputText>
-<p:inputText value="#{manageInscriptionConcours.monCandidat.lieuNaissance}"></p:inputText>
-
-
-<h:outputText value="Sexe"></h:outputText>
-<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedSexe}" converter="#{comboSexe}">
+<p:outputLabel value="Sexe" for="Sexe"></p:outputLabel>
+<p:selectOneMenu id="Sexe" styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedSexe}" converter="#{comboSexe}" required="true">
 	<f:selectItem itemLabel="Selectionnez un Sexe" itemValue=""/>
 	<f:selectItems value="#{comboSexe.listeSexe}" var="tata" itemLabel="#{tata.libsexe}" itemValue="#{tata}"/>
 </p:selectOneMenu>
 
-<h:outputText value="Nationalité"></h:outputText>
-<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedNationalite}" converter="#{comboNationalite}">
+<p:outputLabel value="Nationalité" for="National"></p:outputLabel>
+<p:selectOneMenu id="National" styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedNationalite}" converter="#{comboNationalite}">
 	<f:selectItem itemLabel="Sélectionnez une Nationalité" itemValue=""/>
 	<f:selectItems value="#{comboNationalite.listeNationalite}" var="tata" itemLabel="#{tata.libnationalite}" itemValue="#{tata}"/>
 </p:selectOneMenu>
 
-<h:outputText value="Niveau"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedNiveau}" converter="#{comboNiveau}">
+<p:outputLabel value="Niveau" for="Niveau"></p:outputLabel>
+<p:selectOneMenu id="Niveau" styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedNiveau}" converter="#{comboNiveau}">
 	<f:selectItem itemLabel="Selectionez un Niveau" itemValue=""/>
 	<f:selectItems value="#{comboNiveau.listNiveaux}" var="tata" itemLabel="#{tata.abrevNiveau}" itemValue="#{tata}"/>
 </p:selectOneMenu>
 
-<h:outputText value="Diplome"></h:outputText>
-<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedDiplome}" converter="#{comboDiplome}">
+<p:outputLabel value="Diplome" for="Diplome"></p:outputLabel>
+<p:selectOneMenu id="Diplome" styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedDiplome}" converter="#{comboDiplome}">
 	<f:selectItem itemLabel="Selectionnez un Diplôme" itemValue=""></f:selectItem>
 	<f:selectItems value="#{comboDiplome.listeDiplome}" var="tata" itemLabel="#{tata.abrevDiplome}" itemValue="#{tata}"></f:selectItems>
 </p:selectOneMenu>
 
-<h:outputText value="Date Diplome"></h:outputText>
-
-<p:inputMask mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}" required="true" requiredMessage="Renseigner la date du Diplome">
+<p:outputLabel value="Date Diplome" for="datedip"></p:outputLabel>
+<p:inputMask id="datedip" mask="99/99/9999"  value="#{manageInscriptionConcours.monCandidat.dateNaissance}" required="true" requiredMessage="Renseigner la date du Diplome">
 <f:convertDateTime  pattern="dd/MM/yyy"/>
 <p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAge}" update="inputAgeDip"></p:ajax>
 </p:inputMask>
 
-<h:outputText value="Age Diplome"></h:outputText>
+<h:outputText value="Age Diplome">
+	<p:ajax event="blur" listener="#{manageInscriptionConcours.calculerAge}" update="inputAge"></p:ajax>
+</h:outputText>
 <p:inputText id="inputAgeDip" value="#{manageInscriptionConcours.age}"></p:inputText>
 </h:panelGrid>
 </fieldset>
 
 <br></br>
-
-<fieldset>
-<legend>Concours</legend>
-
-<h:panelGrid id="gridConcour" columns="2" cellspacing="8">
-<h:outputText value="Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
-<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedPays}" converter="#{comboPays}">
-	<f:selectItem itemLabel="Sélectionnez un Pays" itemValue=""/>
-	<f:selectItems value="#{comboPays.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
-	<p:ajax event="change" listener="#{manageInscriptionConcours.chargerListeConcours}" update="dt2"></p:ajax>
-</p:selectOneMenu>
-
-</h:panelGrid>
-
-</fieldset>
-
 
 
 <!-- DataTable 2 -->
@@ -106,8 +87,15 @@
 <p:dataTable id="dt2" var="conc" value="#{manageInscriptionConcours.listeconcours}"
                  selection="#{manageInscriptionConcours.selectedsConcours}" rowKey="#{conc.id}">  
   
-        <f:facet name="header">  
-
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Pays &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+<p:selectOneMenu styleClass="oneMenuStyle" value="#{manageInscriptionConcours.selectedPays}" converter="#{comboPays}">
+	<f:selectItem itemLabel="Sélectionnez un Pays" itemValue=""/>
+	<f:selectItems value="#{comboPays.listePays}" var="tata" itemLabel="#{tata.libpays}" itemValue="#{tata}"></f:selectItems>
+	<p:ajax event="change" listener="#{manageInscriptionConcours.chargerListeConcours}" update="dt2"></p:ajax>
+</p:selectOneMenu>
+            </p:outputPanel>
         </f:facet>  
   
         <p:column selectionMode="multiple" style="width:2%" />  
@@ -130,16 +118,12 @@
 
 
 <h:panelGrid columns="2">
-<p:commandButton value="Enregistrer" actionListener="#{manageInscriptionConcours.incrirCandidat}">
+<p:commandButton value="Enregistrer" action="#{manageInscriptionConcours.inscrirCandidat}" update="form">
 	 <p:confirm header="Confirmation" message="Confirmez vous cette inscription ?" icon="ui-icon-alert" />  
 </p:commandButton>
 
-<p:commandButton value="Annuler" actionListener="#{manageInscriptionConcours.testMethode}" process="panelGrid1"></p:commandButton>
+<p:commandButton value="Annuler" process="panelGrid1"></p:commandButton>
 </h:panelGrid>
-
-
-<p:commandButton value="test" actionListener="#{manageInscriptionConcours.test}" process="@this"></p:commandButton>
-
 
  <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
         <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  

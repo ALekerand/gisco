@@ -45,6 +45,15 @@
 			not-null="false"
 			length="50"
 		/>
+		
+		<property
+			name="DateDiplome"
+			column="DATE_DIPLOME"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		
 		<property
 			name="PhotoCandidat"
 			column="PHOTO_CANDIDAT"

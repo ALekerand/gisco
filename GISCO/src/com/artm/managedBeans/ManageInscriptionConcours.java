@@ -59,6 +59,7 @@ public class ManageInscriptionConcours implements Serializable {
 	private Niveaux selectedNiveau = new Niveaux();
 	private Diplomes selectedDiplome = new Diplomes();
 	private int age;
+	private String ageDiplome;
 	private Anneeconcours monObjetAnneeConcours = new Anneeconcours();
 	private ConcoursModel monConcoursModel;
 	private List listeconcours;
@@ -98,9 +99,8 @@ public class ManageInscriptionConcours implements Serializable {
 		}
 	}
 	
-	public void incrirCandidat(){
-		System.out.println("------>> Appel methode d'enregistrement");//Clean after
-		 try {
+	public void inscrirCandidat(){
+		try {
 			enregistrerCandidat();
 			System.out.println("------>> Candidat enregistrer");//Clean after
 			 enregTableInscription();
@@ -111,8 +111,8 @@ public class ManageInscriptionConcours implements Serializable {
 				 getAutorisationConcours().setConcours(concours);	
 				 getAutorisationConcours().creerAutorisation();
 			 }
-			 
 			getAutorisationConcours().creerAutorisation();
+			 ViderCandidat(monCandidat);
 		} catch (Exception e) {
 			logger.error("Une erreur est survenue lors de l'enregistrement du candidat",e);
 		}
@@ -129,16 +129,11 @@ public class ManageInscriptionConcours implements Serializable {
 		monObjet.setCodenationalite(null);
 		monObjet.setCodeniveau(null);
 		monObjet.setCodepays(null);
+		setAge(0);
 		
 			
 	}
-	
-	public void testMethode(){
-		System.out.println("Appel ok!");
-
 		
-	}
-	
 	public int calculerAge(){
 		setAge(0);
 		System.out.println("Calcul de l'age");
@@ -146,6 +141,14 @@ public class ManageInscriptionConcours implements Serializable {
 	System.out.println("----------->>> Age"+getAge());
 	return age = nbreJour/365; 
 	} 
+	
+	public int calculerAgeDiplome(){
+		setAgeDiplome(null);
+	int nbreJour =	(int) getDateCalculator().calculerDifference(getMonCandidat().getDateNaissance(), Calendar.getInstance().getTime());
+	System.out.println("----------->>> Age"+getAge());
+	return age = nbreJour/365; 
+	} 
+	
 	
 	
 	
@@ -354,6 +357,18 @@ public class ManageInscriptionConcours implements Serializable {
 
 	public void setReqAnneeConcours(ReqAnneeConcours reqAnneeConcours) {
 		this.reqAnneeConcours = reqAnneeConcours;
+	}
+
+
+
+	public String getAgeDiplome() {
+		return ageDiplome;
+	}
+
+
+
+	public void setAgeDiplome(String ageDiplome) {
+		this.ageDiplome = ageDiplome;
 	}
 
 
