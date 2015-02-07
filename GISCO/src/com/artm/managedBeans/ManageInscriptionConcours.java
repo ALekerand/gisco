@@ -59,7 +59,8 @@ public class ManageInscriptionConcours implements Serializable {
 	private Niveaux selectedNiveau = new Niveaux();
 	private Diplomes selectedDiplome = new Diplomes();
 	private int age;
-	private int ageDiplome;
+	private int ageDip;
+	//private int ageDiplome;
 	private Anneeconcours monObjetAnneeConcours = new Anneeconcours();
 	private ConcoursModel monConcoursModel;
 	private List listeconcours;
@@ -130,7 +131,7 @@ public class ManageInscriptionConcours implements Serializable {
 		monObjet.setCodeniveau(null);
 		monObjet.setCodepays(null);
 		setAge(0);
-		setAgeDiplome(0);
+		setAgeDip(0);
 		
 			
 	}
@@ -139,21 +140,20 @@ public class ManageInscriptionConcours implements Serializable {
 		setAge(0);
 		System.out.println("Calcul de l'age");
 	int nbreJour =	(int) getDateCalculator().calculerDifference(getMonCandidat().getDateNaissance(), Calendar.getInstance().getTime());
+	System.out.println("----------->>> nbre jour candidat :"+nbreJour);
 	System.out.println("----------->>> Age"+getAge());
-	return age = nbreJour/365; 
+	age = nbreJour/365;
+	return getAge(); 
 	} 
 	
 	public int calculerAgeDiplome(){
-		setAgeDiplome(0);
+		setAgeDip(0);
 	int nbreJour =	(int) getDateCalculator().calculerDifference(getMonCandidat().getDateDiplome(), Calendar.getInstance().getTime());
-	System.out.println("----------->>> Age"+getAge());
-	int datedipl = (nbreJour/365);
-	return ageDiplome = nbreJour/365; 
+	System.out.println("----------->>> Nbre jour diplome :"+nbreJour);
+	System.out.println("----------->>> Age Diplome :"+getAgeDip());
+	ageDip = nbreJour/365;
+	return getAgeDip(); 
 	} 
-	
-	
-	
-	
 	
 	
 	public List chargerListeConcours(){
@@ -362,16 +362,14 @@ public class ManageInscriptionConcours implements Serializable {
 	}
 
 
-
-	public int getAgeDiplome() {
-		return ageDiplome;
+	public int getAgeDip() {
+		return ageDip;
 	}
 
 
 
-	public int setAgeDiplome(int ageDiplome) {
-		this.ageDiplome = ageDiplome;
-		return ageDiplome;
+	public void setAgeDip(int ageDip) {
+		this.ageDip = ageDip;
 	}
 
 
