@@ -3,8 +3,13 @@ package com.artm.etats;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
@@ -17,9 +22,11 @@ import com.artm.hibernate.beans.Concours;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -48,11 +55,13 @@ public class EtatAutorisationConcours implements Serializable {
 	private Candidat candidat = new Candidat();
 	private Concours concours = new Concours();
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	public static final String RESOURCE = "http://localhost:8080/GISCO/ressources/mesImages/logo_artm.jpg";
+	private List listConcours = new ArrayList<>();
 	
 	
 	//Création de la méthode
 	
-public void creerAutorisation() throws FileNotFoundException, DocumentException{
+public void creerAutorisation() throws DocumentException, MalformedURLException, IOException{
 	Document document = new Document(PageSize.A4);
 	document.setMargins(15, 15, 15, 15);
 	nomfichier =getCandidat().getId()+getConcours().getAbrevEcoleConcours();
@@ -69,7 +78,12 @@ public void creerAutorisation() throws FileNotFoundException, DocumentException{
 }
 
 //création du contenu du document
-public void addContent(Document document) throws DocumentException{
+public void addContent(Document document) throws DocumentException, MalformedURLException, IOException{
+	//logo ARTM
+	Image logo = Image.getInstance(new URL(RESOURCE));
+	//logo.scalePercent(80f);
+	document.add(logo);
+	
 	//création d'un paragraphe
 	Paragraph titredocument = new Paragraph("AUTORISATION D'INSCRIPTION CONCOURS",titregras);
 	titredocument.setSpacingAfter(30);
@@ -89,18 +103,44 @@ public void addContent(Document document) throws DocumentException{
 
 	// Paragraph information Candidat
 	Paragraph paragraph = new Paragraph();
-	Phrase civilite = new Phrase("Mr,Mlle"+candidat.getNomCandidat()+" "+candidat.getPrenomsCandidat()+" né(e) le");
+	Phrase civilite = new Phrase("Mr,Mlle "+candidat.getNomCandidat()+" "+candidat.getPrenomsCandidat()+" né(e) le ");
 	Phrase dateNais = new Phrase(dateFormat.format(candidat.getDateNaissance()));
-	Phrase lieuNais = new Phrase("à "+candidat.getLieuNaissance()+" est autorisé à s'inscrire au ");
+	Phrase lieuNais = new Phrase(" à "+candidat.getLieuNaissance()+" ayant remplir les conditions administratives est autorisé à s'inscrire au ");
+	Phrase concoursEcole = new Phrase("concours d'entrée à l'Accadémie des Sciences et Techniques de la Mer (ARSTM)");
 	Phrase concours = new Phrase(getConcours().getLibConcours());
-	
+
 	paragraph.add(civilite);
 	paragraph.add(dateNais);
 	paragraph.add(lieuNais);
+	paragraph.add(concoursEcole);
 	paragraph.add(concours);
 	
 	document.add(tableauCandidat);
 	document.add(paragraph);
+	
+	//Pour le tableau des concours
+	recupererConcours(document);
+		
+}
+
+
+
+//Methode pour la liste des concours
+public void recupererConcours( Document document) throws DocumentException{
+	//cration d'un tableau de 2 colonnes
+	PdfPCell cell;
+		PdfPTable tableauconcours = new PdfPTable(2);
+		tableauconcours.addCell(new Phrase("Ecole"));
+		tableauconcours.addCell(new Phrase("Filière"));
+		
+		for(int i =0 ; i<listConcours.size(); i++){
+			Concours concours = new Concours();
+			concours = (Concours) listConcours.get(i);
+		 cell = new PdfPCell(new Phrase(concours.getLibEcoleConcours()));
+		 tableauconcours.addCell(cell);
+		}
+		
+		document.add(tableauconcours);
 		
 }
 
